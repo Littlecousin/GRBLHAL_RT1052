@@ -1,0 +1,1708 @@
+Dependencies for Project 'hello_world', Target 'hello_world flexspi_nor_debug': (DO NOT MODIFY !)
+CompilerVersion: 6160000::V6.16::ARMCLANG
+F (board/board.c)(0x62F47D12)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/board.o -MD)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (utilities\fsl_debug_console.h)(0x62EC5932)
+I (board\board.h)(0x62EC5932)
+I (board\clock_config.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (drivers\fsl_iomuxc.h)(0x62EC5932)
+F (board/board.h)(0x62EC5932)()
+F (board/clock_config.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/clock_config.o -MD)
+I (board\clock_config.h)(0x62EC5932)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_iomuxc.h)(0x62EC5932)
+F (board/clock_config.h)(0x62EC5932)()
+F (board/dcd.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/dcd.o -MD)
+I (board\dcd.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+F (board/dcd.h)(0x62EC5932)()
+F (board/pin_mux.c)(0x62FA17EF)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/pin_mux.o -MD)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_iomuxc.h)(0x62EC5932)
+I (board\pin_mux.h)(0x62EC5932)
+F (board/pin_mux.h)(0x62EC5932)()
+F (CMSIS/cmsis_armcc.h)(0x62EC5932)()
+F (CMSIS/cmsis_armclang.h)(0x62EC5932)()
+F (CMSIS/cmsis_armclang_ltm.h)(0x62EC5932)()
+F (CMSIS/cmsis_compiler.h)(0x62EC5932)()
+F (CMSIS/cmsis_gcc.h)(0x62EC5932)()
+F (CMSIS/cmsis_iccarm.h)(0x62EC5932)()
+F (CMSIS/cmsis_version.h)(0x62EC5932)()
+F (CMSIS/core_cm7.h)(0x62EC5932)()
+F (CMSIS/mpu_armv7.h)(0x62EC5932)()
+F (component/lists/fsl_component_generic_list.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_component_generic_list.o -MD)
+I (component\lists\fsl_component_generic_list.h)(0x62EC5932)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (component/lists/fsl_component_generic_list.h)(0x62EC5932)()
+F (component/uart/fsl_adapter_lpuart.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_adapter_lpuart.o -MD)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (component\uart\fsl_adapter_uart.h)(0x62EC5932)
+F (component/uart/fsl_adapter_uart.h)(0x62EC5932)()
+F (device/fsl_device_registers.h)(0x62EC5932)()
+F (device/MIMXRT1052.h)(0x62EC5932)()
+F (device/MIMXRT1052_features.h)(0x62EC5932)()
+F (device/system_MIMXRT1052.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/system_mimxrt1052.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+F (device/system_MIMXRT1052.h)(0x62EC5932)()
+F (doc/readme.txt)(0x62EC5932)()
+F (drivers/fsl_clock.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_clock.o -MD)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+F (drivers/fsl_clock.h)(0x62EC5932)()
+F (drivers/fsl_common.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_common.o -MD)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (drivers/fsl_common.h)(0x62EC5932)()
+F (drivers/fsl_common_arm.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_common_arm.o -MD)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (drivers/fsl_common_arm.h)(0x62EC5932)()
+F (drivers/fsl_gpio.c)(0x62F47580)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_gpio.o -MD)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (drivers/fsl_gpio.h)(0x62F4757C)()
+F (drivers/fsl_iomuxc.h)(0x62EC5932)()
+F (drivers/fsl_lpuart.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_lpuart.o -MD)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (drivers/fsl_lpuart.h)(0x62EC5932)()
+F (.\drivers\fsl_romapi.c)(0x62F5C33D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_romapi.o -MD)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (.\drivers\fsl_romapi.h)(0x62F5AE5A)()
+F (.\drivers\fsl_cache.h)(0x60F47CC6)()
+F (.\drivers\fsl_cache.c)(0x60F47CC6)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_cache.o -MD)
+I (drivers\fsl_cache.h)(0x60F47CC6)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (.\drivers\fsl_qtmr.c)(0x62FA2208)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_qtmr.o -MD)
+I (drivers\fsl_qtmr.h)(0x60F47CC6)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (.\drivers\fsl_qtmr.h)(0x60F47CC6)()
+F (source/main.c)(0x62F5F537)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/main.o -MD)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (utilities\fsl_debug_console.h)(0x62EC5932)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (board\pin_mux.h)(0x62EC5932)
+I (board\clock_config.h)(0x62EC5932)
+I (board\board.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (Grbl\grbl\grbllib.h)(0x62EDD68C)
+I (source\main.h)(0x62F5CF12)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_cache.h)(0x60F47CC6)
+F (.\source\main.h)(0x62F5CF12)()
+F (.\source\flexspi_romapi_ops.c)(0x60F47CAA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/flexspi_romapi_ops.o -MD)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (.\source\bsp_nvic .c)(0x62FA1DC1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o "flexspi_nor_debug/bsp_nvic .o" -MD)
+I (source\bsp_nvic.h)(0x5EF31034)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (.\source\bsp_nvic.h)(0x5EF31034)()
+F (.\source\bsp_tmr.c)(0x62FA2230)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/bsp_tmr.o -MD)
+I (source\bsp_nvic.h)(0x5EF31034)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (source\bsp_tmr.h)(0x62FA21DC)
+I (drivers\fsl_qtmr.h)(0x60F47CC6)
+F (.\source\bsp_tmr.h)(0x62FA21DC)()
+F (startup/startup_MIMXRT1052.S)(0x62F47D22)(--target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -masm=gnu -c-gdwarf-4 -D__MICROLIB-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION=536 -DCPU_MIMXRT1052DVL6B -DDEBUG -D__STARTUP_INITIALIZE_NONCACHEDATA-o flexspi_nor_debug/startup_mimxrt1052.o)
+F (utilities/fsl_assert.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_assert.o -MD)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (utilities\fsl_debug_console.h)(0x62EC5932)
+F (utilities/fsl_debug_console.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_debug_console.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x603507D4)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x603507D4)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (utilities\fsl_debug_console.h)(0x62EC5932)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (component\uart\fsl_adapter_uart.h)(0x62EC5932)
+F (utilities/fsl_debug_console.h)(0x62EC5932)()
+F (xip/evkbimxrt1050_flexspi_nor_config.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/evkbimxrt1050_flexspi_nor_config.o -MD)
+I (xip\evkbimxrt1050_flexspi_nor_config.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+F (xip/evkbimxrt1050_flexspi_nor_config.h)(0x62EC5932)()
+F (xip/fsl_flexspi_nor_boot.c)(0x62EC5932)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/fsl_flexspi_nor_boot.o -MD)
+I (xip\fsl_flexspi_nor_boot.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (board\board.h)(0x62EC5932)
+I (board\clock_config.h)(0x62EC5932)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+F (xip/fsl_flexspi_nor_boot.h)(0x62EC5932)()
+F (.\Grbl\grbl\alarms.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/alarms.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+F (.\Grbl\grbl\coolant_control.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/coolant_control.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+F (.\Grbl\grbl\corexy.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/corexy.o -MD)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+F (.\Grbl\grbl\errors.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/errors.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+F (.\Grbl\grbl\gcode.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/gcode.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\motion_control.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+F (.\Grbl\grbl\grbllib.c)(0x62F4AD3A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/grbllib.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\tool_change.h)(0x62EDD68C)
+I (Grbl\grbl\override.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\limits.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+I (Grbl\grbl\nvs_buffer.h)(0x62EDD68C)
+F (.\Grbl\grbl\ioports.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/ioports.o -MD)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+F (.\Grbl\grbl\limits.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/limits.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\motion_control.h)(0x62EDD68C)
+I (Grbl\grbl\limits.h)(0x62EDD68C)
+I (Grbl\grbl\tool_change.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+I (Grbl\grbl\defaults.h)(0x62EDD68C)
+F (.\Grbl\grbl\maslow.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/maslow.o -MD)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+F (.\Grbl\grbl\motion_control.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/motion_control.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\limits.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+I (Grbl\grbl\motion_control.h)(0x62EDD68C)
+I (Grbl\grbl\tool_change.h)(0x62EDD68C)
+F (.\Grbl\grbl\my_plugin.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/my_plugin.o -MD)
+F (.\Grbl\grbl\ngc_expr.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/ngc_expr.o -MD)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+F (.\Grbl\grbl\ngc_params.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/ngc_params.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+F (.\Grbl\grbl\nuts_bolts.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/nuts_bolts.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+F (.\Grbl\grbl\nvs_buffer.c)(0x62F4B674)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/nvs_buffer.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\nvs_buffer.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+F (.\Grbl\grbl\override.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/override.o -MD)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\override.h)(0x62EDD68C)
+F (.\Grbl\grbl\pid.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/pid.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\pid.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+F (.\Grbl\grbl\planner.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/planner.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+F (.\Grbl\grbl\protocol.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/protocol.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\nvs_buffer.h)(0x62EDD68C)
+I (Grbl\grbl\override.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+I (Grbl\grbl\motion_control.h)(0x62EDD68C)
+I (Grbl\grbl\sleep.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\limits.h)(0x62EDD68C)
+F (.\Grbl\grbl\regex.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/regex.o -MD)
+I (Grbl\grbl\regex.h)(0x62EDD68C)
+F (.\Grbl\grbl\report.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/report.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x603507D4)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\nvs_buffer.h)(0x62EDD68C)
+I (Grbl\grbl\limits.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+I (Grbl\grbl\regex.h)(0x62EDD68C)
+F (.\Grbl\grbl\settings.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/settings.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\defaults.h)(0x62EDD68C)
+I (Grbl\grbl\limits.h)(0x62EDD68C)
+I (Grbl\grbl\nvs_buffer.h)(0x62EDD68C)
+I (Grbl\grbl\tool_change.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+F (.\Grbl\grbl\sleep.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/sleep.o -MD)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+F (.\Grbl\grbl\spindle_control.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/spindle_control.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+F (.\Grbl\grbl\state_machine.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/state_machine.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\motion_control.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+I (Grbl\grbl\override.h)(0x62EDD68C)
+F (.\Grbl\grbl\stepper.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/stepper.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+F (.\Grbl\grbl\stream.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/stream.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+F (.\Grbl\grbl\system.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/system.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\motion_control.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\tool_change.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+I (Grbl\grbl\limits.h)(0x62EDD68C)
+F (.\Grbl\grbl\tool_change.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/tool_change.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\grbl\motion_control.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\tool_change.h)(0x62EDD68C)
+F (.\Grbl\grbl\wall_plotter.c)(0x62EDD68C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/wall_plotter.o -MD)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+F (.\Grbl\grbl\alarms.h)(0x62EDD68C)()
+F (.\Grbl\grbl\config.h)(0x62EDD68C)()
+F (.\Grbl\grbl\coolant_control.h)(0x62EDD68C)()
+F (.\Grbl\grbl\core_handlers.h)(0x62EDD68C)()
+F (.\Grbl\grbl\corexy.h)(0x62EDD68C)()
+F (.\Grbl\grbl\crossbar.h)(0x62EDD68C)()
+F (.\Grbl\grbl\defaults.h)(0x62EDD68C)()
+F (.\Grbl\grbl\driver_opts.h)(0x62EDD68C)()
+F (.\Grbl\grbl\errors.h)(0x62EDD68C)()
+F (.\Grbl\grbl\gcode.h)(0x62EDD68C)()
+F (.\Grbl\grbl\grbl.h)(0x62EDD68C)()
+F (.\Grbl\grbl\grbllib.h)(0x62EDD68C)()
+F (.\Grbl\grbl\hal.h)(0x62EDD68C)()
+F (.\Grbl\grbl\ioports.h)(0x62EDD68C)()
+F (.\Grbl\grbl\kinematics.h)(0x62EDD68C)()
+F (.\Grbl\grbl\limits.h)(0x62EDD68C)()
+F (.\Grbl\grbl\maslow.h)(0x62EDD68C)()
+F (.\Grbl\grbl\messages.h)(0x62EDD68C)()
+F (.\Grbl\grbl\motion_control.h)(0x62EDD68C)()
+F (.\Grbl\grbl\motor_pins.h)(0x62EDD68C)()
+F (.\Grbl\grbl\ngc_expr.h)(0x62EDD68C)()
+F (.\Grbl\grbl\ngc_params.h)(0x62EDD68C)()
+F (.\Grbl\grbl\nuts_bolts.h)(0x62EDD68C)()
+F (.\Grbl\grbl\nvs.h)(0x62EDD68C)()
+F (.\Grbl\grbl\nvs_buffer.h)(0x62EDD68C)()
+F (.\Grbl\grbl\override.h)(0x62EDD68C)()
+F (.\Grbl\grbl\pid.h)(0x62EDD68C)()
+F (.\Grbl\grbl\pin_bits_masks.h)(0x62EDD68C)()
+F (.\Grbl\grbl\planner.h)(0x62EDD68C)()
+F (.\Grbl\grbl\platform.h)(0x62EDD68C)()
+F (.\Grbl\grbl\plugins.h)(0x62EDD68C)()
+F (.\Grbl\grbl\plugins_init.h)(0x62EDD68C)()
+F (.\Grbl\grbl\probe.h)(0x62EDD68C)()
+F (.\Grbl\grbl\protocol.h)(0x62EDD68C)()
+F (.\Grbl\grbl\README.md)(0x62EDD68C)()
+F (.\Grbl\grbl\regex.h)(0x62EDD68C)()
+F (.\Grbl\grbl\report.h)(0x62EDD68C)()
+F (.\Grbl\grbl\settings.h)(0x62EDD68C)()
+F (.\Grbl\grbl\sleep.h)(0x62EDD68C)()
+F (.\Grbl\grbl\spindle_control.h)(0x62EDD68C)()
+F (.\Grbl\grbl\spindle_sync.h)(0x62EDD68C)()
+F (.\Grbl\grbl\state_machine.h)(0x62EDD68C)()
+F (.\Grbl\grbl\stepdir_map.h)(0x62EDD68C)()
+F (.\Grbl\grbl\stepper.h)(0x62EDD68C)()
+F (.\Grbl\grbl\stream.h)(0x62EDD68C)()
+F (.\Grbl\grbl\system.h)(0x62EDD68C)()
+F (.\Grbl\grbl\tool_change.h)(0x62EDD68C)()
+F (.\Grbl\grbl\wall_plotter.h)(0x62EDD68C)()
+F (.\Grbl\Src\diskio.c)(0x62ECF10B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/diskio.o -MD)
+I (Grbl\inc\driver.h)(0x62FA18E3)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (Grbl\inc\my_machine.h)(0x62F4A8A0)
+I (source\main.h)(0x62F5CF12)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_cache.h)(0x60F47CC6)
+I (Grbl\grbl\driver_opts.h)(0x62EDD68C)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\inc\generic_map.h)(0x62FA17F2)
+F (.\Grbl\Src\driver.c)(0x62FA24C4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/driver.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (source\main.h)(0x62F5CF12)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_cache.h)(0x60F47CC6)
+I (Grbl\inc\driver.h)(0x62FA18E3)
+I (Grbl\inc\my_machine.h)(0x62F4A8A0)
+I (Grbl\grbl\driver_opts.h)(0x62EDD68C)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\inc\generic_map.h)(0x62FA17F2)
+I (Grbl\inc\serial.h)(0x62ECF10B)
+I (Grbl\grbl\limits.h)(0x62EDD68C)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+I (Grbl\grbl\motor_pins.h)(0x62EDD68C)
+I (Grbl\grbl\pin_bits_masks.h)(0x62EDD68C)
+I (Grbl\grbl\state_machine.h)(0x62EDD68C)
+I (Grbl\inc\flash.h)(0x62ECF10B)
+I (Grbl\grbl\stepdir_map.h)(0x62EDD68C)
+I (Grbl\grbl\plugins_init.h)(0x62EDD68C)
+F (.\Grbl\Src\flash.c)(0x62F5CF30)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/flash.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (source\main.h)(0x62F5CF12)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_cache.h)(0x60F47CC6)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+F (.\Grbl\Src\i2c.c)(0x62F46D35)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/i2c.o -MD)
+I (source\main.h)(0x62F5CF12)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_cache.h)(0x60F47CC6)
+I (Grbl\inc\i2c.h)(0x62ECF10B)
+I (Grbl\inc\driver.h)(0x62FA18E3)
+I (Grbl\inc\my_machine.h)(0x62F4A8A0)
+I (Grbl\grbl\driver_opts.h)(0x62EDD68C)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\inc\generic_map.h)(0x62FA17F2)
+F (.\Grbl\Src\ioports.c)(0x62F4A3FC)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/ioports_1.o -MD)
+I (Grbl\inc\driver.h)(0x62FA18E3)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (Grbl\inc\my_machine.h)(0x62F4A8A0)
+I (source\main.h)(0x62F5CF12)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_cache.h)(0x60F47CC6)
+I (Grbl\grbl\driver_opts.h)(0x62EDD68C)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\inc\generic_map.h)(0x62FA17F2)
+I (D:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x603507CA)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+F (.\Grbl\Src\serial.c)(0x62FA1074)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/serial.o -MD)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (Grbl\inc\serial.h)(0x62ECF10B)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (Grbl\inc\driver.h)(0x62FA18E3)
+I (Grbl\inc\my_machine.h)(0x62F4A8A0)
+I (source\main.h)(0x62F5CF12)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_cache.h)(0x60F47CC6)
+I (Grbl\grbl\driver_opts.h)(0x62EDD68C)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\inc\generic_map.h)(0x62FA17F2)
+I (Grbl\grbl\protocol.h)(0x62EDD68C)
+F (.\Grbl\Src\usb_serial.c)(0x62ECF10B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I board -I CMSIS -I component/lists -I component/uart -I device -I drivers -I utilities -I xip -I ./Grbl -I source -I ./Grbl/inc -fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0-ID:/Keil_v5/Packs/NXP/MIMXRT1052_DFP/12.2.0/Device/Include-D__UVISION_VERSION="536" -DCPU_MIMXRT1052DVL6B -DXIP_EXTERNAL_FLASH="1" -DXIP_BOOT_HEADER_ENABLE="1" -DDEBUG -DCPU_MIMXRT1052DVL6B -DPRINTF_FLOAT_ENABLE="0" -DSCANF_FLOAT_ENABLE="0" -DPRINTF_ADVANCED_ENABLE="0" -DSCANF_ADVANCED_ENABLE="0" -DMCUXPRESSO_SDK-o flexspi_nor_debug/usb_serial.o -MD)
+I (Grbl\inc\driver.h)(0x62FA18E3)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x603507CA)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x603507D0)
+I (Grbl\inc\my_machine.h)(0x62F4A8A0)
+I (source\main.h)(0x62F5CF12)
+I (drivers\fsl_common.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x603507D0)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x603507D0)
+I (device\fsl_device_registers.h)(0x62EC5932)
+I (device\MIMXRT1052.h)(0x62EC5932)
+I (CMSIS\core_cm7.h)(0x62EC5932)
+I (CMSIS\cmsis_version.h)(0x62EC5932)
+I (CMSIS\cmsis_compiler.h)(0x62EC5932)
+I (CMSIS\cmsis_armclang.h)(0x62EC5932)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x602A3B7E)
+I (D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x603507C4)
+I (CMSIS\mpu_armv7.h)(0x62EC5932)
+I (device\system_MIMXRT1052.h)(0x62EC5932)
+I (device\MIMXRT1052_features.h)(0x62EC5932)
+I (drivers\fsl_common_arm.h)(0x62EC5932)
+I (drivers\fsl_clock.h)(0x62EC5932)
+I (drivers\fsl_gpio.h)(0x62F4757C)
+I (drivers\fsl_lpuart.h)(0x62EC5932)
+I (drivers\fsl_romapi.h)(0x62F5AE5A)
+I (drivers\fsl_cache.h)(0x60F47CC6)
+I (Grbl\grbl\driver_opts.h)(0x62EDD68C)
+I (Grbl\grbl\hal.h)(0x62EDD68C)
+I (Grbl\grbl\grbl.h)(0x62EDD68C)
+I (Grbl\grbl\config.h)(0x62EDD68C)
+I (Grbl\grbl\core_handlers.h)(0x62EDD68C)
+I (Grbl\grbl\system.h)(0x62EDD68C)
+I (Grbl\grbl\gcode.h)(0x62EDD68C)
+I (Grbl\grbl\nuts_bolts.h)(0x62EDD68C)
+I (Grbl\grbl\coolant_control.h)(0x62EDD68C)
+I (Grbl\grbl\spindle_control.h)(0x62EDD68C)
+I (Grbl\grbl\errors.h)(0x62EDD68C)
+I (Grbl\grbl\probe.h)(0x62EDD68C)
+I (Grbl\grbl\alarms.h)(0x62EDD68C)
+I (Grbl\grbl\messages.h)(0x62EDD68C)
+I (Grbl\grbl\stream.h)(0x62EDD68C)
+I (Grbl\grbl\settings.h)(0x62EDD68C)
+I (Grbl\grbl\plugins.h)(0x62EDD68C)
+I (Grbl\grbl\nvs.h)(0x62EDD68C)
+I (Grbl\grbl\report.h)(0x62EDD68C)
+I (Grbl\grbl\ngc_params.h)(0x62EDD68C)
+I (Grbl\grbl\planner.h)(0x62EDD68C)
+I (Grbl\grbl\crossbar.h)(0x62EDD68C)
+I (Grbl\grbl\stepper.h)(0x62EDD68C)
+I (Grbl\grbl\ioports.h)(0x62EDD68C)
+I (Grbl\inc\generic_map.h)(0x62FA17F2)
+F (.\Grbl\Inc\driver.h)(0x62FA18E3)()
+F (.\Grbl\Inc\flash.h)(0x62ECF10B)()
+F (.\Grbl\Inc\generic_map.h)(0x62FA17F2)()
+F (.\Grbl\Inc\i2c.h)(0x62ECF10B)()
+F (.\Grbl\Inc\my_machine.h)(0x62F4A8A0)()
+F (.\Grbl\Inc\serial.h)(0x62ECF10B)()
+F (.\Grbl\Inc\spi.h)(0x62ECF10B)()
+F (.\Grbl\Inc\stm32f4xx_hal_conf.h)(0x62ECF10B)()
+F (.\Grbl\Inc\stm32f4xx_it.h)(0x62ECF10B)()
+F (.\Grbl\Inc\usb_serial.h)(0x62ECF10B)()
