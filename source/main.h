@@ -10,7 +10,8 @@ extern "C" {
 #include "fsl_lpuart.h"
 #include "fsl_romapi.h"
 #include "fsl_cache.h"
-
+#include "bsp_tmr.h"
+#include "bsp_pit.h"
 #ifdef __cplusplus
 }
 #endif

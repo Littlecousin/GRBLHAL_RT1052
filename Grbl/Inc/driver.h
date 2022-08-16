@@ -57,21 +57,23 @@ TMR3
 #define QTMR_IRQ_HANDLER TMR3_IRQHandler
 */
 #define timer(t) timerN(t)
-#define timerN(t) TIM ## t
+#define timerN(t) TMR ## t
+#define timerCH(t) timerch(t)
+#define timerch(t) kQTMR_Channel_ ## t
 #define timerINT(t) timerint(t)
-#define timerint(t) TIM ## t ## _IRQn
+#define timerint(t) TMR ## t ## _IRQn
 #define timerHANDLER(t) timerhandler(t)
-#define timerhandler(t) TIM ## t ## _IRQHandler
+#define timerhandler(t) TMR ## t ## _IRQHandler
 #define timerCCEN(c, n) timerccen(c, n)
 #define timerccen(c, n) TIM_CCER_CC ## c ## n ## E
 #define timerCCMR(p, c) timerccmr(p, c)
-#define timerccmr(p, c) TIM ## p->CCMR ## c
+#define timerccmr(p, c) TMR ## p->CCMR ## c
 #define timerOCM(p, c) timerocm(p, c)
 #define timerocm(p, c) TIM_CCMR ## p ##_OC ## c ## M_1|TIM_CCMR ## p ##_OC ## c ## M_2
 #define timerOCMC(p, c) timerocmc(p, c)
 #define timerocmc(p, c) (TIM_CCMR ## p ##_OC ## c ## M|TIM_CCMR ## p ##_CC ## c ## S)
 #define timerCCR(t, c) timerccr(t, c)
-#define timerccr(t, c) TIM ## t->CCR ## c
+#define timerccr(t, c) TMR ## t->CCR ## c
 #define timerCCP(c, n) timerccp(c, n)
 #define timerccp(c, n) TIM_CCER_CC ## c ## n ## P
 #define timerCR2OIS(c, n) timercr2ois(c, n)
@@ -121,15 +123,22 @@ TMR3
 #endif
 
 // Define timer allocations.
+extern __IO uint32_t g_debounce_int_count;
+extern __IO uint32_t g_pulse_int_count;
+extern __IO uint32_t g_stepper_int_count;
 
-#define STEPPER_TIMER_N             5
+#define STEPPER_TIMER_N             1
+#define STEPPER_TIMER_CH_N			0
 #define STEPPER_TIMER               timer(STEPPER_TIMER_N)
+#define STEPPER_TIMER_CH			timerCH(STEPPER_TIMER_CH_N)
 #define STEPPER_TIMER_IRQn          timerINT(STEPPER_TIMER_N)
 #define STEPPER_TIMER_IRQHandler    timerHANDLER(STEPPER_TIMER_N)
 #define STEPPER_TIMER_CLOCK_ENA     timerCLKENA(STEPPER_TIMER_N)
 
-#define PULSE_TIMER_N               4
+#define PULSE_TIMER_N               2
+#define PULSE_TIMER_CH_N			0
 #define PULSE_TIMER                 timer(PULSE_TIMER_N)
+#define PULSE_TIMER_CH				timerCH(PULSE_TIMER_CH_N)
 #define PULSE_TIMER_IRQn            timerINT(PULSE_TIMER_N)
 #define PULSE_TIMER_IRQHandler      timerHANDLER(PULSE_TIMER_N)
 #define PULSE_TIMER_CLOCK_ENA       timerCLKENA(PULSE_TIMER_N)
@@ -211,8 +220,10 @@ TMR3
 #endif
 #endif
 
-#define DEBOUNCE_TIMER_N            9
+#define DEBOUNCE_TIMER_N            3
+#define DEBOUNCE_TIMER_CH_N			0
 #define DEBOUNCE_TIMER              timer(DEBOUNCE_TIMER_N)
+#define DEBOUNCE_TIMER_CH			timerCH(DEBOUNCE_TIMER_CH_N)
 #define DEBOUNCE_TIMER_IRQn         TIM1_BRK_TIM9_IRQn       // !
 #define DEBOUNCE_TIMER_IRQHandler   TIM1_BRK_TIM9_IRQHandler // !
 #define DEBOUNCE_TIMER_CLOCK_ENA    timerCLKENA(DEBOUNCE_TIMER_N)

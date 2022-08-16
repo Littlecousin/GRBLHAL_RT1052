@@ -5,7 +5,7 @@
 volatile uint32_t qtmrIsrFlag = 0;
 
 
-void TMR_Init(TMR_Type *base, qtmr_channel_selection_t channel)
+void TMR_Init(TMR_Type *base, qtmr_channel_selection_t channel,uint32_t intTime)
 {
 
   qtmr_config_t qtmrConfig; /*定义TMR 定时器初始化结构体*/
@@ -18,7 +18,6 @@ void TMR_Init(TMR_Type *base, qtmr_channel_selection_t channel)
   /*设置自动重装载值*/
   QTMR_SetTimerPeriod(base, channel, MSEC_TO_COUNT(TMR_TIMIER, (QTMR_SOURCE_CLOCK / 128)));
 
-
   /*使能比较中断*/
   QTMR_EnableInterrupts(base, channel, kQTMR_CompareInterruptEnable);
     
@@ -27,12 +26,9 @@ void TMR_Init(TMR_Type *base, qtmr_channel_selection_t channel)
   /*使能中断*/
   EnableIRQ(QTMR_IRQ_ID);
 
-  
-  /*开启通道2的计时，在时钟的上升沿计数*/
+  /*开启通道计时，在时钟的上升沿计数*/
   QTMR_StartTimer(base, channel, kQTMR_PriSrcRiseEdge);
 }
-
-
 
 /*TMR定时器中断服务函数*/
 void QTMR_IRQ_HANDLER(void)

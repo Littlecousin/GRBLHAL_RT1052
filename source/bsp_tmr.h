@@ -25,7 +25,7 @@
 */
 #define TMR_TIMIER 50
 
-void TMR_Init(TMR_Type *base, qtmr_channel_selection_t channel);
+void TMR_Init(TMR_Type *base, qtmr_channel_selection_t channel,uint32_t intTime);
 
 #endif /* __BSP_TMR_H */
 

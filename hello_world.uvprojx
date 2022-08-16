@@ -634,6 +634,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -673,6 +693,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1201,16 +1241,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -1849,6 +1879,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1888,6 +1938,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2416,16 +2486,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -3063,6 +3123,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3102,6 +3182,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3630,16 +3730,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -4278,6 +4368,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4317,6 +4427,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4845,16 +4975,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -5492,6 +5612,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5531,6 +5671,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6059,16 +6219,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -6706,6 +6856,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6745,6 +6915,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -7273,16 +7463,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -7920,6 +8100,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7959,6 +8159,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -8487,16 +8707,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -9134,6 +9344,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -9173,6 +9403,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -9701,16 +9951,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -10348,6 +10588,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -10387,6 +10647,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -10915,16 +11195,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -11562,6 +11832,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -11601,6 +11891,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -12129,16 +12439,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -12776,6 +13076,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -12815,6 +13135,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -13343,16 +13683,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>
@@ -13990,6 +14320,26 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_qtmr.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pit.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -14029,6 +14379,26 @@
               <FileName>bsp_tmr.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_tmr.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_gpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_gpt.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_pit.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -14557,16 +14927,6 @@
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Grbl\Inc\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>usb_serial.h</FileName>

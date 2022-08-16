@@ -142,6 +142,10 @@ static void spindle_set_speed (uint_fast16_t pwm_value);
 
 static periph_signal_t *periph_pins = NULL;
 
+__IO uint32_t g_debounce_int_count;
+__IO uint32_t g_pulse_int_count;
+__IO uint32_t g_stepper_int_count;
+
 static input_signal_t inputpin[] = {
 #if ESTOP_ENABLE
     { .id = Input_EStop,          .port = RESET_PORT,         .pin = RESET_PIN,           .group = PinGroup_Control },
@@ -483,7 +487,12 @@ static void stepperEnable (axes_signals_t enable)
 static void stepperWakeUp (void)
 {
     stepperEnable((axes_signals_t){AXES_BITMASK});
-
+	PIT->CHANNEL[kPIT_Chnl_0].LDVAL = 5000;
+	PIT->CHANNEL[kPIT_Chnl_0].TFLG |= PIT_TFLG_TIF(1);
+	PIT->CHANNEL[kPIT_Chnl_0].TCTRL |= (PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);
+//	PIT_TFLG0 |= PIT_TFLG_TIF;
+//    PIT_TCTRL0 |= (PIT_TCTRL_TIE|PIT_TCTRL_TEN);
+	
 //    STEPPER_TIMER->ARR = 5000; // delay to allow drivers time to wake up
 //    STEPPER_TIMER->EGR = TIM_EGR_UG;
 //    STEPPER_TIMER->CR1 |= TIM_CR1_CEN;
@@ -492,6 +501,7 @@ static void stepperWakeUp (void)
 // Disables stepper driver interrupts
 static void stepperGoIdle (bool clear_signals)
 {
+	PIT->CHANNEL[kPIT_Chnl_0].TCTRL &= ~(PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);
 //    STEPPER_TIMER->CR1 &= ~TIM_CR1_CEN;//失能定时器
 //    STEPPER_TIMER->CNT = 0;//清空计数器
 }
@@ -771,7 +781,7 @@ static void stepperPulseStartDelayed (stepper_t *stepper)
         if(stepper->step_outbits.value) {
             next_step_outbits = stepper->step_outbits; // Store out_bits
 //            PULSE_TIMER->ARR = pulse_delay;
-//            PULSE_TIMER->EGR = TIM_EGR_UG;
+//            PULSE_TIMER->EGR = TIM_EGR_UG;//防止产生一个中断
 //            PULSE_TIMER->CR1 |= TIM_CR1_CEN;
         }
 
@@ -1883,7 +1893,7 @@ static bool driver_setup (settings_t *settings)
 //    NVIC_EnableIRQ(PULSE_TIMER_IRQn);
 
  // Control pins init
-
+	
     if(hal.driver_cap.software_debounce) 
 	{
         // Single-shot 0.1 ms per tick
@@ -2242,9 +2252,17 @@ bool driver_init (void)
  */
 void STEPPER_TIMER_IRQHandler (void)
 {
-//    if ((STEPPER_TIMER->SR & TIM_SR_UIF) != 0)                  // check interrupt source
+	// check interrupt source
+	if(QTMR_GetStatus(STEPPER_TIMER, STEPPER_TIMER_CH))
+	{
+		g_stepper_int_count++;
+		/* 清除中断标志位*/
+		QTMR_ClearStatusFlags(STEPPER_TIMER, STEPPER_TIMER_CH, kQTMR_CompareFlag);// clear UIF flag
+		hal.stepper.interrupt_callback();
+	}
+//    if ((STEPPER_TIMER->SR & TIM_SR_UIF) != 0)                  
 //    {
-//        STEPPER_TIMER->SR = ~TIM_SR_UIF; // clear UIF flag
+//        STEPPER_TIMER->SR = ~TIM_SR_UIF; 
 //        hal.stepper.interrupt_callback();
 //    }
 }
@@ -2273,6 +2291,19 @@ void STEPPER_TIMER_IRQHandler (void)
  */
 void PULSE_TIMER_IRQHandler (void)
 {
+	
+	// check interrupt source
+	if(QTMR_GetStatus(PULSE_TIMER, PULSE_TIMER_CH))
+	{
+		g_pulse_int_count++;
+		/* 清除中断标志位*/
+		QTMR_ClearStatusFlags(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_CompareFlag);// clear UIF flag
+//		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].
+		stepperSetStepOutputs(next_step_outbits);   // begin step pulse
+		
+	}
+	
+	
 //	PULSE_TIMER->SR &= ~TIM_SR_UIF;                 // Clear UIF flag
 
 //	if (PULSE_TIMER->ARR == pulse_delay)            // Delayed step pulse?
@@ -2295,20 +2326,25 @@ void PULSE_TIMER_IRQHandler (void)
 void DEBOUNCE_TIMER_IRQHandler (void)
 {
 //    DEBOUNCE_TIMER->SR = ~TIM_SR_UIF; // clear UIF flag;
+	if(QTMR_GetStatus(DEBOUNCE_TIMER, DEBOUNCE_TIMER_CH))
+	{
+		g_debounce_int_count++;
+		/* 清除中断标志位*/
+		QTMR_ClearStatusFlags(DEBOUNCE_TIMER, DEBOUNCE_TIMER_CH, kQTMR_CompareFlag);
+		if(debounce.limits) {
+			debounce.limits = Off;
+			limit_signals_t state = limitsGetState();
+			if(limit_signals_merge(state).value) //TODO: add check for limit switches having same state as when limit_isr were invoked?
+				hal.limits.interrupt_callback(state);
+		}
 
-    if(debounce.limits) {
-        debounce.limits = Off;
-        limit_signals_t state = limitsGetState();
-        if(limit_signals_merge(state).value) //TODO: add check for limit switches having same state as when limit_isr were invoked?
-            hal.limits.interrupt_callback(state);
-    }
-
-    if(debounce.door) {
-        debounce.door = Off;
-        control_signals_t state = systemGetState();
-        if(state.safety_door_ajar)
-            hal.control.interrupt_callback(state);
-    }
+		if(debounce.door) {
+			debounce.door = Off;
+			control_signals_t state = systemGetState();
+			if(state.safety_door_ajar)
+				hal.control.interrupt_callback(state);
+		}
+	}
 }
 
 #if PPI_ENABLE
