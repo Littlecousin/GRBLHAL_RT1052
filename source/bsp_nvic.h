@@ -6,14 +6,14 @@
 /*定义中断优先级分组 */
 typedef enum PriorityGroup{
 
-  Group_0 = 0,
+	Group_0 = 0,
 	Group_1,
 	Group_2,
 	Group_3,
-  Group_4,
-  Group_5,
-  Group_6,
-  Group_7,
+	Group_4,
+	Group_5,
+	Group_6,
+	Group_7,
 }PriorityGroup_Type;
 
 /*定义抢占优先级*/
@@ -37,7 +37,7 @@ typedef enum PreemptPriority {
 	
 	
 	
-	Group1_PreemptPriority_0 = 0,
+  Group1_PreemptPriority_0 = 0,
   Group1_PreemptPriority_1,
   Group1_PreemptPriority_2,
   Group1_PreemptPriority_3,

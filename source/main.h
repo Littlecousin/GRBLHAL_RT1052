@@ -12,6 +12,8 @@ extern "C" {
 #include "fsl_cache.h"
 #include "bsp_tmr.h"
 #include "bsp_pit.h"
+#include "bsp_nvic.h"
+
 #ifdef __cplusplus
 }
 #endif

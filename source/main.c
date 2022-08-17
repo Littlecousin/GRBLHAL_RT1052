@@ -37,8 +37,8 @@ void Driver_IncTick (void);
 {
 	uwTick++;
 	Driver_IncTick();
-	if(uwTick % 500 == 0)
-		USER_LED_TOGGLE();
+//	if(uwTick % 500 == 0)
+//		USER_LED_TOGGLE();
 }
 
 void UART_ModeConfig(void)
@@ -490,6 +490,20 @@ int main(void)
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
 //    BOARD_InitDebugConsole();
+//	
+//	PRINTF("CPU:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_CpuClk));
+//	PRINTF("AHB:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_AhbClk));
+//	PRINTF("OSC:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_OscClk));
+//	PRINTF("IPG:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_IpgClk));
+//	PRINTF("SEMC:            %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SemcClk));
+//	PRINTF("SYSPLL:          %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllClk));
+//	PRINTF("SYSPLLPFD0:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd0Clk));
+//	PRINTF("SYSPLLPFD1:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd1Clk));
+//	PRINTF("SYSPLLPFD2:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd2Clk));
+//	PRINTF("SYSPLLPFD3:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd3Clk)); 
+//	PRINTF("USB1PLL:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllClk)); 
+//	PRINTF("USB1PDF0:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllPfd0Clk)); 
+	
 	flash_test();
 	UART_ModeConfig();
 	/* Set systick reload value to generate 1ms interrupt */
@@ -497,6 +511,7 @@ int main(void)
 	{
 		while (1)
 		{
+			
 		}
 	}
 	SDK_DelayAtLeastUs(100000,BOARD_BOOTCLOCKRUN_CORE_CLOCK);

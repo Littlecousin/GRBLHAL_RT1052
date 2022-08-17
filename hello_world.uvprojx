@@ -714,6 +714,16 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1959,6 +1969,16 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3202,6 +3222,16 @@
               <FileName>bsp_pit.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4448,6 +4478,16 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5691,6 +5731,16 @@
               <FileName>bsp_pit.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6936,6 +6986,16 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -8179,6 +8239,16 @@
               <FileName>bsp_pit.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -9424,6 +9494,16 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -10667,6 +10747,16 @@
               <FileName>bsp_pit.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -11912,6 +12002,16 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -13156,6 +13256,16 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -14399,6 +14509,16 @@
               <FileName>bsp_pit.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_pit.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_key_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
           </Files>
         </Group>

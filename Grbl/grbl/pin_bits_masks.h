@@ -20,6 +20,7 @@
   You should have received a copy of the GNU General Public License
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include "generic_map.h"
 
 #ifdef CONTROL_PORT
 #ifndef RESET_PORT
@@ -42,6 +43,7 @@
 #else
 #define RESET_BIT       0
 #endif
+
 #endif
 
 #ifndef FEED_HOLD_BIT

@@ -42,20 +42,20 @@ void PIT_TIMER_Init(void)
   * @param  无
   * @retval 无
   */
-void PIT_LED_HANDLER(void)
-{
-   k++;
-  /* 清除中断标志位.*/
-  PIT_ClearStatusFlags(PIT, PIT_CHANNEL_X, kPIT_TimerFlag);
-  
-  if(0 == (k%2))
-  {
-//    RGB_RED_LED_ON; //RGB led 灯红灯亮
-  }
-  else
-  {
-//    RGB_RED_LED_OFF;//RGB led 灯熄灭
-  }
-}
+//void PIT_LED_HANDLER(void)
+//{
+//   k++;
+//  /* 清除中断标志位.*/
+//  PIT_ClearStatusFlags(PIT, PIT_CHANNEL_X, kPIT_TimerFlag);
+//  
+//  if(0 == (k%2))
+//  {
+////    RGB_RED_LED_ON; //RGB led 灯红灯亮
+//  }
+//  else
+//  {
+////    RGB_RED_LED_OFF;//RGB led 灯熄灭
+//  }
+//}
 
 

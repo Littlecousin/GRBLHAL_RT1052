@@ -50,6 +50,8 @@
 
 #define GPIO_GET_INDEX(__GPIOx__)  GPIO_GetInstance(__GPIOx__)
 
+#define CONTROL_INPUT_IRQ	GPIO1_Combined_16_31_IRQn
+#define LIMIT_INPUT_IRQ		GPIO3_Combined_0_15_IRQn
 
 /*
 TMR3
@@ -127,15 +129,17 @@ extern __IO uint32_t g_debounce_int_count;
 extern __IO uint32_t g_pulse_int_count;
 extern __IO uint32_t g_stepper_int_count;
 
-#define STEPPER_TIMER_N             1
-#define STEPPER_TIMER_CH_N			0
-#define STEPPER_TIMER               timer(STEPPER_TIMER_N)
-#define STEPPER_TIMER_CH			timerCH(STEPPER_TIMER_CH_N)
-#define STEPPER_TIMER_IRQn          timerINT(STEPPER_TIMER_N)
-#define STEPPER_TIMER_IRQHandler    timerHANDLER(STEPPER_TIMER_N)
-#define STEPPER_TIMER_CLOCK_ENA     timerCLKENA(STEPPER_TIMER_N)
+//使用pit 24Mhz
+//#define STEPPER_TIMER_N             1
+//#define STEPPER_TIMER_CH_N			0
+//#define STEPPER_TIMER               timer(STEPPER_TIMER_N)
+//#define STEPPER_TIMER_CH			timerCH(STEPPER_TIMER_CH_N)
+#define STEPPER_TIMER_IRQn          PIT_IRQn//timerINT(STEPPER_TIMER_N)
+#define STEPPER_TIMER_IRQHandler    PIT_IRQHandler//timerHANDLER(STEPPER_TIMER_N)
+//#define STEPPER_TIMER_CLOCK_ENA     timerCLKENA(STEPPER_TIMER_N)
 
-#define PULSE_TIMER_N               2
+//150Mhz
+#define PULSE_TIMER_N               4
 #define PULSE_TIMER_CH_N			0
 #define PULSE_TIMER                 timer(PULSE_TIMER_N)
 #define PULSE_TIMER_CH				timerCH(PULSE_TIMER_CH_N)
@@ -220,12 +224,13 @@ extern __IO uint32_t g_stepper_int_count;
 #endif
 #endif
 
+//150Mhz
 #define DEBOUNCE_TIMER_N            3
 #define DEBOUNCE_TIMER_CH_N			0
 #define DEBOUNCE_TIMER              timer(DEBOUNCE_TIMER_N)
 #define DEBOUNCE_TIMER_CH			timerCH(DEBOUNCE_TIMER_CH_N)
-#define DEBOUNCE_TIMER_IRQn         TIM1_BRK_TIM9_IRQn       // !
-#define DEBOUNCE_TIMER_IRQHandler   TIM1_BRK_TIM9_IRQHandler // !
+#define DEBOUNCE_TIMER_IRQn         timerINT(DEBOUNCE_TIMER_N)
+#define DEBOUNCE_TIMER_IRQHandler   timerHANDLER(DEBOUNCE_TIMER_N)
 #define DEBOUNCE_TIMER_CLOCK_ENA    timerCLKENA(DEBOUNCE_TIMER_N)
 
 #if SPINDLE_SYNC_ENABLE
