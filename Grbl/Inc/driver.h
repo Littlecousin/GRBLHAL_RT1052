@@ -130,10 +130,10 @@ extern __IO uint32_t g_pulse_int_count;
 extern __IO uint32_t g_stepper_int_count;
 
 //使用pit 24Mhz
-//#define STEPPER_TIMER_N             1
-//#define STEPPER_TIMER_CH_N			0
-//#define STEPPER_TIMER               timer(STEPPER_TIMER_N)
-//#define STEPPER_TIMER_CH			timerCH(STEPPER_TIMER_CH_N)
+#define STEPPER_TIMER_N				1
+#define STEPPER_TIMER_CH_N			0
+#define STEPPER_TIMER				PIT//timer(STEPPER_TIMER_N)
+#define STEPPER_TIMER_CH			kPIT_Chnl_0//timerCH(STEPPER_TIMER_CH_N)
 #define STEPPER_TIMER_IRQn          PIT_IRQn//timerINT(STEPPER_TIMER_N)
 #define STEPPER_TIMER_IRQHandler    PIT_IRQHandler//timerHANDLER(STEPPER_TIMER_N)
 //#define STEPPER_TIMER_CLOCK_ENA     timerCLKENA(STEPPER_TIMER_N)

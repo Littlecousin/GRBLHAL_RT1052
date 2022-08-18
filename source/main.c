@@ -41,38 +41,6 @@ void Driver_IncTick (void);
 //		USER_LED_TOGGLE();
 }
 
-void UART_ModeConfig(void)
-{
-	/*定义串口配置参数结构体变量，用于保存串口的配置信息*/
-	lpuart_config_t config;
-
-	/*调用固件库函数得到默认的串口配置参数，在默认的配置参数基础上修改*/
-	LPUART_GetDefaultConfig(&config);
-	config.baudRate_Bps = 115200;  //波特率
-
-	config.rxIdleType = kLPUART_IdleTypeStopBit;
-	config.rxIdleConfig = kLPUART_IdleCharacter128;
-
-	config.enableRx = true; //是否允许接收数据
-	config.enableTx = true;   //是否允许发送数据
-
-//	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_12_LPUART1_TX, 0U); 
-//	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_13_LPUART1_RX, 0U); 
-//	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B0_12_LPUART1_TX, 0x10B0U); 
-//	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B0_13_LPUART1_RX, 0x10B0U); 
-	
-	/*调用固件库函数，将修改好的配置信息写入到串口的配置寄存器中*/
-	LPUART_Init(LPUART1, &config, BOARD_DebugConsoleSrcFreq());
-
-	/*允许接收中断*/
-	LPUART_EnableInterrupts(LPUART1, kLPUART_RxDataRegFullInterruptEnable);
-//	LPUART_EnableInterrupts(LPUART1, kLPUART_IdleLineInterruptEnable);
-	/*设置中断优先级,*/
-//	set_IRQn_Priority(DEBUG_UART_IRQ,Group4_PreemptPriority_6, Group4_SubPriority_0);
-	/*使能中断*/
-	EnableIRQ(LPUART1_IRQn);
-}
-
 void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
 {
     config->memConfig.tag              = FLEXSPI_CFG_BLK_TAG;
@@ -490,6 +458,7 @@ int main(void)
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
 //    BOARD_InitDebugConsole();
+	Set_NVIC_PriorityGroup(Group_4);
 //	
 //	PRINTF("CPU:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_CpuClk));
 //	PRINTF("AHB:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_AhbClk));
@@ -504,8 +473,10 @@ int main(void)
 //	PRINTF("USB1PLL:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllClk)); 
 //	PRINTF("USB1PDF0:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllPfd0Clk)); 
 	
+	 
 	flash_test();
 	UART_ModeConfig();
+	rx_queue_init();
 	/* Set systick reload value to generate 1ms interrupt */
 	if (SysTick_Config(SystemCoreClock / 1000U))
 	{

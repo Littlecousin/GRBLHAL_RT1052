@@ -23,7 +23,7 @@ void PIT_TIMER_Init(void)
   PIT_Init(PIT, &pitConfig);
   
   /* 设置PIT定时器通道0自动重装载值 */
-  PIT_SetTimerPeriod(PIT, PIT_CHANNEL_X, USEC_TO_COUNT(TIME_0, PIT_SOURCE_CLOCK));
+  PIT_SetTimerPeriod(PIT, PIT_CHANNEL_X, 5000);
   
   /*清除通道0的中断标志位*/
   PIT_ClearStatusFlags(PIT, PIT_CHANNEL_X, kPIT_TimerFlag);

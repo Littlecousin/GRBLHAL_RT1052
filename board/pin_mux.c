@@ -26,7 +26,7 @@ board: IMXRT1050-EVKB
 #include "fsl_iomuxc.h"
 #include "pin_mux.h"
 #include "pad_config.h"
-
+#include "fsl_gpio.h"
 /* FUNCTION ************************************************************************************************************
  * 
  * Function Name : BOARD_InitBootPins
@@ -57,32 +57,22 @@ BOARD_InitPins:
  *
  * END ****************************************************************************************************************/
 void BOARD_InitPins(void) {
-  CLOCK_EnableClock(kCLOCK_Iomuxc);           
+	CLOCK_EnableClock(kCLOCK_Iomuxc);           
 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_B0_13_ARM_CM7_TRACE_SWO, 0U);
-  IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_12_LPUART1_TX, 0U); 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_13_LPUART1_RX, 0U); 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_05_FLEXSPIA_DQS, 1U); 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_06_FLEXSPIA_SS0_B, 1U); 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_07_FLEXSPIA_SCLK, 1U); 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_08_FLEXSPIA_DATA00, 1U); 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_09_FLEXSPIA_DATA01, 1U); 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_10_FLEXSPIA_DATA02, 1U); 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_11_FLEXSPIA_DATA03, 1U); 
-  IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_09_GPIO1_IO09, 1U); 
-	//X_STEP_PIN
-	//Y_STEP_PIN
-	
-	//Z_STEP_PIN
-	//X_DIRECTION_PIN
-	//Y_DIRECTION_PIN
-	//Z_DIRECTION_PIN
-	
-	//STEPPERS_ENABLE_PIN
-	//SPINDLE_PWM_PIN
-	
+	IOMUXC_SetPinMux(IOMUXC_GPIO_B0_13_ARM_CM7_TRACE_SWO, 0U);
+	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_12_LPUART1_TX, 0U); 
+	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_13_LPUART1_RX, 0U); 
+	IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_05_FLEXSPIA_DQS, 1U); 
+	IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_06_FLEXSPIA_SS0_B, 1U); 
+	IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_07_FLEXSPIA_SCLK, 1U); 
+	IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_08_FLEXSPIA_DATA00, 1U); 
+	IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_09_FLEXSPIA_DATA01, 1U); 
+	IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_10_FLEXSPIA_DATA02, 1U); 
+	IOMUXC_SetPinMux(IOMUXC_GPIO_SD_B1_11_FLEXSPIA_DATA03, 1U); 
+	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_09_GPIO1_IO09, 1U); 
+
 	IOMUXC_SetPinMux(IOMUXC_SNVS_WAKEUP_GPIO5_IO00, 0U); 
-	
+
 	/* OUTPUT */
 	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_03_GPIO1_IO03, 0U); //X_STEP_PIN
 	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_02_GPIO1_IO02, 0U); //Y_STEP_PIN
@@ -106,9 +96,9 @@ void BOARD_InitPins(void) {
 	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B1_10_GPIO1_IO26, 0U); //RESET_PIN
 	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B1_11_GPIO1_IO27, 0U); //FEED_HOLD_PIN
 	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B1_04_GPIO1_IO20, 0U); //CYCLE_START_PIN
-	
-//	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B1_05_GPIO1_IO21, 0U); //COOLANT_MIST_PIN
-	
+
+	//	IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B1_05_GPIO1_IO21, 0U); //COOLANT_MIST_PIN
+
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B1_01_GPIO1_IO17, 0x10B0U); 
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B1_00_GPIO1_IO16, 0x10B0U); 
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B1_07_GPIO1_IO23, 0x10B0U); 
@@ -119,7 +109,40 @@ void BOARD_InitPins(void) {
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B0_10_GPIO1_IO10, 0x10B0U); 
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B1_02_GPIO1_IO18, 0x10B0U); 
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B1_03_GPIO1_IO19, 0x10B0U); 
-
+													
+//	gpio_pin_config_t input_config = 
+//	{
+//		.direction = kGPIO_DigitalInput,
+//		.outputLogic = 1U,
+//		.interruptMode = kGPIO_NoIntmode
+//	};
+//	gpio_pin_config_t output_config = 
+//	{
+//		.direction = kGPIO_DigitalOutput,
+//		.outputLogic = 1U,
+//		.interruptMode = kGPIO_NoIntmode
+//	};
+//	
+//	IOMUXC_SetPinConfig(IOMUXC_GPIO_SD_B0_01_GPIO3_IO13, 0x10B0U); 
+//	IOMUXC_SetPinConfig(IOMUXC_GPIO_SD_B0_02_GPIO3_IO14, 0x10B0U); 
+//	IOMUXC_SetPinConfig(IOMUXC_GPIO_SD_B0_03_GPIO3_IO15, 0x10B0U); 
+//	IOMUXC_SetPinConfig(IOMUXC_GPIO_SD_B0_00_GPIO3_IO12, 0x10B0U); 
+//	
+//	GPIO_PinInit(GPIO3,12, &output_config);
+//	GPIO_PinInit(GPIO3,13, &output_config);
+//	GPIO_PinInit(GPIO3,14, &output_config);
+//	GPIO_PinInit(GPIO3,15, &output_config);
+//	
+//	GPIO_PinWrite(GPIO3,12,1);
+//	GPIO_PinWrite(GPIO3,13,1);
+//	GPIO_PinWrite(GPIO3,14,1);
+//	GPIO_PinWrite(GPIO3,15,1);
+//	
+//	GPIO_PinWrite(GPIO3,12,0);
+//	GPIO_PinWrite(GPIO3,13,0);
+//	GPIO_PinWrite(GPIO3,14,0);
+//	GPIO_PinWrite(GPIO3,15,0);
+	
 	/* INPUT */
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B1_10_GPIO1_IO26, (SRE_0_SLOW_SLEW_RATE| \
 															DSE_0_OUTPUT_DRIVER_DISABLED| \
@@ -145,7 +168,80 @@ void BOARD_InitPins(void) {
 															PUE_1_PULL_SELECTED| \
 															PUS_0_100K_OHM_PULL_DOWN| \
 															HYS_1_HYSTERESIS_ENABLED) );
+															
+	IOMUXC_SetPinConfig(IOMUXC_GPIO_SD_B0_01_GPIO3_IO13, (SRE_0_SLOW_SLEW_RATE| \
+															DSE_0_OUTPUT_DRIVER_DISABLED| \
+															SPEED_2_MEDIUM_100MHz| \
+															ODE_0_OPEN_DRAIN_DISABLED| \
+															PKE_1_PULL_KEEPER_ENABLED| \
+															PUE_1_PULL_SELECTED| \
+															PUS_3_22K_OHM_PULL_UP| \
+															HYS_1_HYSTERESIS_ENABLED) ); 
+	IOMUXC_SetPinConfig(IOMUXC_GPIO_SD_B0_02_GPIO3_IO14, (SRE_0_SLOW_SLEW_RATE| \
+															DSE_0_OUTPUT_DRIVER_DISABLED| \
+															SPEED_2_MEDIUM_100MHz| \
+															ODE_0_OPEN_DRAIN_DISABLED| \
+															PKE_1_PULL_KEEPER_ENABLED| \
+															PUE_1_PULL_SELECTED| \
+															PUS_3_22K_OHM_PULL_UP| \
+															HYS_1_HYSTERESIS_ENABLED) );
+	IOMUXC_SetPinConfig(IOMUXC_GPIO_SD_B0_03_GPIO3_IO15, (SRE_0_SLOW_SLEW_RATE| \
+															DSE_0_OUTPUT_DRIVER_DISABLED| \
+															SPEED_2_MEDIUM_100MHz| \
+															ODE_0_OPEN_DRAIN_DISABLED| \
+															PKE_1_PULL_KEEPER_ENABLED| \
+															PUE_1_PULL_SELECTED| \
+															PUS_3_22K_OHM_PULL_UP| \
+															HYS_1_HYSTERESIS_ENABLED) ); 
+	IOMUXC_SetPinConfig(IOMUXC_GPIO_SD_B0_00_GPIO3_IO12, (SRE_0_SLOW_SLEW_RATE| \
+															DSE_0_OUTPUT_DRIVER_DISABLED| \
+															SPEED_2_MEDIUM_100MHz| \
+															ODE_0_OPEN_DRAIN_DISABLED| \
+															PKE_1_PULL_KEEPER_ENABLED| \
+															PUE_1_PULL_SELECTED| \
+															PUS_3_22K_OHM_PULL_UP| \
+															HYS_1_HYSTERESIS_ENABLED) ); 
 	
+//	GPIO_PinInit(GPIO3,12, &input_config);
+//	GPIO_PinInit(GPIO3,13, &input_config);
+//	GPIO_PinInit(GPIO3,14, &input_config);
+//	GPIO_PinInit(GPIO3,15, &input_config);
+//	uint32_t int_val = 0;
+//	while(1)
+//	{
+//		if(GPIO_PinRead(GPIO3,12))
+//		{
+//			int_val |= 1<<12;
+//		}
+//		else
+//		{
+//			int_val &= ~(1<<12);
+//		}
+//		if(GPIO_PinRead(GPIO3,13))
+//		{
+//			int_val |= 1<<13;
+//		}
+//		else
+//		{
+//			int_val &= ~(1<<13);
+//		}
+//		if(GPIO_PinRead(GPIO3,14))
+//		{
+//			int_val |= 1<<14;
+//		}
+//		else
+//		{
+//			int_val &= ~(1<<14);
+//		}
+//		if(GPIO_PinRead(GPIO3,15))
+//		{
+//			int_val |= 1<<15;
+//		}
+//		else
+//		{
+//			int_val &= ~(1<<15);
+//		}
+//	}
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B0_09_GPIO1_IO09, 0x10B0U); 
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B0_12_LPUART1_TX, 0x10B0U); 
 	IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B0_13_LPUART1_RX, 0x10B0U); 

@@ -724,6 +724,36 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1979,6 +2009,36 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3232,6 +3292,36 @@
               <FileName>bsp_key_it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4488,6 +4578,36 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5741,6 +5861,36 @@
               <FileName>bsp_key_it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6996,6 +7146,36 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -8249,6 +8429,36 @@
               <FileName>bsp_key_it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -9504,6 +9714,36 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -10757,6 +10997,36 @@
               <FileName>bsp_key_it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -12012,6 +12282,36 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -13266,6 +13566,36 @@
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -14519,6 +14849,36 @@
               <FileName>bsp_key_it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_key_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_rx_data_queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_rx_data_queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\ring_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ring_fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\ring_fifo.h</FilePath>
             </File>
           </Files>
         </Group>

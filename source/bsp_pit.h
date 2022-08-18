@@ -4,7 +4,7 @@
 #include "fsl_common.h"
 #include "fsl_pit.h"
 
-/*定时器时钟频率宏定义*/
+/*定时器时钟频率24Mhz*/
 #define PIT_SOURCE_CLOCK CLOCK_GetFreq(kCLOCK_OscClk) 
 
 /*中断宏定义*/

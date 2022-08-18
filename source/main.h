@@ -4,7 +4,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+#include "board.h"
 #include "fsl_common.h"
 #include "fsl_gpio.h"
 #include "fsl_lpuart.h"
@@ -13,6 +13,10 @@ extern "C" {
 #include "bsp_tmr.h"
 #include "bsp_pit.h"
 #include "bsp_nvic.h"
+
+#include "bsp_rx_data_queue.h"
+#include "bsp_uart.h"
+#include "ring_fifo.h"
 
 #ifdef __cplusplus
 }

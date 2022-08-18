@@ -736,9 +736,14 @@ static void stepperEnable (axes_signals_t enable)
 static void stepperWakeUp (void)
 {
     stepperEnable((axes_signals_t){AXES_BITMASK});
-	PIT->CHANNEL[kPIT_Chnl_0].LDVAL = 5000 - 1;
-	PIT->CHANNEL[kPIT_Chnl_0].TFLG = PIT_TFLG_TIF_MASK;
-	PIT->CHANNEL[kPIT_Chnl_0].TCTRL |= (PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);
+	STEPPER_TIMER->CHANNEL[kPIT_Chnl_0].LDVAL = 5000 - 1;
+	STEPPER_TIMER->CHANNEL[kPIT_Chnl_0].TFLG = PIT_TFLG_TIF_MASK;
+	STEPPER_TIMER->CHANNEL[kPIT_Chnl_0].TCTRL |= (PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);
+	
+//	PIT_SetTimerPeriod(PIT, PIT_CHANNEL_X, 5000);
+//	PIT_ClearStatusFlags(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerFlag);
+//	PIT_EnableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
+//	PIT_StartTimer(STEPPER_TIMER, STEPPER_TIMER_CH);
 }
 //PIT_TCTRL_TIE_MASK 中断控制位
 //PIT_TCTRL_TEN_MASK 使能定时器位
@@ -746,7 +751,11 @@ static void stepperWakeUp (void)
 // Disables stepper driver interrupts
 static void stepperGoIdle (bool clear_signals)
 {
-	PIT->CHANNEL[kPIT_Chnl_0].TCTRL &= ~(PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);
+	STEPPER_TIMER->CHANNEL[kPIT_Chnl_0].TCTRL &= ~(PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);
+	
+//	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
+//	PIT_StopTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
+	
 	if(clear_signals) 
 	{
         stepperSetStepOutputs((axes_signals_t){0});
@@ -757,10 +766,17 @@ static void stepperGoIdle (bool clear_signals)
 // Sets up stepper driver interrupt timeout, "Normal" version
 static void stepperCyclesPerTick (uint32_t cycles_per_tick)
 {
-	PIT->CHANNEL[kPIT_Chnl_0].TCTRL &= ~PIT_TCTRL_TEN_MASK;//关闭定时器
-    PIT->CHANNEL[kPIT_Chnl_0].LDVAL = cycles_per_tick < (1UL << 20) ? (cycles_per_tick - 1) : (0x000FFFFFUL-1);//加载值
-    PIT->CHANNEL[kPIT_Chnl_0].TFLG = PIT_TFLG_TIF_MASK;//清空中断标志
-    PIT->CHANNEL[kPIT_Chnl_0].TCTRL |= (PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);//打开定时器
+	STEPPER_TIMER->CHANNEL[STEPPER_TIMER_CH].TCTRL &= ~PIT_TCTRL_TEN_MASK;//关闭定时器
+    STEPPER_TIMER->CHANNEL[STEPPER_TIMER_CH].LDVAL = cycles_per_tick < (1UL << 20) ? (cycles_per_tick - 1) : (0x000FFFFFUL-1);//加载值
+    STEPPER_TIMER->CHANNEL[STEPPER_TIMER_CH].TFLG = PIT_TFLG_TIF_MASK;//清空中断标志
+    STEPPER_TIMER->CHANNEL[STEPPER_TIMER_CH].TCTRL |= (PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);//打开定时器
+	
+//	PIT_StopTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
+//	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
+//	PIT_SetTimerPeriod(PIT, PIT_CHANNEL_X, cycles_per_tick < (1UL << 20) ? (cycles_per_tick - 1) : (0x000FFFFFUL-1));
+//	PIT_ClearStatusFlags(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerFlag);
+//	PIT_EnableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
+//	PIT_StartTimer(STEPPER_TIMER, STEPPER_TIMER_CH);
 }
 
 // Start a stepper pulse, delay version.
@@ -779,19 +795,15 @@ static void stepperPulseStartDelayed (stepper_t *stepper)
 
     if (stepper->dir_change)
     {
-
         stepperSetDirOutputs(stepper->dir_outbits);
-
         if (stepper->step_outbits.value)
         {
             next_step_outbits = stepper->step_outbits; // Store out_bits
             PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].COMP1 = pulse_delay;
             PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);
         }
-
         return;
     }
-
     if (stepper->step_outbits.value)
     {
         stepperSetStepOutputs(stepper->step_outbits);
@@ -1679,7 +1691,7 @@ void settings_changed(settings_t *settings)
                 GPIO_Init.interruptMode = kGPIO_IntFallingEdge;
                 break;
             case IRQ_Mode_Change:
-                GPIO_Init.interruptMode = kGPIO_IntRisingEdge;
+                GPIO_Init.interruptMode = kGPIO_IntRisingOrFallingEdge;
                 break;
             default:
                 GPIO_Init.direction = kGPIO_DigitalInput;
@@ -1902,7 +1914,12 @@ static bool driver_setup (settings_t *settings)
 //	EnableIRQ(STEPPER_TIMER_IRQn);
 	
 	PIT_TIMER_Init();
-	
+//	PIT_StartTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
+//	while(1)
+//	{
+//		
+//	}
+
 	/*
 //    STEPPER_TIMER_CLOCK_ENA();
 //    STEPPER_TIMER->CR1 &= ~TIM_CR1_CEN;//关闭中断
@@ -1929,20 +1946,21 @@ static bool driver_setup (settings_t *settings)
     if(hal.driver_cap.software_debounce) 
 	{
         // Single-shot 0.1 ms per tick
-		
-		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].ENBL = TMR_ENBL_ENBL(0);
-		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].LOAD = 0;
-		//128分频,触发一次,计数到设定比较值
+		TMR_Init(DEBOUNCE_TIMER,DEBOUNCE_TIMER_CH,40);
+//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].ENBL = TMR_ENBL_ENBL(0);
+//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].LOAD = 0;
+//		//128分频,触发一次,计数到设定比较值
 		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CTRL |= (TMR_CTRL_LENGTH_MASK | TMR_CTRL_ONCE_MASK | TMR_CTRL_PCS(kQTMR_ClockDivide_128));
-		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].COMP1 = MSEC_TO_COUNT(40, (150000000 / 128)); // 150 MHz -> 40ms 
-		
-//		TMR3_COMP10 = (uint16_t)((40000UL * F_BUS_MHZ) / 128); // 150 MHz -> 40ms
-//		MSEC_TO_COUNT(40, (150000000 / 128));
-		
-		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CSCTRL |= TMR_CSCTRL_TCF1EN_MASK;//使能compare1
-		NVIC_SetPriority(DEBOUNCE_TIMER_IRQn,4);
-		EnableIRQ(DEBOUNCE_TIMER_IRQn);
-		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].ENBL = TMR_ENBL_ENBL(1);
+//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].COMP1 = MSEC_TO_COUNT(40, (150000000 / 128)); // 150 MHz -> 40ms 
+//		
+////		TMR3_COMP10 = (uint16_t)((40000UL * F_BUS_MHZ) / 128); // 150 MHz -> 40ms
+////		MSEC_TO_COUNT(40, (150000000 / 128));
+//		
+//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CSCTRL |= TMR_CSCTRL_TCF1EN_MASK;//使能compare1
+//		NVIC_SetPriority(DEBOUNCE_TIMER_IRQn,4);
+//		EnableIRQ(DEBOUNCE_TIMER_IRQn);
+//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].ENBL = TMR_ENBL_ENBL(1);
+//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);
     }
 
   // Spindle init
@@ -2349,32 +2367,52 @@ void PULSE_TIMER_IRQHandler (void)
 //	}
 }
 
+//static void stepper_pulse_isr (void)
+//{
+//    TMR4_CSCTRL0 &= ~TMR_CSCTRL_TCF1;
+
+//    set_step_outputs((axes_signals_t){0});
+//}
+
+//static void stepper_pulse_isr_delayed (void)
+//{
+//    TMR4_CSCTRL0 &= ~TMR_CSCTRL_TCF1;
+
+//    set_step_outputs(next_step_outbits);
+
+//    attachInterruptVector(IRQ_QTIMER4, stepper_pulse_isr);
+//    TMR4_COMP10 = pulse_length;
+//    TMR4_CTRL0 |= TMR_CTRL_CM(0b001);
+//}
+
 // Debounce timer interrupt handler
 /**
  * @brief    消抖定时器
  * @return   {*}
  */
-void DEBOUNCE_TIMER_IRQHandler (void)
+void DEBOUNCE_TIMER_IRQHandler(void)
 {
-	if(kQTMR_Compare1Flag == QTMR_GetStatus(DEBOUNCE_TIMER, DEBOUNCE_TIMER_CH))
-	{
-		g_debounce_int_count++;
-		/* 清除中断标志位*/
-		QTMR_ClearStatusFlags(DEBOUNCE_TIMER, DEBOUNCE_TIMER_CH, kQTMR_Compare1Flag);
-		if(debounce.limits) {
-			debounce.limits = Off;
-			limit_signals_t state = limitsGetState();
-			if(limit_signals_merge(state).value) //TODO: add check for limit switches having same state as when limit_isr were invoked?
-				hal.limits.interrupt_callback(state);
-		}
+    if (kQTMR_Compare1Flag & QTMR_GetStatus(DEBOUNCE_TIMER, DEBOUNCE_TIMER_CH))
+    {
+        g_debounce_int_count++;
+        /* 清除中断标志位*/
+        QTMR_ClearStatusFlags(DEBOUNCE_TIMER, DEBOUNCE_TIMER_CH, kQTMR_Compare1Flag);
+        if (debounce.limits)
+        {
+            debounce.limits = Off;
+            limit_signals_t state = limitsGetState();
+            if (limit_signals_merge(state).value) // TODO: add check for limit switches having same state as when limit_isr were invoked?
+                hal.limits.interrupt_callback(state);
+        }
 
-		if(debounce.door) {
-			debounce.door = Off;
-			control_signals_t state = systemGetState();
-			if(state.safety_door_ajar)
-				hal.control.interrupt_callback(state);
-		}
-	}
+        if (debounce.door)
+        {
+            debounce.door = Off;
+            control_signals_t state = systemGetState();
+            if (state.safety_door_ajar)
+                hal.control.interrupt_callback(state);
+        }
+    }
 }
 
 #if PPI_ENABLE
@@ -2645,7 +2683,6 @@ void EXTI9_5_IRQHandler(void)
 
 #endif
 
-
 void GPIO1_Combined_16_31_IRQHandler(void)
 {
     uint32_t flag;
@@ -2673,11 +2710,12 @@ void GPIO3_Combined_0_15_IRQHandler(void)
     flag = GPIO_GetPinsInterruptFlags(LIMIT_PORT);
     if (flag & LIMIT_MASK)//((1 << X_LIMIT_PIN) | (1 << Y_LIMIT_PIN) | (1 << Z_LIMIT_PIN)))
     {
-
             if (hal.driver_cap.software_debounce)
             {
                 debounce.limits = On;
-                DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);
+//                DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);
+				/*开启通道计时，在时钟的上升沿计数*/
+				QTMR_StartTimer(DEBOUNCE_TIMER, DEBOUNCE_TIMER_CH, kQTMR_PriSrcRiseEdge);
             }
             else
                 hal.limits.interrupt_callback(limitsGetState());
@@ -2685,6 +2723,7 @@ void GPIO3_Combined_0_15_IRQHandler(void)
     }
     GPIO_PortClearInterruptFlags(LIMIT_PORT, flag);
 }
+
 /**
  * @brief    
  * @return   {*}
@@ -2723,7 +2762,9 @@ void EXTI15_10_IRQHandler(void)
         if(ifg & LIMIT_MASK) {
             if(hal.driver_cap.software_debounce) {
 				debounce.limits = On;
-				DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);
+//				DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);
+				/*开启通道计时，在时钟的上升沿计数*/
+				QTMR_StartTimer(DEBOUNCE_TIMER, DEBOUNCE_TIMER_CH, kQTMR_PriSrcRiseEdge);
 				
             } else
                 hal.limits.interrupt_callback(limitsGetState());

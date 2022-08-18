@@ -313,7 +313,6 @@ typedef struct {
     motor_iterator_ptr motor_iterator;                  //!< Optional handler iteration over motor vs. axis mappings. Required for the motors plugin (Trinamic drivers).
 } stepper_ptrs_t;
 
-
 /**************
  *  ms delay  *
  **************/
