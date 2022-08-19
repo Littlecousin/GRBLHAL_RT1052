@@ -59,7 +59,7 @@ This does not apply to G- and M-codes dependent on driver and/or configuration s
 
 __NOTE:__ if switching to a level > 1 please reset non-volatile storage with \a $RST=* after reflashing!
 */
-#define COMPATIBILITY_LEVEL 0
+#define COMPATIBILITY_LEVEL 1
 #endif
 
 //#define KINEMATICS_API // Remove comment to add HAL entry points for custom kinematics

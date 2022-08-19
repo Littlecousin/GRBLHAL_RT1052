@@ -1,20 +1,3 @@
-/**
-  ******************************************************************
-  * @file    bsp_uart.c
-  * @author  fire
-  * @version V1.1
-  * @date    2018-xx-xx
-  * @brief   uart应用函数接口
-  ******************************************************************
-  * @attention
-  *
-  * 实验平台:野火  i.MXRT1052开发板 
-  * 论坛    :http://www.firebbs.cn
-  * 淘宝    :https://fire-stm32.taobao.com
-  *
-  ******************************************************************
-  */
-
 #include "board.h"
 #include "fsl_iomuxc.h"
 #include "fsl_gpio.h"  
@@ -53,7 +36,8 @@ void UART_ModeConfig(void)
 
 	/*允许接收中断*/
 	LPUART_EnableInterrupts(DEBUG_UARTx, kLPUART_RxDataRegFullInterruptEnable);
-	LPUART_EnableInterrupts(DEBUG_UARTx, kLPUART_IdleLineInterruptEnable);
+//	LPUART_EnableInterrupts(DEBUG_UARTx, kLPUART_IdleLineInterruptEnable);
+	LPUART_EnableInterrupts(DEBUG_UARTx, kLPUART_RxOverrunInterruptEnable);
 	/*设置中断优先级,*/
 	set_IRQn_Priority(DEBUG_UART_IRQ,Group4_PreemptPriority_6, Group4_SubPriority_0);
 	/*使能中断*/

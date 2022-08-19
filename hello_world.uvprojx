@@ -1207,7 +1207,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -1288,6 +1370,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -1624,7 +1709,7 @@
               <MiscControls>-fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb</MiscControls>
               <Define>XIP_EXTERNAL_FLASH=1, XIP_BOOT_HEADER_ENABLE=1, DEBUG, CPU_MIMXRT1052DVL6B, PRINTF_FLOAT_ENABLE=0, SCANF_FLOAT_ENABLE=0, PRINTF_ADVANCED_ENABLE=0, SCANF_ADVANCED_ENABLE=0, MCUXPRESSO_SDK</Define>
               <Undefine></Undefine>
-              <IncludePath>board;CMSIS;component/lists;component/uart;device;drivers;utilities;xip;.\Grbl;source;.\Grbl\inc</IncludePath>
+              <IncludePath>board;CMSIS;component/lists;component/uart;device;drivers;utilities;xip;.\Grbl;source;.\Grbl\inc;.\Grbl\networking</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2492,7 +2577,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -2573,6 +2740,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -3776,7 +3946,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -3857,6 +4109,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -5061,7 +5316,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -5142,6 +5479,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -6345,7 +6685,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -6426,6 +6848,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -7629,7 +8054,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -7710,6 +8217,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -8913,7 +9423,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -8994,6 +9586,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -10197,7 +10792,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -10278,6 +10955,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -11481,7 +12161,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -11562,6 +12324,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -12765,7 +13530,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -12846,6 +13693,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -14049,7 +14899,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -14130,6 +15062,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -15333,7 +16268,89 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>grbl/plugins</GroupName>
+          <GroupName>grbl/plugin/net</GroupName>
+          <Files>
+            <File>
+              <FileName>base64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\base64.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>ftpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\ftpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\http_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>multipartparser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\multipartparser.c</FilePath>
+            </File>
+            <File>
+              <FileName>networking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\networking.c</FilePath>
+            </File>
+            <File>
+              <FileName>sfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sfifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>sha1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\sha1.c</FilePath>
+            </File>
+            <File>
+              <FileName>strutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\strutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>telnetd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\telnetd.c</FilePath>
+            </File>
+            <File>
+              <FileName>urldecode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\urldecode.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\vfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>websocketd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\networking\websocketd.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>grbl/drivers</GroupName>
@@ -15414,6 +16431,9 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>grbl/plugin</GroupName>
         </Group>
       </Groups>
     </Target>

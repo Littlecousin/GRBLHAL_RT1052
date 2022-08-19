@@ -3,23 +3,6 @@
 
 #include "fsl_common.h"
 
-/*********************************************************
- * UART1 GPIO端口、引脚号及IOMUXC复用宏定义
- 
-使用i.MX RT1052-Pro底板：
- *  TX-----GPIO_AD_B0_12,K14-----(CN5, 9)
- *  RX-----GPIO_AD_B0_13,L14-----(CN5, 11)
- *引脚功能         引脚标号     引脚在开发板上对应位置
- *TX引脚对应开发板CN5排针的第9脚(CN5, 9)
- *RX引脚对应开发板CN5排针的第11脚(CN5, 11)
- 
-使用i.MX RT1052-Mini底板：
- *  TX-----GPIO_AD_B0_12,K14-----(CN4, 9)
- *  RX-----GPIO_AD_B0_13,L14-----(CN4, 11)
- *引脚功能         引脚标号     引脚在开发板上对应位置
- *TX引脚对应开发板CN4排针的第9脚(CN4, 9)
- *RX引脚对应开发板CN4排针的第11脚(CN4, 11)
- *********************************************************/
 #define UART_RX_GPIO                GPIO1
 #define UART_RX_GPIO_PIN            (13U)
 #define UART_RX_IOMUXC              IOMUXC_GPIO_AD_B0_13_LPUART1_RX

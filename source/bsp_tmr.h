@@ -4,7 +4,6 @@
 #include "fsl_common.h"
 #include "fsl_qtmr.h"
 
-
 /* 定义 TMR 定时器的通道和工作模式instance/channel used for board */
 #define BOARD_QTMR_BASEADDR TMR3
 #define BOARD_FIRST_QTMR_CHANNEL kQTMR_Channel_0
@@ -25,8 +24,19 @@
 */
 #define TMR_TIMIER 50
 
-void TMR_Init(TMR_Type *base, qtmr_channel_selection_t channel,uint32_t intTime);
+typedef struct _tmr_config_t
+{
+	TMR_Type *base;
+	qtmr_channel_selection_t Channel;
+	uint32_t LoadTime;
+	uint32_t InterruptMask;
+	qtmr_primary_count_source_t primarySource;
+	uint8_t Div;
+	IRQn_Type InterruptType;
+}tmr_config_t;
 
+void TMR_Init(TMR_Type *base, qtmr_channel_selection_t channel,uint32_t intTime);
+void TMRn_Init(tmr_config_t *tmr_confog);
 #endif /* __BSP_TMR_H */
 
 

@@ -474,7 +474,7 @@ static status_code_t output_settings (sys_state_t state, char *args)
     return retval;
 }
 
-#ifndef NO_SETTINGS_DESCRIPTIONS
+#ifndef NO_SETTINGS_DESCRIPTIONS 
 
 static status_code_t output_setting_description (sys_state_t state, char *args)
 {

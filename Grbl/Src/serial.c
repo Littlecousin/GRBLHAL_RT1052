@@ -294,6 +294,8 @@ const io_stream_t *serialInit (uint32_t baud_rate)
     return &stream;
 }
 
+uint32_t RxOverrunFlag;
+
 void USART_IRQHandler (void)
 {
 	QUEUE_DATA_TYPE *data_p;
@@ -303,7 +305,7 @@ void USART_IRQHandler (void)
     {
 		//接收数据中断
         data = LPUART_ReadByte(USART);
-		temp_buffer[rx_count++] = data;
+//		temp_buffer[rx_count++] = data;
 		if (!enqueue_realtime_command((char)data))
         {                                                    // Check and strip realtime commands...
             uint16_t next_head = BUFNEXT(rxbuf.head, rxbuf); // Get and increment buffer pointer
@@ -330,18 +332,24 @@ void USART_IRQHandler (void)
 			return;
     }
 	
-	if ((kLPUART_IdleLineFlag)&LPUART_GetStatusFlags(DEBUG_UARTx))//空闲中断
-	{
-		/*写入缓冲区完毕*/
-		cbWriteFinish(&rx_queue);
-		if(rx_count)
-		{
-			ring_fifo_write(serial_fifo_handle,temp_buffer,rx_count);
-			rx_count = 0;
-		}
-		data = LPUART_ReadByte( DEBUG_UARTx );
-		LPUART_ClearStatusFlags(DEBUG_UARTx, kLPUART_IdleLineFlag);   
+	if ((kLPUART_RxOverrunFlag)&LPUART_GetStatusFlags(USART))//接收完成中断
+    {
+		RxOverrunFlag++;
+		LPUART_ClearStatusFlags(DEBUG_UARTx, kLPUART_RxOverrunFlag);   
 	}
+	
+//	if ((kLPUART_IdleLineFlag)&LPUART_GetStatusFlags(DEBUG_UARTx))//空闲中断
+//	{
+//		/*写入缓冲区完毕*/
+//		cbWriteFinish(&rx_queue);
+//		if(rx_count)
+//		{
+//			ring_fifo_write(serial_fifo_handle,temp_buffer,rx_count);
+//			rx_count = 0;
+//		}
+//		data = LPUART_ReadByte( DEBUG_UARTx );
+//		LPUART_ClearStatusFlags(DEBUG_UARTx, kLPUART_IdleLineFlag);   
+//	}
 	
 //    if ((kLPUART_TxDataRegEmptyFlag)&LPUART_GetStatusFlags(USART))
 //    {
@@ -355,42 +363,8 @@ void USART_IRQHandler (void)
 //        txbuf.tail = tail = BUFNEXT(tail, txbuf);   // and increment pointer
 //        if(tail == txbuf.head)                      // If buffer empty then
 //        // disable UART TX interrupt
-//		LPUART_DisableInterrupts(USART, kLPUART_TxDataRegEmptyInterruptEnable);
-//            // USART->CR1 &= ~USART_CR1_TXEIE;         
+//		LPUART_DisableInterrupts(USART, kLPUART_TxDataRegEmptyInterruptEnable);      
 //	}
 	SDK_ISR_EXIT_BARRIER;
 
 }
-
-
-///******************串口接收中断服务函数********************/
-// void DEBUG_UART_IRQHandler(void)
-//{
-//    uint8_t ucCh;
-//	QUEUE_DATA_TYPE *data_p; 
-//	
-//	if((kLPUART_RxDataRegFullFlag)&LPUART_GetStatusFlags(DEBUG_UARTx))//接收完成中断
-//	{
-//		ucCh  = LPUART_ReadByte( DEBUG_UARTx );
-//		/*获取写缓冲区指针，准备写入新数据*/
-//		data_p = cbWrite(&rx_queue); 
-//		if (data_p != NULL)	//若缓冲队列未满，开始传输
-//		{		
-//			//往缓冲区写入数据，如使用串口接收、dma写入等方式
-//			*(data_p->head + data_p->len) = ucCh;
-//				
-//			if( ++data_p->len >= QUEUE_NODE_DATA_LEN)
-//			{
-//				cbWriteFinish(&rx_queue);
-//			}
-//		}else 
-//			return;	
-//	}
-//	if ((kLPUART_IdleLineFlag)&LPUART_GetStatusFlags(DEBUG_UARTx))//空闲中断
-//	{
-//		/*写入缓冲区完毕*/
-//		cbWriteFinish(&rx_queue);
-//		ucCh = LPUART_ReadByte( DEBUG_UARTx );
-//		LPUART_ClearStatusFlags(DEBUG_UARTx, kLPUART_IdleLineFlag);   
-//	}
-//}
