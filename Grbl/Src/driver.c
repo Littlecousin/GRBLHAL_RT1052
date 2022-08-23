@@ -734,19 +734,20 @@ static void stepperEnable (axes_signals_t enable)
   #endif
 #endif
 }
-
+uint32_t cycles_per_tick_count = 0;
 // Starts stepper driver ISR timer and forces a stepper driver interrupt callback
 static void stepperWakeUp (void)
 {
     stepperEnable((axes_signals_t){AXES_BITMASK});
-	STEPPER_TIMER->CHANNEL[kPIT_Chnl_0].LDVAL = 5000 - 1;
-	STEPPER_TIMER->CHANNEL[kPIT_Chnl_0].TFLG = PIT_TFLG_TIF_MASK;
-	STEPPER_TIMER->CHANNEL[kPIT_Chnl_0].TCTRL |= (PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);
-	
-//	PIT_SetTimerPeriod(PIT, PIT_CHANNEL_X, 5000);
-//	PIT_ClearStatusFlags(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerFlag);
-//	PIT_EnableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
-//	PIT_StartTimer(STEPPER_TIMER, STEPPER_TIMER_CH);
+	cycles_per_tick_count = 0;
+	g_debounce_int_count = 0;
+	g_stepper_int_count  = 0;
+	g_pulse_int_count    = 0;
+	g_pulse_int_1_count  = 0;
+	PIT_SetTimerPeriod(PIT, PIT_CHANNEL_X, 5000);
+	PIT_ClearStatusFlags(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerFlag);
+	PIT_EnableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
+	PIT_StartTimer(STEPPER_TIMER, STEPPER_TIMER_CH);
 }
 //PIT_TCTRL_TIE_MASK 中断控制位
 //PIT_TCTRL_TEN_MASK 使能定时器位
@@ -754,11 +755,10 @@ static void stepperWakeUp (void)
 // Disables stepper driver interrupts
 static void stepperGoIdle (bool clear_signals)
 {
-	STEPPER_TIMER->CHANNEL[kPIT_Chnl_0].TCTRL &= ~(PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);
-	
-//	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
-//	PIT_StopTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
-	
+	if(g_stepper_int_count)
+		g_stepper_int_count--;
+	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
+	PIT_StopTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
 	if(clear_signals) 
 	{
         stepperSetStepOutputs((axes_signals_t){0});
@@ -769,11 +769,7 @@ static void stepperGoIdle (bool clear_signals)
 // Sets up stepper driver interrupt timeout, "Normal" version
 static void stepperCyclesPerTick (uint32_t cycles_per_tick)
 {
-	// STEPPER_TIMER->CHANNEL[STEPPER_TIMER_CH].TCTRL &= ~PIT_TCTRL_TEN_MASK;//关闭定时器
-    // STEPPER_TIMER->CHANNEL[STEPPER_TIMER_CH].LDVAL = cycles_per_tick < (1UL << 20) ? (cycles_per_tick - 1) : (0x000FFFFFUL-1);//加载值
-    // STEPPER_TIMER->CHANNEL[STEPPER_TIMER_CH].TFLG = PIT_TFLG_TIF_MASK;//清空中断标志
-    // STEPPER_TIMER->CHANNEL[STEPPER_TIMER_CH].TCTRL |= (PIT_TCTRL_TIE_MASK|PIT_TCTRL_TEN_MASK);//打开定时器
-	
+	cycles_per_tick_count += cycles_per_tick;
 	PIT_StopTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
 	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
 	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, cycles_per_tick < (1UL << 20) ? (cycles_per_tick) : (0x000FFFFFUL));
@@ -803,11 +799,7 @@ static void stepperPulseStartDelayed (stepper_t *stepper)
         {
             next_step_outbits = stepper->step_outbits; // Store out_bits
 			//pulse_delay单位是100ns
-			
-//            PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].COMP1 = pulse_delay;
-//            PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);
-			
-			QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, pulse_delay);
+			QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, USEC_TO_COUNT(pulse_delay, (QTMR_SOURCE_CLOCK / 1)));
 			QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);
         }
         return;
@@ -815,8 +807,6 @@ static void stepperPulseStartDelayed (stepper_t *stepper)
     if (stepper->step_outbits.value)
     {
         stepperSetStepOutputs(stepper->step_outbits);
-		
-//        PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);
 		QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);
 		
     }
@@ -1498,7 +1488,6 @@ void settings_changed(settings_t *settings)
         if ((hal.spindle.get_data = (hal.spindle.cap.at_speed = settings->spindle.ppr > 0) ? spindleGetData : NULL) &&
             (spindle_encoder.ppr != settings->spindle.ppr || pidf_config_changed(&spindle_tracker.pid, &settings->position.pid)))
         {
-
             hal.spindle.reset_data = spindleDataReset;
             hal.spindle.set_state((spindle_state_t){0}, 0.0f);
 
@@ -1517,17 +1506,13 @@ void settings_changed(settings_t *settings)
             spindle_encoder.rpm_factor = 60.0f / ((timer_resolution * (float)spindle_encoder.ppr));
             spindleDataReset();
         }
-
 #endif
 		//清中断标志
-//		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CSCTRL &= ~(TMR_CSCTRL_TCF1_MASK | TMR_CSCTRL_TCF2_MASK);
 		QTMR_ClearStatusFlags(PULSE_TIMER,PULSE_TIMER_CH,kQTMR_Compare1Flag);
-		
-        pulse_length = (uint32_t)(150.0f * (settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY)) - 1;
-
+        pulse_length = (uint32_t)(1.0f * (settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY)) - 1;//us
         if (hal.driver_cap.step_pulse_delay && settings->steppers.pulse_delay_microseconds > 0.0f)
         {
-            pulse_delay = (uint32_t)(150.0f * (settings->steppers.pulse_delay_microseconds - 1.0f));
+            pulse_delay = (uint32_t)(1.0f * (settings->steppers.pulse_delay_microseconds - 1.0f));
             if (pulse_delay < 2)
                 pulse_delay = 2;
             else if (pulse_delay == pulse_length)
@@ -1539,19 +1524,21 @@ void settings_changed(settings_t *settings)
             pulse_delay = 0;
             hal.stepper.pulse_start = &stepperPulseStart;
         }
-		
-		// QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, pulse_length);
-		// QTMR_DisableInterrupts(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_Compare2InterruptEnable);
-		// QTMR_StopTimer(PULSE_TIMER,PULSE_TIMER_CH);
-		
-        // TMR4_COMP10 = pulse_length;
-        // TMR4_CSCTRL0 &= ~TMR_CSCTRL_TCF2EN;
-        // TMR4_CTRL0 &= ~TMR_CTRL_OUTMODE(0b000);
-        // attachInterruptVector(IRQ_QTIMER4, stepper_pulse_isr);
 
-		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].COMP1 = pulse_length;
-		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CSCTRL &= ~TMR_CSCTRL_TCF2EN_MASK;
+		
+		QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1)));
+		QTMR_DisableInterrupts(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_Compare2InterruptEnable);
 		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL &= ~ TMR_CTRL_OUTMODE(kQTMR_AssertWhenCountActive);
+//		QTMR_StopTimer(PULSE_TIMER,PULSE_TIMER_CH);
+		
+//		TMR4_COMP10 = pulse_length;
+//		TMR4_CSCTRL0 &= ~TMR_CSCTRL_TCF2EN;
+//		TMR4_CTRL0 &= ~TMR_CTRL_OUTMODE(0b000);
+//		attachInterruptVector(IRQ_QTIMER4, stepper_pulse_isr);
+
+//		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].COMP1 = pulse_length;
+//		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CSCTRL &= ~TMR_CSCTRL_TCF2EN_MASK;
+//		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL &= ~ TMR_CTRL_OUTMODE(kQTMR_AssertWhenCountActive);
 		
         /*************************
          *  Control pins config  *
@@ -1864,19 +1851,20 @@ void setPeriphPinDescription(const pin_function_t function, const pin_group_t gr
     periph_signal_t *ppin = periph_pins;
 
     if (ppin)
-        do
-        {
-            if (ppin->pin.function == function && ppin->pin.group == group)
-            {
-                ppin->pin.description = description;
-                ppin = NULL;
-            }
-            else
-                ppin = ppin->next;
-        } while (ppin);
+		do
+		{
+			if (ppin->pin.function == function && ppin->pin.group == group)
+			{
+				ppin->pin.description = description;
+				ppin = NULL;
+			}
+			else
+				ppin = ppin->next;
+		} while (ppin);
 }
 
-tmr_config_t tmr_pluse_config = {
+tmr_config_t tmr_pluse_config = 
+{
 	.base = PULSE_TIMER,
 	.Channel = PULSE_TIMER_CH,
 	.LoadTime = 0,
@@ -1886,7 +1874,8 @@ tmr_config_t tmr_pluse_config = {
 	.InterruptType = PULSE_TIMER_IRQn,
 };
 
-tmr_config_t tmr_debounce_config = {
+tmr_config_t tmr_debounce_config = 
+{
 	.base = DEBOUNCE_TIMER,
 	.Channel = DEBOUNCE_TIMER_CH,
 	.LoadTime = 0,
@@ -1942,50 +1931,14 @@ static bool driver_setup (settings_t *settings)
 
     GPIO_Init.direction = GPIO_MODE_OUTPUT_PP;
 
- // Stepper init
-	
-/* 定时器 */
-//	/* 设置PIT定时器时钟 OSC_CLK*/
-//	CLOCK_SetMux(kCLOCK_PerclkMux, 1U);
-//	/* 设置 PERCLK_CLK 时钟分频为 1 */
-//	CLOCK_SetDiv(kCLOCK_PerclkDiv, 0U);
-//	PIT->MCR = 0;
-//	CLOCK_EnableClock(kCLOCK_Pit);
-//	NVIC_SetPriority(STEPPER_TIMER_IRQn,2);
-//	EnableIRQ(STEPPER_TIMER_IRQn);
-	
+	// Stepper init
 	PIT_TIMER_Init();
-//	PIT_StartTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
-//	while(1)
-//	{
-//		
-//	}
 
-	/*
-//    STEPPER_TIMER_CLOCK_ENA();
-//    STEPPER_TIMER->CR1 &= ~TIM_CR1_CEN;//关闭中断
-//    STEPPER_TIMER->SR &= ~TIM_SR_UIF;//清空中断标志位
-//    STEPPER_TIMER->CNT = 0;//清空定时器计数
-//    STEPPER_TIMER->DIER |= TIM_DIER_UIE;//使能更新中断
-
-//    HAL_NVIC_SetPriority(STEPPER_TIMER_IRQn, 1, 0);
-//    NVIC_EnableIRQ(STEPPER_TIMER_IRQn);
-	*/
-	
 	// Single-shot 100 ns per tick
-	
-	
 	TMRn_Init(&tmr_pluse_config);
-	
-//	PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].ENBL = TMR_ENBL_ENBL(0);
-//	PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].LOAD = 0;
-//	//1分频,触发一次,计数到设定比较值
-//	//计数时间 = 计数比较值/分频后的时钟
+	// 1分频,触发一次,计数到设定比较值
+	// 计数时间 = 计数比较值/分频后的时钟
 	PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL |= (TMR_CTRL_LENGTH_MASK | TMR_CTRL_ONCE_MASK | TMR_CTRL_PCS(kQTMR_ClockDivide_1));
-//	PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CSCTRL |= TMR_CSCTRL_TCF1EN_MASK;//使能compare1
-//	NVIC_SetPriority(PULSE_TIMER_IRQn,0);
-//	EnableIRQ(PULSE_TIMER_IRQn);
-//	PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].ENBL = TMR_ENBL_ENBL(1);
 	
 	// Control pins init
     if(hal.driver_cap.software_debounce) 
@@ -1993,22 +1946,8 @@ static bool driver_setup (settings_t *settings)
         // Single-shot 0.1 ms per tick
 		tmr_debounce_config.LoadTime = MSEC_TO_COUNT(40, (QTMR_SOURCE_CLOCK / tmr_debounce_config.Div));
 		TMRn_Init(&tmr_debounce_config);
-//		TMR_Init(DEBOUNCE_TIMER,DEBOUNCE_TIMER_CH,40);
-		
-//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].ENBL = TMR_ENBL_ENBL(0);
-//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].LOAD = 0;
-//		//128分频,触发一次,计数到设定比较值
+		//128分频,触发一次,计数到设定比较值
 		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CTRL |= (TMR_CTRL_LENGTH_MASK | TMR_CTRL_ONCE_MASK | TMR_CTRL_PCS(kQTMR_ClockDivide_128));
-//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].COMP1 = MSEC_TO_COUNT(40, (150000000 / 128)); // 150 MHz -> 40ms 
-//		
-////		TMR3_COMP10 = (uint16_t)((40000UL * F_BUS_MHZ) / 128); // 150 MHz -> 40ms
-////		MSEC_TO_COUNT(40, (150000000 / 128));
-//		
-//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CSCTRL |= TMR_CSCTRL_TCF1EN_MASK;//使能compare1
-//		NVIC_SetPriority(DEBOUNCE_TIMER_IRQn,4);
-//		EnableIRQ(DEBOUNCE_TIMER_IRQn);
-//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].ENBL = TMR_ENBL_ENBL(1);
-//		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);
     }
 
   // Spindle init
@@ -2343,7 +2282,7 @@ bool driver_init (void)
 
 // Main stepper driver
 /**
- * @brief    控制运算周期
+ * @brief    控制运算周期PIT,控制脉冲频率
  * @return   {*}
  */
 void STEPPER_TIMER_IRQHandler (void)
@@ -2377,7 +2316,7 @@ void STEPPER_TIMER_IRQHandler (void)
 // a step. This ISR resets the motor port after a short period (settings.pulse_microseconds)
 // completing one step cycle.
 /**
- * @brief    控制脉冲频率
+ * @brief    控制脉冲个数,定时时间为低电平时间
  * @return   {*}
  */
 void PULSE_TIMER_IRQHandler (void)
@@ -2389,49 +2328,33 @@ void PULSE_TIMER_IRQHandler (void)
 	{
 		
 		/* 清除中断标志位*/
-		QTMR_ClearStatusFlags(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_Compare1Flag);// clear UIF flag
+		QTMR_ClearStatusFlags(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_Compare1Flag);	// clear UIF flag
 		if (PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].COMP1 == pulse_delay)			// Delayed step pulse?
 		{
-			g_pulse_int_count++;
+			g_pulse_int_1_count++;
 			stepperSetStepOutputs(next_step_outbits);   // begin step pulse
 			/*设置自动重装载值*/
-			QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, pulse_length);
+			QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1)));
 			QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);
 		}
 		else
 		{
-			g_pulse_int_1_count++;
+			g_pulse_int_count++;
 			stepperSetStepOutputs((axes_signals_t){0}); // end step pulse
 		}
 	}
-	
-	
-//	PULSE_TIMER->SR &= ~TIM_SR_UIF;                 // Clear UIF flag
-//	if (PULSE_TIMER->ARR == pulse_delay)            // Delayed step pulse?
-//	{
-//		PULSE_TIMER->ARR = pulse_length;
-//		stepperSetStepOutputs(next_step_outbits);   // begin step pulse
-//		PULSE_TIMER->EGR = TIM_EGR_UG;
-//		PULSE_TIMER->CR1 |= TIM_CR1_CEN;
-//	} else
-//	{
-//		stepperSetStepOutputs((axes_signals_t){0}); // end step pulse
-//	}
 }
 
 //static void stepper_pulse_isr (void)
 //{
 //    TMR4_CSCTRL0 &= ~TMR_CSCTRL_TCF1;
-
 //    set_step_outputs((axes_signals_t){0});
 //}
 
 //static void stepper_pulse_isr_delayed (void)
 //{
 //    TMR4_CSCTRL0 &= ~TMR_CSCTRL_TCF1;
-
 //    set_step_outputs(next_step_outbits);
-
 //    attachInterruptVector(IRQ_QTIMER4, stepper_pulse_isr);
 //    TMR4_COMP10 = pulse_length;
 //    TMR4_CTRL0 |= TMR_CTRL_CM(0b001);

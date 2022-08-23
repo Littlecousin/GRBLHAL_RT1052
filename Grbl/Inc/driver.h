@@ -129,7 +129,7 @@ extern __IO uint32_t g_debounce_int_count;
 extern __IO uint32_t g_pulse_int_count;
 extern __IO uint32_t g_stepper_int_count;
 
-//使用pit 24Mhz
+//使用pit 24Mhz，一分频，中断时间为counts/24000000（秒）
 #define STEPPER_TIMER_N				1
 #define STEPPER_TIMER_CH_N			0
 #define STEPPER_TIMER				PIT//timer(STEPPER_TIMER_N)
@@ -138,8 +138,8 @@ extern __IO uint32_t g_stepper_int_count;
 #define STEPPER_TIMER_IRQHandler    PIT_IRQHandler//timerHANDLER(STEPPER_TIMER_N)
 //#define STEPPER_TIMER_CLOCK_ENA     timerCLKENA(STEPPER_TIMER_N)
 
-//150Mhz
-#define PULSE_TIMER_N               4
+//150Mhz，1分频，一次中断时间为counts/150000000（秒）
+#define PULSE_TIMER_N               1
 #define PULSE_TIMER_CH_N			0
 #define PULSE_TIMER                 timer(PULSE_TIMER_N)
 #define PULSE_TIMER_CH				timerCH(PULSE_TIMER_CH_N)
@@ -147,6 +147,16 @@ extern __IO uint32_t g_stepper_int_count;
 #define PULSE_TIMER_IRQHandler      timerHANDLER(PULSE_TIMER_N)
 #define PULSE_TIMER_CLOCK_ENA       timerCLKENA(PULSE_TIMER_N)
 
+//150Mhz，128分频，一次中断时间为counts*128/150000000（秒）
+#define DEBOUNCE_TIMER_N            2
+#define DEBOUNCE_TIMER_CH_N			0
+#define DEBOUNCE_TIMER              timer(DEBOUNCE_TIMER_N)
+#define DEBOUNCE_TIMER_CH			timerCH(DEBOUNCE_TIMER_CH_N)
+#define DEBOUNCE_TIMER_IRQn         timerINT(DEBOUNCE_TIMER_N)
+#define DEBOUNCE_TIMER_IRQHandler   timerHANDLER(DEBOUNCE_TIMER_N)
+#define DEBOUNCE_TIMER_CLOCK_ENA    timerCLKENA(DEBOUNCE_TIMER_N)
+//USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1))
+//USEC_TO_COUNT(pulse_delay, (QTMR_SOURCE_CLOCK / 1))
 #ifdef SPINDLE_PWM_PORT_BASE
 
 #if SPINDLE_PWM_PORT_BASE == GPIO1_BASE
@@ -223,15 +233,6 @@ extern __IO uint32_t g_stepper_int_count;
 #error Spindle PWM not supported on mapped pin!
 #endif
 #endif
-
-//150Mhz
-#define DEBOUNCE_TIMER_N            3
-#define DEBOUNCE_TIMER_CH_N			0
-#define DEBOUNCE_TIMER              timer(DEBOUNCE_TIMER_N)
-#define DEBOUNCE_TIMER_CH			timerCH(DEBOUNCE_TIMER_CH_N)
-#define DEBOUNCE_TIMER_IRQn         timerINT(DEBOUNCE_TIMER_N)
-#define DEBOUNCE_TIMER_IRQHandler   timerHANDLER(DEBOUNCE_TIMER_N)
-#define DEBOUNCE_TIMER_CLOCK_ENA    timerCLKENA(DEBOUNCE_TIMER_N)
 
 #if SPINDLE_SYNC_ENABLE
 

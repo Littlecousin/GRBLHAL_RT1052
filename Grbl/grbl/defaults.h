@@ -121,7 +121,7 @@
 #else
 #define DEFAULT_REPORT_ALARM_SUBSTATE 0
 #endif
-
+//机械装置每一毫米对应的整步数，还需要配合细分进行设置。
 #ifndef DEFAULT_X_STEPS_PER_MM
 #define DEFAULT_X_STEPS_PER_MM 250.0f
 #endif
@@ -195,6 +195,7 @@
 #define DEFAULT_SPINDLE_ENABLE_OFF_WITH_ZERO_SPEED 0
 #endif
 #ifndef DEFAULT_STEP_PULSE_MICROSECONDS
+//步进脉冲的最小脉宽，如果太小则把干扰信号当脉冲，太大则系统速度受限。
 #define DEFAULT_STEP_PULSE_MICROSECONDS 10.0f
 #endif
 #ifndef DEFAULT_STEP_PULSE_DELAY

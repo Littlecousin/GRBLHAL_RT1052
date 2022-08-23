@@ -17,6 +17,9 @@ extern "C" {
 #include "bsp_rx_data_queue.h"
 #include "bsp_uart.h"
 #include "ring_fifo.h"
+#include "generic_map.h"
+
+#include "math.h"
 
 #ifdef __cplusplus
 }

@@ -135,7 +135,6 @@ static bool serialPutC (const char c)
 static void serialWriteS (const char *s)
 {
     char c, *ptr = (char *)s;
-
     while((c = *ptr++) != '\0')
         serialPutC(c);
 }
@@ -146,7 +145,6 @@ static void serialWriteS (const char *s)
 static void serialWrite (const char *s, uint16_t length)
 {
     char *ptr = (char *)s;
-
     while(length--)
         serialPutC(*ptr++);
 }
@@ -180,13 +178,10 @@ static uint16_t serialTxCount (void)
 static int16_t serialGetC (void)
 {
     uint_fast16_t tail = rxbuf.tail;    // Get buffer pointer
-
     if(tail == rxbuf.head)
         return -1; // no data available
-
     char data = rxbuf.data[tail];       // Get next character
     rxbuf.tail = BUFNEXT(tail, rxbuf);  // and update pointer
-
     return (int16_t)data;
 }
 
@@ -279,18 +274,9 @@ const io_stream_t *serialInit (uint32_t baud_rate)
         .mode = { .mask = PINMODE_NONE },
         .description = "UART1"
     };
-
-    hal.periph_port.register_pin(&rx);
-    hal.periph_port.register_pin(&tx);
-	uint32_t status;
-	status = ring_fifo_init(&serial_fifo_handle,ring_buffer,sizeof(ring_buffer),TEST_FIFO_TYPE);
-	if(status != RF_SUCCESS)
-    {
-        while(1)
-		{
-			
-		}
-    }
+	
+	hal.periph_port.register_pin(&rx);
+	hal.periph_port.register_pin(&tx);
     return &stream;
 }
 
@@ -305,7 +291,6 @@ void USART_IRQHandler (void)
     {
 		//接收数据中断
         data = LPUART_ReadByte(USART);
-//		temp_buffer[rx_count++] = data;
 		if (!enqueue_realtime_command((char)data))
         {                                                    // Check and strip realtime commands...
             uint16_t next_head = BUFNEXT(rxbuf.head, rxbuf); // Get and increment buffer pointer
@@ -317,39 +302,13 @@ void USART_IRQHandler (void)
                 rxbuf.head = next_head;              // and update pointer
             }
         }
-		/*获取写缓冲区指针，准备写入新数据*/
-		data_p = cbWrite(&rx_queue); 
-		if (data_p != NULL)	//若缓冲队列未满，开始传输
-		{		
-			//往缓冲区写入数据，如使用串口接收、dma写入等方式
-			*(data_p->head + data_p->len) = data;
-				
-			if( ++data_p->len >= QUEUE_NODE_DATA_LEN)
-			{
-				cbWriteFinish(&rx_queue);
-			}
-		}else 
-			return;
+
     }
-	
 	if ((kLPUART_RxOverrunFlag)&LPUART_GetStatusFlags(USART))//接收完成中断
     {
 		RxOverrunFlag++;
 		LPUART_ClearStatusFlags(DEBUG_UARTx, kLPUART_RxOverrunFlag);   
 	}
-	
-//	if ((kLPUART_IdleLineFlag)&LPUART_GetStatusFlags(DEBUG_UARTx))//空闲中断
-//	{
-//		/*写入缓冲区完毕*/
-//		cbWriteFinish(&rx_queue);
-//		if(rx_count)
-//		{
-//			ring_fifo_write(serial_fifo_handle,temp_buffer,rx_count);
-//			rx_count = 0;
-//		}
-//		data = LPUART_ReadByte( DEBUG_UARTx );
-//		LPUART_ClearStatusFlags(DEBUG_UARTx, kLPUART_IdleLineFlag);   
-//	}
 	
 //    if ((kLPUART_TxDataRegEmptyFlag)&LPUART_GetStatusFlags(USART))
 //    {
