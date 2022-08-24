@@ -124,20 +124,27 @@ static bool recheck_line (char *line, line_flags_t *flags)
 /*
   GRBL PRIMARY LOOP:
 */
-bool protocol_main_loop (void)
+bool protocol_main_loop(void)
 {
-    if(sys.alarm == Alarm_SelftestFailed) {
+    if (sys.alarm == Alarm_SelftestFailed)
+    {
         sys.alarm = Alarm_None;
         system_raise_alarm(Alarm_SelftestFailed);
-    } else if (hal.control.get_state().e_stop) {
+    }
+    else if (hal.control.get_state().e_stop)
+    {
         // Check for e-stop active. Blocks everything until cleared.
         system_raise_alarm(Alarm_EStop);
         grbl.report.feedback_message(Message_EStop);
-    } else if(hal.control.get_state().motor_fault) {
+    }
+    else if (hal.control.get_state().motor_fault)
+    {
         // Check for motor fault active. Blocks everything until cleared.
         system_raise_alarm(Alarm_MotorFault);
         grbl.report.feedback_message(Message_MotorFault);
-    } else if (limits_homing_required()) {
+    }
+    else if (limits_homing_required())
+    {
         // Check for power-up and set system alarm if homing is enabled to force homing cycle
         // by setting Grbl's alarm state. Alarm locks out all g-code commands, including the
         // startup scripts, but allows access to settings and internal commands.
@@ -146,30 +153,40 @@ bool protocol_main_loop (void)
         // blocks from crashing into things uncontrollably. Very bad.
         system_raise_alarm(Alarm_HomingRequried);
         grbl.report.feedback_message(Message_HomingCycleRequired);
-    } else if (settings.limits.flags.hard_enabled && settings.limits.flags.check_at_init && limit_signals_merge(hal.limits.get_state()).value) {
-        if(sys.alarm == Alarm_LimitsEngaged && hal.control.get_state().limits_override)
+    }
+    else if (settings.limits.flags.hard_enabled && settings.limits.flags.check_at_init && limit_signals_merge(hal.limits.get_state()).value)
+    {
+        if (sys.alarm == Alarm_LimitsEngaged && hal.control.get_state().limits_override)
             state_set(STATE_IDLE); // Clear alarm state to enable limit switch pulloff.
-        else {
+        else
+        {
             // Check that no limit switches are engaged to make sure everything is good to go.
             system_raise_alarm(Alarm_LimitsEngaged);
             grbl.report.feedback_message(Message_CheckLimits);
         }
-    } else if(sys.cold_start && (settings.flags.force_initialization_alarm || hal.control.get_state().reset)) {
+    }
+    else if (sys.cold_start && (settings.flags.force_initialization_alarm || hal.control.get_state().reset))
+    {
         state_set(STATE_ALARM); // Ensure alarm state is set.
         grbl.report.feedback_message(Message_AlarmLock);
-    } else if (state_get() & (STATE_ALARM|STATE_SLEEP)) {
+    }
+    else if (state_get() & (STATE_ALARM | STATE_SLEEP))
+    {
         // Check for and report alarm state after a reset, error, or an initial power up.
         // NOTE: Sleep mode disables the stepper drivers and position can't be guaranteed.
         // Re-initialize the sleep state as an ALARM mode to ensure user homes or acknowledges.
-        if(sys.alarm == Alarm_HomingRequried)
+        if (sys.alarm == Alarm_HomingRequried)
             sys.alarm = Alarm_None; // Clear Alarm_HomingRequried as the lock has been overridden by a soft reset.
-        state_set(STATE_ALARM); // Ensure alarm state is set.
+        state_set(STATE_ALARM);     // Ensure alarm state is set.
         grbl.report.feedback_message(Message_AlarmLock);
-    } else {
+    }
+    else
+    {
         state_set(STATE_IDLE);
 #ifndef NO_SAFETY_DOOR_SUPPORT
         // Check if the safety door is open.
-        if (hal.signals_cap.safety_door_ajar && !settings.safety_door.flags.ignore_when_idle && hal.control.get_state().safety_door_ajar) {
+        if (hal.signals_cap.safety_door_ajar && !settings.safety_door.flags.ignore_when_idle && hal.control.get_state().safety_door_ajar)
+        {
             system_set_exec_state_flag(EXEC_SAFETY_DOOR);
             protocol_execute_realtime(); // Enter safety door mode. Should return as IDLE state.
         }
@@ -179,13 +196,15 @@ bool protocol_main_loop (void)
     }
 
     // Ensure spindle and coolant is switched off on a cold start
-    if(sys.cold_start) {
+    if (sys.cold_start)
+    {
         hal.spindle.set_state((spindle_state_t){0}, 0.0f);
         hal.coolant.set_state((coolant_state_t){0});
-        if(realtime_queue.head != realtime_queue.tail)
-            system_set_exec_state_flag(EXEC_RT_COMMAND);  // execute any boot up commands
+        if (realtime_queue.head != realtime_queue.tail)
+            system_set_exec_state_flag(EXEC_RT_COMMAND); // execute any boot up commands
         sys.cold_start = false;
-    } else
+    }
+    else
         memset(&realtime_queue, 0, sizeof(realtime_queue_t));
 
     // ---------------------------------------------------------------------------------
@@ -200,13 +219,16 @@ bool protocol_main_loop (void)
     xcommand[0] = '\0';
     keep_rt_commands = false;
 
-    while(true) {
+    while (true)
+    {
 
         // Process one line of incoming stream data, as the data becomes available. Performs an
         // initial filtering by removing leading spaces and control characters.
-        while((c = hal.stream.read()) != SERIAL_NO_DATA) {
+        while ((c = hal.stream.read()) != SERIAL_NO_DATA)
+        {
 
-            if(c == ASCII_CAN) {
+            if (c == ASCII_CAN)
+            {
 
                 eol = xcommand[0] = '\0';
                 keep_rt_commands = false;
@@ -215,44 +237,52 @@ bool protocol_main_loop (void)
 
                 if (state_get() == STATE_JOG) // Block all other states from invoking motion cancel.
                     system_set_exec_state_flag(EXEC_MOTION_CANCEL);
-
-            } else if ((c == '\n') || (c == '\r')) { // End of line reached
+            }
+            else if ((c == '\n') || (c == '\r'))
+            { // End of line reached
 
                 // Check for possible secondary end of line character, do not process as empty line
                 // if part of crlf (or lfcr pair) as this produces a possibly unwanted double response
-                if(char_counter == 0 && eol && eol != c) {
+                if (char_counter == 0 && eol && eol != c)
+                {
                     eol = '\0';
                     continue;
-                } else
+                }
+                else
                     eol = (char)c;
 
-                if(!protocol_execute_realtime()) // Runtime command check point.
-                    return !sys.flags.exit;      // Bail to calling function upon system abort
+                if (!protocol_execute_realtime()) // Runtime command check point.
+                    return !sys.flags.exit;       // Bail to calling function upon system abort
 
                 line[char_counter] = '\0'; // Set string termination character.
 
-              #ifdef REPORT_ECHO_LINE_RECEIVED
+#ifdef REPORT_ECHO_LINE_RECEIVED
                 report_echo_line_received(line);
-              #endif
+#endif
 
                 // Direct and execute one line of formatted input, and report status of execution.
                 if (line_flags.overflow) // Report line overflow error.
                     gc_state.last_error = Status_Overflow;
-                else if(line[0] == '\0') // Empty line. For syncing purposes.
+                else if (line[0] == '\0') // Empty line. For syncing purposes.
                     gc_state.last_error = Status_OK;
-                else if (line[0] == '$') {// Grbl '$' system command
-                    if((gc_state.last_error = system_execute_line(line)) == Status_LimitsEngaged) {
+                else if (line[0] == '$')
+                { // Grbl '$' system command
+                    if ((gc_state.last_error = system_execute_line(line)) == Status_LimitsEngaged)
+                    {
                         system_raise_alarm(Alarm_LimitsEngaged);
                         grbl.report.feedback_message(Message_CheckLimits);
                     }
-                } else if (line[0] == '[' && grbl.on_user_command)
+                }
+                else if (line[0] == '[' && grbl.on_user_command)
                     gc_state.last_error = grbl.on_user_command(line);
-                else if (state_get() & (STATE_ALARM|STATE_ESTOP|STATE_JOG)) // Everything else is gcode. Block if in alarm, eStop or jog mode.
+                else if (state_get() & (STATE_ALARM | STATE_ESTOP | STATE_JOG)) // Everything else is gcode. Block if in alarm, eStop or jog mode.
                     gc_state.last_error = Status_SystemGClock;
 #if COMPATIBILITY_LEVEL == 0
-                else if(gc_state.last_error == Status_OK || gc_state.last_error == Status_GcodeToolChangePending) { // Parse and execute g-code block.
+                else if (gc_state.last_error == Status_OK || gc_state.last_error == Status_GcodeToolChangePending)
+                { // Parse and execute g-code block.
 #else
-                else { // Parse and execute g-code block.
+                else
+                { // Parse and execute g-code block.
 
 #endif
                     gc_state.last_error = gc_execute_block(line);
@@ -263,7 +293,7 @@ bool protocol_main_loop (void)
                 // This is likely to happen when streaming is done via a protocol where
                 // the speed is not limited to 115200 baud. An example is native USB streaming.
 #if CHECK_MODE_DELAY
-                if(state_get() == STATE_CHECK_MODE)
+                if (state_get() == STATE_CHECK_MODE)
                     hal.delay_ms(CHECK_MODE_DELAY, NULL);
 #endif
 
@@ -272,53 +302,58 @@ bool protocol_main_loop (void)
                 // Reset tracking data for next line.
                 keep_rt_commands = false;
                 char_counter = line_flags.value = 0;
-
-            } else if (c <= (char_counter > 0 ? ' ' - 1 : ' '))
+            }
+            else if (c <= (char_counter > 0 ? ' ' - 1 : ' '))
                 continue; // Strip control characters and leading whitespace.
-            else {
-                switch(c) {
+            else
+            {
+                switch (c)
+                {
 
-                    case '$':
-                    case '[':
-                        if(char_counter == 0)
-                            keep_rt_commands = true;
-                        break;
+                case '$':
+                case '[':
+                    if (char_counter == 0)
+                        keep_rt_commands = true;
+                    break;
 
-                    case '(':
-                        if(!keep_rt_commands && (line_flags.comment_parentheses = !line_flags.comment_semicolon))
-                            keep_rt_commands = !hal.driver_cap.no_gcode_message_handling; // Suspend real-time processing of printable command characters.
-                        break;
+                case '(':
+                    if (!keep_rt_commands && (line_flags.comment_parentheses = !line_flags.comment_semicolon))
+                        keep_rt_commands = !hal.driver_cap.no_gcode_message_handling; // Suspend real-time processing of printable command characters.
+                    break;
 
-                    case ')':
-                        if(!line_flags.comment_semicolon)
-                            line_flags.comment_parentheses = keep_rt_commands = false;
-                        break;
+                case ')':
+                    if (!line_flags.comment_semicolon)
+                        line_flags.comment_parentheses = keep_rt_commands = false;
+                    break;
 
-                    case ';':
-                        if(!line_flags.comment_parentheses) {
-                            keep_rt_commands = false;
-                            line_flags.comment_semicolon = On;
-                        }
-                        break;
+                case ';':
+                    if (!line_flags.comment_parentheses)
+                    {
+                        keep_rt_commands = false;
+                        line_flags.comment_semicolon = On;
+                    }
+                    break;
 
-                    case ASCII_DEL:
-                        if(char_counter) {
-                            line[--char_counter] = '\0';
-                            keep_rt_commands = recheck_line(line, &line_flags);
-                        }
-                        continue;
+                case ASCII_DEL:
+                    if (char_counter)
+                    {
+                        line[--char_counter] = '\0';
+                        keep_rt_commands = recheck_line(line, &line_flags);
+                    }
+                    continue;
                 }
-                if(!(line_flags.overflow = char_counter >= (LINE_BUFFER_SIZE - 1)))
+                if (!(line_flags.overflow = char_counter >= (LINE_BUFFER_SIZE - 1)))
                     line[char_counter++] = c;
             }
         }
 
         // Handle extra command (internal stream)
-        if(xcommand[0] != '\0') {
+        if (xcommand[0] != '\0')
+        {
 
             if (xcommand[0] == '$') // Grbl '$' system command
                 system_execute_line(xcommand);
-            else if (state_get() & (STATE_ALARM|STATE_ESTOP|STATE_JOG)) // Everything else is gcode. Block if in alarm, eStop or jog state.
+            else if (state_get() & (STATE_ALARM | STATE_ESTOP | STATE_JOG)) // Everything else is gcode. Block if in alarm, eStop or jog state.
                 grbl.report.status_message(Status_SystemGClock);
             else // Parse and execute g-code block.
                 gc_execute_block(xcommand);
@@ -331,17 +366,16 @@ bool protocol_main_loop (void)
         // completed. In either case, auto-cycle start, if enabled, any queued moves.
         protocol_auto_cycle_start();
 
-        if(!protocol_execute_realtime() && sys.abort) // Runtime command check point.
-            return !sys.flags.exit;                   // Bail to main() program loop to reset system.
+        if (!protocol_execute_realtime() && sys.abort) // Runtime command check point.
+            return !sys.flags.exit;                    // Bail to main() program loop to reset system.
 
         sys.cancel = false;
 
         // Check for sleep conditions and execute auto-park, if timeout duration elapses.
-        if(settings.flags.sleep_enable)
+        if (settings.flags.sleep_enable)
             sleep_check();
     }
 }
-
 
 // Block until all buffered steps are executed or in a cycle state. Works with feed hold
 // during a synchronize call, if it should happen. Also, waits for clean cycle end.

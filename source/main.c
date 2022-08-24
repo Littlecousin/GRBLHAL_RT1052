@@ -14,7 +14,6 @@
 
 #include "grbl/grbllib.h"
 #include "main.h"
-
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -37,8 +36,8 @@ void Driver_IncTick (void);
 {
 	uwTick++;
 	Driver_IncTick();
-	if(uwTick % 500 == 0)
-		USER_LED_TOGGLE();
+//	if(uwTick % 500 == 0)
+//		USER_LED_TOGGLE();
 }
 
 void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
@@ -72,7 +71,6 @@ void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
     config->isUniformBlockSize      = true;
     config->ipcmdSerialClkFreq      = kFLEXSPISerialClk_30MHz; /* Clock frequency for IP command */
     config->serialNorType           = kSerialNorType_HyperBus;
-
     // Read
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_READ + 0U] =
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0xA0U, RADDR_DDR, FLEXSPI_8PAD, 0x18U);
@@ -80,7 +78,6 @@ void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
         FSL_ROM_FLEXSPI_LUT_SEQ(CADDR_DDR, FLEXSPI_8PAD, 0x10U, DUMMY_DDR, FLEXSPI_8PAD, 0x06U);
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_READ + 2U] =
         FSL_ROM_FLEXSPI_LUT_SEQ(READ_DDR, FLEXSPI_8PAD, 0x04U, STOP, FLEXSPI_1PAD, 0x0U);
-
     // Read Status
     // 0
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_READSTATUS] =
@@ -98,7 +95,6 @@ void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
         FSL_ROM_FLEXSPI_LUT_SEQ(CADDR_DDR, FLEXSPI_8PAD, 0x10U, DUMMY_RWDS_DDR, FLEXSPI_8PAD, 0x0BU);
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_READSTATUS + 6U] =
         FSL_ROM_FLEXSPI_LUT_SEQ(READ_DDR, FLEXSPI_8PAD, 0x04U, STOP, FLEXSPI_1PAD, 0x00U);
-
     // Write Enable
     // 0
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_WRITEENABLE] =
@@ -118,7 +114,6 @@ void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0x00U, CMD_DDR, FLEXSPI_8PAD, 0x02U);
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_WRITEENABLE + 7U] =
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0x00U, CMD_DDR, FLEXSPI_8PAD, 0x55U);
-
     // Page Program
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_PAGEPROGRAM] =
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0x00U, CMD_DDR, FLEXSPI_8PAD, 0x00U);
@@ -133,7 +128,6 @@ void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0x00U, RADDR_DDR, FLEXSPI_8PAD, 0x18U);
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_PAGEPROGRAM + 5U] =
         FSL_ROM_FLEXSPI_LUT_SEQ(CADDR_DDR, FLEXSPI_8PAD, 0x10U, WRITE_DDR, FLEXSPI_8PAD, 0x80U);
-
     // Erase Sector
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_ERASESECTOR] =
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0x00U, CMD_DDR, FLEXSPI_8PAD, 0x00U);
@@ -168,7 +162,6 @@ void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
         FSL_ROM_FLEXSPI_LUT_SEQ(CADDR_DDR, FLEXSPI_8PAD, 0x10U, CMD_DDR, FLEXSPI_8PAD, 0x00U);
     config->memConfig.lookupTable[4U * NOR_CMD_LUT_SEQ_IDX_ERASESECTOR + 14U] =
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0x30U, STOP, FLEXSPI_1PAD, 0x0U);
-
     // Erase Chip
     config->memConfig.lookupTable[4 * NOR_CMD_LUT_SEQ_IDX_CHIPERASE] =
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0x00, CMD_DDR, FLEXSPI_8PAD, 0x00);
@@ -205,7 +198,6 @@ void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0x00, CMD_DDR, FLEXSPI_8PAD, 0x05);
     config->memConfig.lookupTable[4 * NOR_CMD_LUT_SEQ_IDX_CHIPERASE + 15] =
         FSL_ROM_FLEXSPI_LUT_SEQ(CMD_DDR, FLEXSPI_8PAD, 0x00, CMD_DDR, FLEXSPI_8PAD, 0x10);
-
     // LUT customized sequence
     config->memConfig.lutCustomSeq[NOR_CMD_INDEX_WRITEENABLE].seqNum = 2U;
     config->memConfig.lutCustomSeq[NOR_CMD_INDEX_WRITEENABLE].seqId  = NOR_CMD_LUT_SEQ_IDX_WRITEENABLE;
@@ -359,17 +351,14 @@ void flash_test()
         error_trap();
     }
 #endif // XIP_EXTERNAL_FLASH
-
     serialNorTotalSize  = norConfig.memConfig.sflashA1Size;
     serialNorSectorSize = norConfig.sectorSize;
     serialNorPageSize   = norConfig.pageSize;
-
     /* Print HyperFlash information */
     PRINTF("\r\n HyperFlash Information: ");
     PRINTF("\r\n Total program flash size:\t%d KB, Hex: (0x%x)", (serialNorTotalSize / 1024U), serialNorTotalSize);
     PRINTF("\r\n Program flash sector size:\t%d KB, Hex: (0x%x) ", (serialNorSectorSize / 1024U), serialNorSectorSize);
     PRINTF("\r\n Program flash page size:\t%d B, Hex: (0x%x)\r\n", serialNorPageSize, serialNorPageSize);
-
 /*
  * SECTOR_INDEX_FROM_END = 1 means the last sector,
  * SECTOR_INDEX_FROM_END = 2 means (the last sector - 1) ...
@@ -555,7 +544,6 @@ int main(void)
     BOARD_InitBootClocks();
 //    BOARD_InitDebugConsole();
 	Set_NVIC_PriorityGroup(Group_4);
-//	
 //	PRINTF("CPU:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_CpuClk));
 //	PRINTF("AHB:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_AhbClk));
 //	PRINTF("OSC:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_OscClk));
@@ -568,8 +556,6 @@ int main(void)
 //	PRINTF("SYSPLLPFD3:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd3Clk)); 
 //	PRINTF("USB1PLL:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllClk)); 
 //	PRINTF("USB1PDF0:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllPfd0Clk)); 
-	
-	 
 	flash_init();
 	UART_ModeConfig();
 	
@@ -582,6 +568,8 @@ int main(void)
 		}
 	}
 	SDK_DelayAtLeastUs(100000,BOARD_BOOTCLOCKRUN_CORE_CLOCK);
+//	PIT_TIMER_Init();
+//	PIT_StartTimer(PIT, PIT_CHANNEL_X);
 	grbl_enter();
 	while(1)
 	{

@@ -690,17 +690,15 @@ static void stepperPulseStart (stepper_t *stepper)
         return;
     }
 #endif
-
     if(stepper->dir_change)
         stepperSetDirOutputs(stepper->dir_outbits);
 
     if(stepper->step_outbits.value) {
-        stepperSetStepOutputs(stepper->step_outbits);
+        stepperSetStepOutputs(stepper->step_outbits);//STEPPER -> 1
 //		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);//开启定时器，上升沿触发计数
-		QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);
+		QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);//开启定时器，上升沿触发计数 这里启动的定时器定时的时间为高电平时间
     }
 }
-
 
 // Enable/disable stepper motors
 static void stepperEnable (axes_signals_t enable)
@@ -772,7 +770,8 @@ static void stepperCyclesPerTick (uint32_t cycles_per_tick)
 	cycles_per_tick_count += cycles_per_tick;
 	PIT_StopTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
 	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
-	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, cycles_per_tick < (1UL << 20) ? (cycles_per_tick) : (0x000FFFFFUL));
+//	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, USEC_TO_COUNT(cycles_per_tick < (1UL << 20) ? (cycles_per_tick) : (0x000FFFFFUL), (PIT_SOURCE_CLOCK / 1)));
+	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, cycles_per_tick);
 	PIT_ClearStatusFlags(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerFlag);
 	PIT_EnableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
 	PIT_StartTimer(STEPPER_TIMER, STEPPER_TIMER_CH);
@@ -1509,20 +1508,19 @@ void settings_changed(settings_t *settings)
 #endif
 		//清中断标志
 		QTMR_ClearStatusFlags(PULSE_TIMER,PULSE_TIMER_CH,kQTMR_Compare1Flag);
-        pulse_length = (uint32_t)(1.0f * (settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY)) - 1;//us
+        pulse_length = (uint32_t)(150.0f * (settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY)) - 1;//us
         if (hal.driver_cap.step_pulse_delay && settings->steppers.pulse_delay_microseconds > 0.0f)
         {
-            pulse_delay = (uint32_t)(1.0f * (settings->steppers.pulse_delay_microseconds - 1.0f));
-            if (pulse_delay < 2)
-                pulse_delay = 2;
-            else if (pulse_delay == pulse_length)
-                pulse_delay++;
-            hal.stepper.pulse_start = &stepperPulseStartDelayed;
+			float delay = settings->steppers.pulse_delay_microseconds - STEP_PULSE_LATENCY;
+			if (delay <= STEP_PULSE_LATENCY)
+                delay = STEP_PULSE_LATENCY + 0.2f;
+			pulse_delay = (uint32_t)(150.0f * delay);
+            hal.stepper.pulse_start = stepperPulseStartDelayed;
         }
         else
         {
             pulse_delay = 0;
-            hal.stepper.pulse_start = &stepperPulseStart;
+            hal.stepper.pulse_start = stepperPulseStart;
         }
 
 		
@@ -2098,7 +2096,7 @@ bool driver_init (void)
     hal.board = BOARD_NAME;
 #endif
     hal.driver_setup = driver_setup;
-    hal.f_step_timer = 1000000;//HAL_RCC_GetPCLK2Freq();
+    hal.f_step_timer = 24000000;//HAL_RCC_GetPCLK2Freq();//stepper定时器时钟
     hal.rx_buffer_size = RX_BUFFER_SIZE;
     hal.delay_ms = &driver_delay;
     hal.settings_changed = settings_changed;
@@ -2282,7 +2280,7 @@ bool driver_init (void)
 
 // Main stepper driver
 /**
- * @brief    控制运算周期PIT,控制脉冲频率
+ * @brief    控制运算周期PIT，控制脉冲频率，控制脉冲输出
  * @return   {*}
  */
 void STEPPER_TIMER_IRQHandler (void)
@@ -2316,7 +2314,7 @@ void STEPPER_TIMER_IRQHandler (void)
 // a step. This ISR resets the motor port after a short period (settings.pulse_microseconds)
 // completing one step cycle.
 /**
- * @brief    控制脉冲个数,定时时间为低电平时间
+ * @brief    控制脉冲个数,定时时间为高电平时间
  * @return   {*}
  */
 void PULSE_TIMER_IRQHandler (void)
@@ -2339,7 +2337,7 @@ void PULSE_TIMER_IRQHandler (void)
 		}
 		else
 		{
-			g_pulse_int_count++;
+			g_pulse_int_count++;//PULSE -> 0
 			stepperSetStepOutputs((axes_signals_t){0}); // end step pulse
 		}
 	}

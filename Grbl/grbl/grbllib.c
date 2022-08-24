@@ -229,12 +229,13 @@ int grbl_enter (void)
 
     // Grbl initialization loop upon power-up or a system abort. For the latter, all processes
     // will return to this loop to be cleanly re-initialized.
-    while(looping) {
+    while (looping)
+    {
 
         // Reset report entry points
         report_init_fns();
 
-        if(!sys.position_lost || settings.homing.flags.keep_on_reset)
+        if (!sys.position_lost || settings.homing.flags.keep_on_reset)
             memset(&sys, 0, offsetof(system_t, homed)); // Clear system variables except alarm & homed status.
         else
             memset(&sys, 0, offsetof(system_t, alarm)); // Clear system variables except state & alarm.
@@ -244,7 +245,7 @@ int grbl_enter (void)
         sys.override.rapid_rate = DEFAULT_RAPID_OVERRIDE;        // Set to 100%
         sys.override.spindle_rpm = DEFAULT_SPINDLE_RPM_OVERRIDE; // Set to 100%
 
-        if(settings.parking.flags.enabled)
+        if (settings.parking.flags.enabled)
             sys.override.control.parking_disable = settings.parking.flags.deactivate_upon_init;
 
         flush_override_buffers();
@@ -253,30 +254,30 @@ int grbl_enter (void)
         hal.stream.reset_read_buffer(); // Clear input stream buffer
         gc_init();                      // Set g-code parser to default state
         hal.limits.enable(settings.limits.flags.hard_enabled, false);
-        plan_reset();                   // Clear block buffer and planner variables
-        st_reset();                     // Clear stepper subsystem variables.
-        limits_set_homing_axes();       // Set axes to be homed from settings.
+        plan_reset();             // Clear block buffer and planner variables
+        st_reset();               // Clear stepper subsystem variables.
+        limits_set_homing_axes(); // Set axes to be homed from settings.
 
         // Sync cleared gcode and planner positions to current system position.
         sync_position();
 
-        if(hal.stepper.disable_motors)
+        if (hal.stepper.disable_motors)
             hal.stepper.disable_motors((axes_signals_t){0}, SquaringMode_Both);
 
-        if(!hal.driver_cap.atc)
+        if (!hal.driver_cap.atc)
             tc_init();
 
         // Print welcome message. Indicates an initialization has occured at power-up or with a reset.
         report_init_message();
 
-        if(state_get() == STATE_ESTOP)
+        if (state_get() == STATE_ESTOP)
             state_set(STATE_ALARM);
 
-        if(hal.driver_cap.mpg_mode)
+        if (hal.driver_cap.mpg_mode)
             protocol_enqueue_realtime_command(sys.mpg_mode ? CMD_STATUS_REPORT_ALL : CMD_STATUS_REPORT);
 
         // Start Grbl main loop. Processes program inputs and executes them.
-        if(!(looping = protocol_main_loop()))
+        if (!(looping = protocol_main_loop()))
             looping = hal.driver_release == NULL || hal.driver_release();
 
         sys.cold_start = false;

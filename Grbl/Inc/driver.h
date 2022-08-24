@@ -130,16 +130,17 @@ extern __IO uint32_t g_pulse_int_count;
 extern __IO uint32_t g_stepper_int_count;
 
 //使用pit 24Mhz，一分频，中断时间为counts/24000000（秒）
+//STEPPER定时器启动后就一直在进行定时
 #define STEPPER_TIMER_N				1
 #define STEPPER_TIMER_CH_N			0
 #define STEPPER_TIMER				PIT//timer(STEPPER_TIMER_N)
 #define STEPPER_TIMER_CH			kPIT_Chnl_0//timerCH(STEPPER_TIMER_CH_N)
 #define STEPPER_TIMER_IRQn          PIT_IRQn//timerINT(STEPPER_TIMER_N)
-#define STEPPER_TIMER_IRQHandler    PIT_IRQHandler//timerHANDLER(STEPPER_TIMER_N)
+#define STEPPER_TIMER_IRQHandler    PIT_IRQHandler//timerHANDLER(STEPPER_TIMER_N)//timerHANDLER(STEPPER_TIMER_N)//
 //#define STEPPER_TIMER_CLOCK_ENA     timerCLKENA(STEPPER_TIMER_N)
 
 //150Mhz，1分频，一次中断时间为counts/150000000（秒）
-#define PULSE_TIMER_N               1
+#define PULSE_TIMER_N               2
 #define PULSE_TIMER_CH_N			0
 #define PULSE_TIMER                 timer(PULSE_TIMER_N)
 #define PULSE_TIMER_CH				timerCH(PULSE_TIMER_CH_N)
@@ -148,7 +149,7 @@ extern __IO uint32_t g_stepper_int_count;
 #define PULSE_TIMER_CLOCK_ENA       timerCLKENA(PULSE_TIMER_N)
 
 //150Mhz，128分频，一次中断时间为counts*128/150000000（秒）
-#define DEBOUNCE_TIMER_N            2
+#define DEBOUNCE_TIMER_N            3
 #define DEBOUNCE_TIMER_CH_N			0
 #define DEBOUNCE_TIMER              timer(DEBOUNCE_TIMER_N)
 #define DEBOUNCE_TIMER_CH			timerCH(DEBOUNCE_TIMER_CH_N)

@@ -114,6 +114,7 @@ static planner_t pl;
   look-ahead blocks numbering up to a hundred or more.
 
 */
+//处理速度前瞻的反向规划和正向规划
 static void planner_recalculate ()
 {
     // Initialize block pointer to the last block in the planner buffer.
@@ -122,68 +123,73 @@ static void planner_recalculate ()
     // Bail. Can't do anything with one only one plan-able block.
     if (block == block_buffer_planned)
         return;
-
+    // 前瞻-反向规划
     // Reverse Pass: Coarsely maximize all possible deceleration curves back-planning from the last
     // block in buffer. Cease planning when the last optimal planned or tail pointer is reached.
     // NOTE: Forward pass will later refine and correct the reverse pass to create an optimal plan.
     float entry_speed_sqr;
     plan_block_t *next;
     plan_block_t *current = block;
-
     // Calculate maximum entry speed for last block in buffer, where the exit speed is always zero.
+    // 当前线段的起始速度取最大起始限制速度与末速度为零反推的最大起始速度的最小值
     current->entry_speed_sqr = min(current->max_entry_speed_sqr, 2.0f * current->acceleration * current->millimeters);
-
-    block = block->prev;
-    if (block == block_buffer_planned) { // Only two plannable blocks in buffer. Reverse pass complete.
+    
+    block = block->prev; //此时block是head，前一个指针是获取最后一个块？
+    if (block == block_buffer_planned)
+    { // Only two plannable blocks in buffer. Reverse pass complete.
         // Check if the first block is the tail. If so, notify stepper to update its current parameters.
         if (block == block_buffer_tail)
             st_update_plan_block_parameters();
-    } else while (block != block_buffer_planned) { // Three or more plan-able blocks
-
-        next = current;
-        current = block;
-        block = block->prev;
-
-        // Check if next block is the tail block(=planned block). If so, update current stepper parameters.
-        if (block == block_buffer_tail)
-            st_update_plan_block_parameters();
-
-        // Compute maximum entry speed decelerating over the current block from its exit speed.
-        if (current->entry_speed_sqr != current->max_entry_speed_sqr) {
-            entry_speed_sqr = next->entry_speed_sqr + 2.0f * current->acceleration * current->millimeters;
-            current->entry_speed_sqr = entry_speed_sqr < current->max_entry_speed_sqr ? entry_speed_sqr : current->max_entry_speed_sqr;
+    }
+    else
+    {
+        // 这段代码的含义是从当前线段往前推，直到所有的线段都优化过退出循环，即每条线段的初速度不能超过线段设置的最大初速度的限制
+        while (block != block_buffer_planned)
+        { // Three or more plan-able blocks
+            next = current;
+            current = block;
+            block = block->prev;
+            // Check if next block is the tail block(=planned block). If so, update current stepper parameters.
+            if (block == block_buffer_tail)
+                st_update_plan_block_parameters();
+            // Compute maximum entry speed decelerating over the current block from its exit speed.
+            if (current->entry_speed_sqr != current->max_entry_speed_sqr)
+            {
+                entry_speed_sqr = next->entry_speed_sqr + 2.0f * current->acceleration * current->millimeters;
+                current->entry_speed_sqr = entry_speed_sqr < current->max_entry_speed_sqr ? entry_speed_sqr : current->max_entry_speed_sqr;
+            }
         }
     }
-
     // Forward Pass: Forward plan the acceleration curve from the planned pointer onward.
     // Also scans for optimal plan breakpoints and appropriately updates the planned pointer.
+    // 后顾-正向规划
+    // 这段代码的含义是从第一个没有优化过的线段往前，直到到达当前线段时退出循环，
+    // 即每条线段的末速度不能超过下一条线段的初速度，这样多条线段才能保持连续的速度运行
     next = block_buffer_planned; // Begin at buffer planned pointer
     block = block_buffer_planned->next;
-
-    while (block != block_buffer_head) {
-
+    while (block != block_buffer_head)
+    {
         current = next;
         next = block;
-
         // Any acceleration detected in the forward pass automatically moves the optimal planned
         // pointer forward, since everything before this is all optimal. In other words, nothing
         // can improve the plan from the buffer tail to the planned pointer by logic.
-        if (current->entry_speed_sqr < next->entry_speed_sqr) {
+        if (current->entry_speed_sqr < next->entry_speed_sqr)
+        {
             entry_speed_sqr = current->entry_speed_sqr + 2.0f * current->acceleration * current->millimeters;
-        // If true, current block is full-acceleration and we can move the planned pointer forward.
-            if (entry_speed_sqr < next->entry_speed_sqr) {
+            // If true, current block is full-acceleration and we can move the planned pointer forward.
+            if (entry_speed_sqr < next->entry_speed_sqr)
+            {
                 next->entry_speed_sqr = entry_speed_sqr; // Always <= max_entry_speed_sqr. Backward pass sets this.
-                block_buffer_planned = block; // Set optimal plan pointer.
+                block_buffer_planned = block;            // Set optimal plan pointer.
             }
         }
-
         // Any block set at its maximum entry speed also creates an optimal plan up to this
         // point in the buffer. When the plan is bracketed by either the beginning of the
         // buffer and a maximum entry speed or two maximum entry speeds, every block in between
         // cannot logically be further improved. Hence, we don't have to recompute them anymore.
         if (next->entry_speed_sqr == next->max_entry_speed_sqr)
             block_buffer_planned = block;
-
         block = block->next;
     }
 }
@@ -202,7 +208,6 @@ inline static void plan_cleanup (plan_block_t *block)
     }
 }
 
-
 inline static void plan_reset_buffer ()
 {
     if(block_buffer_tail) {
@@ -217,7 +222,6 @@ inline static void plan_reset_buffer ()
     next_buffer_head = block_buffer_head->next;                 // = next block
     block_buffer_planned = block_buffer_tail;                   // = block_buffer_tail
 }
-
 
 void plan_reset ()
 {
@@ -326,7 +330,7 @@ void plan_update_velocity_profile_parameters ()
     }
     pl.previous_nominal_speed = prev_nominal_speed; // Update prev nominal speed for next incoming block.
 }
-
+//空间向量的加速度
 static inline float limit_acceleration_by_axis_maximum (float *unit_vec)
 {
     uint_fast8_t idx = N_AXIS;
@@ -339,7 +343,7 @@ static inline float limit_acceleration_by_axis_maximum (float *unit_vec)
 
     return limit_value;
 }
-
+//空间向量的速度
 static inline float limit_max_rate_by_axis_maximum (float *unit_vec)
 {
     uint_fast8_t idx = N_AXIS;
@@ -398,14 +402,18 @@ bool plan_buffer_line (float *target, plan_line_data_t *pl_data)
         // Calculate target position in absolute steps, number of steps for each axis, and determine max step events.
         // Also, compute individual axes distance for move and prep unit vector calculations.
         // NOTE: Computes true distance from converted step values.
-
+        // target是轴移动的距离，单位是毫米，系统设定了steps_per_mm值，也就是每毫米代表的轴移动步数，直接换算得到轴移动步数target_steps
         target_steps[idx] = lroundf(target[idx] * settings.axis[idx].steps_per_mm);
+        // 根据步数换算出真实移动的距离，保存在unit_vec中，后面计算两条线段夹角时会用到
         delta_steps = target_steps[idx] - position_steps[idx];
         block->steps[idx] = labs(delta_steps);
+        // 获得轴里最大移动距离，后面DDA直线插补时会用到这个值。
         block->step_event_count = max(block->step_event_count, block->steps[idx]);
+        //delta_mm
         unit_vec[idx] = (float)delta_steps / settings.axis[idx].steps_per_mm; // Store unit vector numerator
-
+        
         // Set direction bits. Bit enabled always means direction is negative.
+        // 这个值小于零，说明这个轴需要向与原来方向相反的方向移动
         if (delta_steps < 0)
             block->direction_bits.mask |= bit(idx);
 
@@ -439,29 +447,33 @@ bool plan_buffer_line (float *target, plan_line_data_t *pl_data)
     // down such that no individual axes maximum values are exceeded with respect to the line direction.
     // NOTE: This calculation assumes all axes are orthogonal (Cartesian) and works with ABC-axes,
     // if they are also orthogonal/independent. Operates on the absolute value of the unit vector.
+    // 三个轴是正交的，知道了每个轴移动的距离，那么线段在空间里移动的真实距离是s*s=x*x+y*y+z*z，这个值在后面也会用到
     block->millimeters = convert_delta_vector_to_unit_vector(unit_vec);
+    //配置里的max_rate是表示线段向量每个分坐标的最大速度限制，feed_rate是线段向量合成后的速度，所以feed_rate要与每个轴分向量最大速度换算成合成后的最大速度比较，然后取最小值作为最终的线段运行最大速度，最大加速度也是用同样的方法进行比较
     block->acceleration = limit_acceleration_by_axis_maximum(unit_vec);
+
     block->rapid_rate = limit_max_rate_by_axis_maximum(unit_vec);
 
     // Store programmed rate.
     if (block->condition.rapid_motion)
         block->programmed_rate = block->rapid_rate;
-    else {
+    else
+    {
         block->programmed_rate = pl_data->feed_rate;
         if (block->condition.inverse_time)
             block->programmed_rate *= block->millimeters;
     }
 
     // TODO: Need to check this method handling zero junction speeds when starting from rest.
-    if ((block_buffer_head == block_buffer_tail) || (block->condition.system_motion)) {
-
+    if ((block_buffer_head == block_buffer_tail) || (block->condition.system_motion))
+    {
         // Initialize block entry speed as zero. Assume it will be starting from rest. Planner will correct this later.
         // If system motion, the system motion block always is assumed to start from rest and end at a complete stop.
         block->entry_speed_sqr = 0.0f;
         block->max_junction_speed_sqr = 0.0f; // Starting from rest. Enforce start from zero velocity.
-
-    } else {
-
+    }
+    else
+    {
         // Compute maximum allowable entry speed at junction by centripetal acceleration approximation.
         // Let a circle be tangent to both previous and current path line segments, where the junction
         // deviation is defined as the distance from the junction to the closest edge of the circle,
@@ -488,37 +500,45 @@ bool plan_buffer_line (float *target, plan_line_data_t *pl_data)
         float junction_cos_theta = 0.0f;
 
         idx = N_AXIS;
-        do {
+        do
+        {
             idx--;
             junction_cos_theta -= pl.previous_unit_vec[idx] * unit_vec[idx];
             junction_unit_vec[idx] = unit_vec[idx] - pl.previous_unit_vec[idx];
-        } while(idx);
-
+        } while (idx);
+        // junction_cos_theta = cos(180-theta)
         // NOTE: Computed without any expensive trig, sin() or acos(), by trig half angle identity of cos(theta).
         if (junction_cos_theta > 0.999999f)
-            //  For a 0 degree acute junction, just set minimum junction speed.
+            // For a 0 degree acute junction, just set minimum junction speed.
+            // 向量夹角为接近0度的锐角
             block->max_junction_speed_sqr = MINIMUM_JUNCTION_SPEED * MINIMUM_JUNCTION_SPEED;
-        else if (junction_cos_theta < -0.999999f) {
+        else if (junction_cos_theta < -0.999999f)
+        {
             // Junction is a straight line or 180 degrees. Junction speed is infinite.
+            // 向量夹角为接近180度的钝角
             block->max_junction_speed_sqr = SOME_LARGE_VALUE;
-        } else {
+        }
+        else
+        {
             convert_delta_vector_to_unit_vector(junction_unit_vec);
             float junction_acceleration = limit_acceleration_by_axis_maximum(junction_unit_vec);
             float sin_theta_d2 = sqrtf(0.5f * (1.0f - junction_cos_theta)); // Trig half angle identity. Always positive.
             block->max_junction_speed_sqr = max(MINIMUM_JUNCTION_SPEED * MINIMUM_JUNCTION_SPEED,
-                                                  (junction_acceleration * settings.junction_deviation * sin_theta_d2) / (1.0f - sin_theta_d2));
+                                                (junction_acceleration * settings.junction_deviation * sin_theta_d2) / (1.0f - sin_theta_d2));
         }
     }
 
     // Block system motion from updating this data to ensure next g-code motion is computed correctly.
-    if (!block->condition.system_motion) {
+    if (!block->condition.system_motion)
+    {
 
         pl.previous_nominal_speed = plan_compute_profile_parameters(block, plan_compute_profile_nominal_speed(block), pl.previous_nominal_speed);
 
-        if(!block->condition.backlash_motion) {
+        if (!block->condition.backlash_motion)
+        {
             // Update previous path unit_vector and planner position.
             memcpy(pl.previous_unit_vec, unit_vec, sizeof(unit_vec)); // pl.previous_unit_vec[] = unit_vec[]
-            memcpy(pl.position, target_steps, sizeof(target_steps)); // pl.position[] = target_steps[]
+            memcpy(pl.position, target_steps, sizeof(target_steps));  // pl.position[] = target_steps[]
         }
         // New block is all set. Update buffer head and next buffer head indices.
         block_buffer_head = next_buffer_head;

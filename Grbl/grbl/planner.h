@@ -71,7 +71,7 @@ typedef struct plan_block {
                                 // NOTE: This value may be altered by stepper algorithm during execution.
 
     // Stored rate limiting data used by planner when changes occur.
-    float max_junction_speed_sqr; // Junction entry speed limit based on direction vectors in (mm/min)^2
+    float max_junction_speed_sqr; // 最大转角速度平方 Junction entry speed limit based on direction vectors in (mm/min)^2
     float rapid_rate;             // Axis-limit adjusted maximum rate for this block direction in (mm/min)
     float programmed_rate;        // Programmed rate of this block (mm/min).
 
