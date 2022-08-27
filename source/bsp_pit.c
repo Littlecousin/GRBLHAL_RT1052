@@ -31,7 +31,7 @@ void PIT_TIMER_Init(void)
 	
   
   /*设置中断优先级,*/
-  set_IRQn_Priority(PIT_IRQ_ID,Group4_PreemptPriority_6, Group4_SubPriority_0);
+  set_IRQn_Priority(PIT_IRQ_ID,Group4_PreemptPriority_6, Group4_SubPriority_1);
   /* 使能PIT定时器中断 */
   EnableIRQ(PIT_IRQ_ID);
 }

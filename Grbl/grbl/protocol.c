@@ -221,15 +221,12 @@ bool protocol_main_loop(void)
 
     while (true)
     {
-
         // Process one line of incoming stream data, as the data becomes available. Performs an
         // initial filtering by removing leading spaces and control characters.
         while ((c = hal.stream.read()) != SERIAL_NO_DATA)
         {
-
-            if (c == ASCII_CAN)
+            if (c == ASCII_CAN)//ctrl+x
             {
-
                 eol = xcommand[0] = '\0';
                 keep_rt_commands = false;
                 char_counter = line_flags.value = 0;
@@ -259,7 +256,6 @@ bool protocol_main_loop(void)
 #ifdef REPORT_ECHO_LINE_RECEIVED
                 report_echo_line_received(line);
 #endif
-
                 // Direct and execute one line of formatted input, and report status of execution.
                 if (line_flags.overflow) // Report line overflow error.
                     gc_state.last_error = Status_Overflow;

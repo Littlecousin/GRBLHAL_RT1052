@@ -36,8 +36,8 @@ void Driver_IncTick (void);
 {
 	uwTick++;
 	Driver_IncTick();
-//	if(uwTick % 500 == 0)
-//		USER_LED_TOGGLE();
+	if(uwTick % 500 == 0)
+		USER_LED_TOGGLE();
 }
 
 void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
@@ -209,87 +209,6 @@ void FLEXSPI_NorFlash_GetConfig_Hyperflash(flexspi_nor_config_t *config)
     config->memConfig.lutCustomSeq[NOR_CMD_INDEX_ERASESECTOR].seqId  = NOR_CMD_LUT_SEQ_IDX_ERASESECTOR;
     config->memConfig.lutCustomSeq[NOR_CMD_INDEX_CHIPERASE].seqNum   = 4U;
     config->memConfig.lutCustomSeq[NOR_CMD_INDEX_CHIPERASE].seqId    = NOR_CMD_LUT_SEQ_IDX_CHIPERASE;
-}
-
-void FLEXSPI_NorFlash_GetConfig_Norflash(flexspi_nor_config_t *config)
-{
-    config->memConfig.tag              = FLEXSPI_CFG_BLK_TAG;
-    config->memConfig.version          = FLEXSPI_CFG_BLK_VERSION;
-    config->memConfig.readSampleClkSrc = kFLEXSPIReadSampleClk_LoopbackFromDqsPad;//kFLEXSPIReadSampleClk_LoopbackFromDqsPad kFLEXSPIReadSampleClk_ExternalInputFromDqsPad
-    config->memConfig.serialClkFreq =
-        kFLEXSPISerialClk_30MHz; /* Serial Flash Frequencey.See System Boot Chapter for more details */
-    config->memConfig.lutCustomSeqEnable = true;
-    config->memConfig.sflashA1Size       = FLASH_SIZE;
-    config->memConfig.csHoldTime         = 3U;                       /* Data hold time, default value: 3 */
-    config->memConfig.csSetupTime        = 3U;                       /* Date setup time, default value: 3 */
-    config->memConfig.deviceType     = kFLEXSPIDeviceType_SerialNOR; /* Flash device type default type: Serial NOR */
-    config->memConfig.deviceModeType = kDeviceConfigCmdType_Generic;
-    config->memConfig.columnAddressWidth  = 3U;
-    config->memConfig.deviceModeCfgEnable = 0U;
-    config->memConfig.waitTimeCfgCommands = 0U;
-    config->memConfig.configCmdEnable     = 0U;
-    config->memConfig.busyOffset          = 15U;
-    config->memConfig.busyBitPolarity     = 1U;
-    /* Always enable Safe configuration Frequency */
-    config->memConfig.controllerMiscOption = FSL_ROM_FLEXSPI_BITMASK(kFLEXSPIMiscOffset_DiffClkEnable) |
-                                             FSL_ROM_FLEXSPI_BITMASK(kFLEXSPIMiscOffset_WordAddressableEnable) |
-                                             FSL_ROM_FLEXSPI_BITMASK(kFLEXSPIMiscOffset_SafeConfigFreqEnable) |
-                                             FSL_ROM_FLEXSPI_BITMASK(kFLEXSPIMiscOffset_DdrModeEnable);
-    config->memConfig.sflashPadType = kSerialFlash_8Pads; /* Pad Type: 1 - Single, 2 - Dual, 4 - Quad, 8 - Octal */
-    config->pageSize                = FLASH_PAGE_SIZE;
-    config->sectorSize              = FLASH_SECTOR_SIZE;
-    config->blockSize               = FLASH_BLOCK_SIZE;
-    config->isUniformBlockSize      = true;
-    config->ipcmdSerialClkFreq      = kFLEXSPISerialClk_133MHz; /* Clock frequency for IP command */
-    config->serialNorType           = kSerialNorType_HyperBus;
-
-	// Sequence 0 - Quad Read
-	// 0x6B - Fast read Quad Output command, 0x18 - 24 bit address
-	config->memConfig.lookupTable[0]  = FSL_ROM_FLEXSPI_LUT_SEQ(CMD_SDR,       FLEXSPI_1PAD, 0x6B,
-						   RADDR_SDR, FLEXSPI_1PAD, 0x18);
-	// 0x08 - 8 dummy clocks, 0x80 - read 128 bytes
-	config->memConfig.lookupTable[1]  = FSL_ROM_FLEXSPI_LUT_SEQ(DUMMY_SDR, FLEXSPI_4PAD, 0x08,
-						   READ_SDR,  FLEXSPI_4PAD, 0x80);
-
-	// Sequence 1 - Read Status Register
-	// 0x05 - Read status register command, 0x4 - read 4 bytes
-	config->memConfig.lookupTable[4]  = FSL_ROM_FLEXSPI_LUT_SEQ(CMD_SDR,       FLEXSPI_1PAD, 0x05,
-						   READ_SDR,  FLEXSPI_1PAD, 0x04);
-
-	// Sequence 2 - Write Status Register 2
-	// 0x31 - Write status register 2 command, 0x1 - write 1 byte
-	config->memConfig.lookupTable[8]  = FSL_ROM_FLEXSPI_LUT_SEQ(CMD_SDR,       FLEXSPI_1PAD, 0x31,
-						   WRITE_SDR, FLEXSPI_1PAD, 0x01);
-
-	// Sequence 3 - Write enable
-	// 0x06 - Write enable command
-	config->memConfig.lookupTable[12] = FSL_ROM_FLEXSPI_LUT_SEQ(CMD_SDR,       FLEXSPI_1PAD, 0x06,
-						   STOP,      0x00,          0x00);
-	//[16] - Seq 4 empty
-
-	// Sequence 5 - 4K Sector erase
-	// 0x20 - Sector erase command, 0x18 - 24 bit address
-	config->memConfig.lookupTable[20] = FSL_ROM_FLEXSPI_LUT_SEQ(CMD_SDR,       FLEXSPI_1PAD, 0x20,
-						   RADDR_SDR, FLEXSPI_1PAD, 0x18);
-	//[24] - Seq 6 empty
-	//[28] - Seq 7 empty
-	//[32] - Seq 8 empty
-
-	// Sequence 9 - Page Program, 256 bytes
-	// 0x02 - page program command, 0x18 - 24 bit address
-	config->memConfig.lookupTable[36] = FSL_ROM_FLEXSPI_LUT_SEQ(CMD_SDR,       FLEXSPI_1PAD, 0x02,
-						   RADDR_SDR, FLEXSPI_1PAD, 0x18),
-	// 0x04 - write 4 bytes
-	config->memConfig.lookupTable[37] = FSL_ROM_FLEXSPI_LUT_SEQ(WRITE_SDR, FLEXSPI_1PAD, 0x04,
-						   STOP,      0x00,          0x00);
-	//[40] - Seq 10 empty
-	//[44] - Seq 11 empty
-
-	// Sequence 12 - Read JEDEC
-	// 0x9F - read JEDEC command, 0x04 - read 4 bytes
-	config->memConfig.lookupTable[48] = FSL_ROM_FLEXSPI_LUT_SEQ(CMD_SDR,       FLEXSPI_1PAD, 0x9F,
-						   READ_SDR,  FLEXSPI_1PAD, 0x04);
-	//[52-60] - Seqs 13 - 15 empty
 }
 
 #define FlexSpiInstance           0U
@@ -538,27 +457,25 @@ int main(void)
 		.interruptMode = kGPIO_NoIntmode
 	};
 	GPIO_PinInit(GPIO1, 9U, &USER_LED_config);
-	
     BOARD_ConfigMPU();
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
-//    BOARD_InitDebugConsole();
+    BOARD_InitDebugConsole();
 	Set_NVIC_PriorityGroup(Group_4);
-//	PRINTF("CPU:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_CpuClk));
-//	PRINTF("AHB:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_AhbClk));
-//	PRINTF("OSC:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_OscClk));
-//	PRINTF("IPG:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_IpgClk));
-//	PRINTF("SEMC:            %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SemcClk));
-//	PRINTF("SYSPLL:          %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllClk));
-//	PRINTF("SYSPLLPFD0:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd0Clk));
-//	PRINTF("SYSPLLPFD1:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd1Clk));
-//	PRINTF("SYSPLLPFD2:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd2Clk));
-//	PRINTF("SYSPLLPFD3:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd3Clk)); 
-//	PRINTF("USB1PLL:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllClk)); 
-//	PRINTF("USB1PDF0:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllPfd0Clk)); 
+	PRINTF("CPU:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_CpuClk));
+	PRINTF("AHB:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_AhbClk));
+	PRINTF("OSC:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_OscClk));
+	PRINTF("IPG:             %d Hz\r\n", CLOCK_GetFreq(kCLOCK_IpgClk));
+	PRINTF("SEMC:            %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SemcClk));
+	PRINTF("SYSPLL:          %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllClk));
+	PRINTF("SYSPLLPFD0:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd0Clk));
+	PRINTF("SYSPLLPFD1:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd1Clk));
+	PRINTF("SYSPLLPFD2:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd2Clk));
+	PRINTF("SYSPLLPFD3:      %d Hz\r\n", CLOCK_GetFreq(kCLOCK_SysPllPfd3Clk)); 
+	PRINTF("USB1PLL:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllClk)); 
+	PRINTF("USB1PDF0:		 %d Hz\r\n", CLOCK_GetFreq(kCLOCK_Usb1PllPfd0Clk)); 
 	flash_init();
 	UART_ModeConfig();
-	
 	/* Set systick reload value to generate 1ms interrupt */
 	if (SysTick_Config(SystemCoreClock / 1000U))
 	{
@@ -567,7 +484,7 @@ int main(void)
 			
 		}
 	}
-	SDK_DelayAtLeastUs(100000,BOARD_BOOTCLOCKRUN_CORE_CLOCK);
+//	SDK_DelayAtLeastUs(100000,BOARD_BOOTCLOCKRUN_CORE_CLOCK);
 //	PIT_TIMER_Init();
 //	PIT_StartTimer(PIT, PIT_CHANNEL_X);
 	grbl_enter();

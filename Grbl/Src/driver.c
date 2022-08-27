@@ -732,10 +732,12 @@ static void stepperEnable (axes_signals_t enable)
   #endif
 #endif
 }
+uint32_t g_time_ms;
 uint32_t cycles_per_tick_count = 0;
 // Starts stepper driver ISR timer and forces a stepper driver interrupt callback
 static void stepperWakeUp (void)
 {
+	g_time_ms = uwTick;
     stepperEnable((axes_signals_t){AXES_BITMASK});
 	cycles_per_tick_count = 0;
 	g_debounce_int_count = 0;
@@ -750,9 +752,11 @@ static void stepperWakeUp (void)
 //PIT_TCTRL_TIE_MASK 中断控制位
 //PIT_TCTRL_TEN_MASK 使能定时器位
 //PIT_TFLG_TIF_MASK 中断标志位
+
 // Disables stepper driver interrupts
 static void stepperGoIdle (bool clear_signals)
 {
+	g_time_ms = uwTick-g_time_ms-169;
 	if(g_stepper_int_count)
 		g_stepper_int_count--;
 	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
@@ -767,11 +771,28 @@ static void stepperGoIdle (bool clear_signals)
 // Sets up stepper driver interrupt timeout, "Normal" version
 static void stepperCyclesPerTick (uint32_t cycles_per_tick)
 {
+	uint32_t count;
+	uint32_t time;
+	uint32_t freq;
 	cycles_per_tick_count += cycles_per_tick;
 	PIT_StopTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
 	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
 //	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, USEC_TO_COUNT(cycles_per_tick < (1UL << 20) ? (cycles_per_tick) : (0x000FFFFFUL), (PIT_SOURCE_CLOCK / 1)));
-	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, cycles_per_tick);
+	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, cycles_per_tick < (1UL << 20) ? cycles_per_tick : 0x000FFFFFUL);
+	freq = 1000000/cycles_per_tick;
+	time = COUNT_TO_USEC(cycles_per_tick,(PIT_SOURCE_CLOCK / 1));//运算时间
+	count = USEC_TO_COUNT(time,((QTMR_SOURCE_CLOCK / 1)));//转换为pulse的count
+	if(count>65535)
+	{
+		count = USEC_TO_COUNT(200,((QTMR_SOURCE_CLOCK / 1)));
+	}
+	else
+	{
+		count /= 2;
+	}
+	
+	QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, count); 
+	
 	PIT_ClearStatusFlags(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerFlag);
 	PIT_EnableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
 	PIT_StartTimer(STEPPER_TIMER, STEPPER_TIMER_CH);
@@ -797,8 +818,8 @@ static void stepperPulseStartDelayed (stepper_t *stepper)
         if (stepper->step_outbits.value)
         {
             next_step_outbits = stepper->step_outbits; // Store out_bits
-			//pulse_delay单位是100ns
-			QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, USEC_TO_COUNT(pulse_delay, (QTMR_SOURCE_CLOCK / 1)));
+			//USEC_TO_COUNT(pulse_delay, (QTMR_SOURCE_CLOCK / 1))
+			QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, pulse_delay);
 			QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);
         }
         return;
@@ -1508,7 +1529,7 @@ void settings_changed(settings_t *settings)
 #endif
 		//清中断标志
 		QTMR_ClearStatusFlags(PULSE_TIMER,PULSE_TIMER_CH,kQTMR_Compare1Flag);
-        pulse_length = (uint32_t)(150.0f * (settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY)) - 1;//us
+        pulse_length = (uint32_t)(150.0f * (settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY));//us
         if (hal.driver_cap.step_pulse_delay && settings->steppers.pulse_delay_microseconds > 0.0f)
         {
 			float delay = settings->steppers.pulse_delay_microseconds - STEP_PULSE_LATENCY;
@@ -1522,12 +1543,11 @@ void settings_changed(settings_t *settings)
             pulse_delay = 0;
             hal.stepper.pulse_start = stepperPulseStart;
         }
-
-		
-		QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1)));
+		//USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1))
+		QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, pulse_length);
 		QTMR_DisableInterrupts(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_Compare2InterruptEnable);
 		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL &= ~ TMR_CTRL_OUTMODE(kQTMR_AssertWhenCountActive);
-//		QTMR_StopTimer(PULSE_TIMER,PULSE_TIMER_CH);
+		QTMR_StopTimer(PULSE_TIMER,PULSE_TIMER_CH);
 		
 //		TMR4_COMP10 = pulse_length;
 //		TMR4_CSCTRL0 &= ~TMR_CSCTRL_TCF2EN;
@@ -2288,10 +2308,10 @@ void STEPPER_TIMER_IRQHandler (void)
 	// check interrupt source
 	if(kPIT_TimerFlag == PIT_GetStatusFlags(PIT, kPIT_Chnl_0))
 	{
-		g_stepper_int_count++;
 		/* 清除中断标志位*/
 		PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
 		hal.stepper.interrupt_callback();
+		g_stepper_int_count++;
 	}
 }
 
@@ -2332,7 +2352,9 @@ void PULSE_TIMER_IRQHandler (void)
 			g_pulse_int_1_count++;
 			stepperSetStepOutputs(next_step_outbits);   // begin step pulse
 			/*设置自动重装载值*/
-			QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1)));
+			//USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1))
+//			QTMR_StopTimer(PULSE_TIMER,PULSE_TIMER_CH);
+			QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, pulse_length);
 			QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);
 		}
 		else

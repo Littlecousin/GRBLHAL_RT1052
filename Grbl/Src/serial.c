@@ -302,7 +302,6 @@ void USART_IRQHandler (void)
                 rxbuf.head = next_head;              // and update pointer
             }
         }
-
     }
 	if ((kLPUART_RxOverrunFlag)&LPUART_GetStatusFlags(USART))//接收完成中断
     {

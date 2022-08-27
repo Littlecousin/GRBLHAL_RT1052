@@ -27,6 +27,7 @@
 #include <stdbool.h>
 
 #include "config.h"
+#include "board.h"
 
 // Grbl versioning system
 #if COMPATIBILITY_LEVEL == 0
@@ -53,7 +54,7 @@
 #include "pico.h"
 #define ISR_FUNC(fn) __not_in_flash_func(fn)
 #else
-#define ISR_FUNC(fn) fn
+#define ISR_FUNC(fn) AT_QUICKACCESS_SECTION_CODE(fn)
 #endif
 
 #ifdef ARDUINO
