@@ -24,10 +24,8 @@
 */
 
 #include <string.h>
-
 #include "main.h"
 #include "grbl/hal.h"
-
 #define FLASH_START_ADDR 0x60400000
 void* _EEPROM_Emul_Start = (uint32_t *)FLASH_START_ADDR;
 extern uint8_t _EEPROM_Emul_Sector;

@@ -140,7 +140,7 @@ void QTMR_GetDefaultConfig(qtmr_config_t *config)
     /* Fault filter period is set to 0 which disables the fault filter */
     config->faultFilterPeriod = 0;
     /* Primary count source is IP bus clock divide by 2 */
-    config->primarySource = kQTMR_ClockDivide_128;
+    config->primarySource = kQTMR_ClockDivide_2;
     /* Secondary count source is counter 0 input pin */
     config->secondarySource = kQTMR_Counter0InputPin;
 }

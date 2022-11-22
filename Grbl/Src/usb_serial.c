@@ -30,13 +30,23 @@
 #include "grbl/protocol.h"
 
 #include "main.h"
-#include "usbd_cdc_if.h"
+//#include "usbd_cdc_if.h"
 #include "usb_device.h"
+#include "bsp_usb_vom.h"
+#include "usb_device_config.h"
+#include "usb.h"
+#include "usb_device.h"
+
+#include "usb_device_class.h"
+#include "usb_device_cdc_acm.h"
+#include "usb_device_ch9.h"
+
+#include "usb_device_descriptor.h"
 
 static stream_rx_buffer_t rxbuf = {0};
 static stream_block_tx_buffer2_t txbuf = {0};
 static enqueue_realtime_command_ptr enqueue_realtime_command = protocol_enqueue_realtime_command;
-
+extern usb_cdc_vcom_struct_t s_cdcVcom;
 //
 // Returns number of free characters in the input buffer
 //
@@ -73,19 +83,19 @@ static inline bool usb_write (void)
     static uint8_t dummy = 0;
 
     txbuf.s = txbuf.use_tx2data ? txbuf.data2 : txbuf.data;
-
-    while(CDC_Transmit_FS((uint8_t *)txbuf.s, txbuf.length) == USBD_BUSY) {
+	
+	while(USB_DeviceCdcAcmSend(s_cdcVcom.cdcAcmHandle, USB_CDC_VCOM_BULK_IN_ENDPOINT, (uint8_t *)txbuf.s, txbuf.length) != kStatus_USB_Success) {
         if(!hal.stream_blocking_callback())
             return false;
     }
 
     if(txbuf.length % 64 == 0) {
-        while(CDC_Transmit_FS(&dummy, 0) == USBD_BUSY) {
+        while(USB_DeviceCdcAcmSend(s_cdcVcom.cdcAcmHandle, USB_CDC_VCOM_BULK_IN_ENDPOINT, &dummy, 0) != kStatus_USB_Success) {
             if(!hal.stream_blocking_callback())
                 return false;
         }
     }
-
+	
     txbuf.use_tx2data = !txbuf.use_tx2data;
     txbuf.s = txbuf.use_tx2data ? txbuf.data2 : txbuf.data;
     txbuf.length = 0;
@@ -102,7 +112,7 @@ static bool usbPutC (const char c)
 
     *buf = c;
 
-    while(CDC_Transmit_FS(buf, 1) == USBD_BUSY) {
+    while(USB_DeviceCdcAcmSend(s_cdcVcom.cdcAcmHandle, USB_CDC_VCOM_BULK_IN_ENDPOINT, buf, 1) != kStatus_USB_Success) {
         if(!hal.stream_blocking_callback())
             return false;
     }
@@ -209,7 +219,7 @@ static enqueue_realtime_command_ptr usbSetRtHandler (enqueue_realtime_command_pt
 
     return prev;
 }
-
+extern void USB_VCOM_Init(void);
 // NOTE: USB interrupt priority should be set lower than stepper/step timer to avoid jitter
 // It is set in HAL_PCD_MspInit() in usbd_conf.c
 const io_stream_t *usbInit (void)
@@ -229,8 +239,7 @@ const io_stream_t *usbInit (void)
         .set_enqueue_rt_handler = usbSetRtHandler
     };
 
-    MX_USB_DEVICE_Init();
-
+	USB_VCOM_Init();
     txbuf.s = txbuf.data;
     txbuf.max_length = BLOCK_TX_BUFFER_SIZE;
 
@@ -240,18 +249,23 @@ const io_stream_t *usbInit (void)
 // NOTE: add a call to this function as the first line CDC_Receive_FS() in usbd_cdc_if.c
 void usbBufferInput (uint8_t *data, uint32_t length)
 {
-    while(length--) {
-        if(!enqueue_realtime_command(*data)) {                  // Check and strip realtime commands,
+	static uint8_t temp = 0;
+    while(length--) 
+	{
+        if(!enqueue_realtime_command(*data)) 
+		{                  // Check and strip realtime commands,
             uint16_t next_head = BUFNEXT(rxbuf.head, rxbuf);    // Get and increment buffer pointer
             if(next_head == rxbuf.tail)                         // If buffer full
                 rxbuf.overflow = 1;                             // flag overflow
-            else {
+            else 
+			{
                 rxbuf.data[rxbuf.head] = *data;                 // if not add data to buffer
                 rxbuf.head = next_head;                         // and update pointer
             }
         }
         data++;                                                 // next...
     }
+	USB_DeviceCdcAcmSend(s_cdcVcom.cdcAcmHandle, USB_CDC_VCOM_BULK_IN_ENDPOINT, &temp, 0);
 }
 
 #endif

@@ -37,7 +37,7 @@
 
 // Define step direction output pins.
 #define DIRECTION_PORT          GPIO1
-#define X_DIRECTION_PIN         16
+#define X_DIRECTION_PIN         10
 #define Y_DIRECTION_PIN         23
 #define Z_DIRECTION_PIN         22
 #define DIRECTION_OUTMODE       GPIO_BITBAND
@@ -76,7 +76,7 @@
 
 // Define spindle PWM output pin.
 #define SPINDLE_PWM_PORT_BASE   GPIO1_BASE
-#define SPINDLE_PWM_PIN         10
+#define SPINDLE_PWM_PIN         16
 
 // Define flood and mist coolant enable output pins.
 #define COOLANT_FLOOD_PORT      GPIO1

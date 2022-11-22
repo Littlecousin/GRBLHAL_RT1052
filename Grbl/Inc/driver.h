@@ -140,7 +140,7 @@ extern __IO uint32_t g_stepper_int_count;
 //#define STEPPER_TIMER_CLOCK_ENA     timerCLKENA(STEPPER_TIMER_N)
 
 //150Mhz，1分频，一次中断时间为counts/150000000（秒）
-#define PULSE_TIMER_N               2
+#define PULSE_TIMER_N               1
 #define PULSE_TIMER_CH_N			0
 #define PULSE_TIMER                 timer(PULSE_TIMER_N)
 #define PULSE_TIMER_CH				timerCH(PULSE_TIMER_CH_N)
@@ -149,57 +149,22 @@ extern __IO uint32_t g_stepper_int_count;
 #define PULSE_TIMER_CLOCK_ENA       timerCLKENA(PULSE_TIMER_N)
 
 //150Mhz，128分频，一次中断时间为counts*128/150000000（秒）
-#define DEBOUNCE_TIMER_N            3
+#define DEBOUNCE_TIMER_N            2
 #define DEBOUNCE_TIMER_CH_N			0
 #define DEBOUNCE_TIMER              timer(DEBOUNCE_TIMER_N)
 #define DEBOUNCE_TIMER_CH			timerCH(DEBOUNCE_TIMER_CH_N)
 #define DEBOUNCE_TIMER_IRQn         timerINT(DEBOUNCE_TIMER_N)
 #define DEBOUNCE_TIMER_IRQHandler   timerHANDLER(DEBOUNCE_TIMER_N)
 #define DEBOUNCE_TIMER_CLOCK_ENA    timerCLKENA(DEBOUNCE_TIMER_N)
+
 //USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1))
 //USEC_TO_COUNT(pulse_delay, (QTMR_SOURCE_CLOCK / 1))
-#ifdef SPINDLE_PWM_PORT_BASE
 
-#if SPINDLE_PWM_PORT_BASE == GPIO1_BASE
-  #if SPINDLE_PWM_PIN == 10 // PA5 - TIM2_CH1
-    #define SPINDLE_PWM_TIMER_N     2
-    #define SPINDLE_PWM_TIMER_CH    1
-    #define SPINDLE_PWM_TIMER_INV   0
-    #define SPINDLE_PWM_TIMER_AF    1
-  #elif SPINDLE_PWM_PIN == 7 // PA7 - TIM1_CH1N
-    #define SPINDLE_PWM_TIMER_N     1
-    #define SPINDLE_PWM_TIMER_CH    1
-    #define SPINDLE_PWM_TIMER_INV   1
-    #define SPINDLE_PWM_TIMER_AF    1
-  #elif SPINDLE_PWM_PIN == 8 // PA8 - TIM1_CH1
-    #define SPINDLE_PWM_TIMER_N     1
-    #define SPINDLE_PWM_TIMER_CH    1
-    #define SPINDLE_PWM_TIMER_INV   0
-    #define SPINDLE_PWM_TIMER_AF    1
-  #endif
-#elif SPINDLE_PWM_PORT_BASE == GPIOB_BASE
-  #if SPINDLE_PWM_PIN == 0 // PB0 - TIM1_CH2N
-    #define SPINDLE_PWM_TIMER_N     1
-    #define SPINDLE_PWM_TIMER_CH    2
-    #define SPINDLE_PWM_TIMER_INV   1
-    #define SPINDLE_PWM_TIMER_AF    1
-  #elif SPINDLE_PWM_PIN == 3 // PB3 - TIM2_CH2
-    #define SPINDLE_PWM_TIMER_N     2
-    #define SPINDLE_PWM_TIMER_CH    2
-    #define SPINDLE_PWM_TIMER_INV   0
-    #define SPINDLE_PWM_TIMER_AF    1
-  #elif SPINDLE_PWM_PIN == 4 // PB4 - TIM3_CH1
-    #define SPINDLE_PWM_TIMER_N     3
-    #define SPINDLE_PWM_TIMER_CH    1
-    #define SPINDLE_PWM_TIMER_INV   0
-    #define SPINDLE_PWM_TIMER_AF    2
-  #elif SPINDLE_PWM_PIN == 9 // PB9 - TIM11_CH1
-    #define SPINDLE_PWM_TIMER_N     11
-    #define SPINDLE_PWM_TIMER_CH    1
-    #define SPINDLE_PWM_TIMER_INV   0
-    #define SPINDLE_PWM_TIMER_AF    3
-  #endif
-#endif
+#ifdef SPINDLE_PWM_PORT_BASE
+#define SPINDLE_PWM_TIMER_N     3
+#define SPINDLE_PWM_TIMER_CH    0
+#define SPINDLE_PWM_TIMER_INV   0
+#define SPINDLE_PWM_TIMER_AF    1
 
 #if SPINDLE_PWM_TIMER_CH == 1 || SPINDLE_PWM_TIMER_CH == 2
 #define SPINDLE_PWM_CCR 1

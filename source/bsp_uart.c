@@ -43,8 +43,8 @@ void UART_ModeConfig(void)
 	/*Ê¹ÄÜÖÐ¶Ï*/
 	EnableIRQ(DEBUG_UART_IRQ);
 
-//LPUART_EnableRx(DEBUG_UARTx, true);  
-//LPUART_EnableTx(DEBUG_UARTx, false);
+// LPUART_EnableRx(DEBUG_UARTx, true);  
+// LPUART_EnableTx(DEBUG_UARTx, false);
 }
 
  /**

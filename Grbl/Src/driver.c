@@ -146,6 +146,7 @@ __IO uint32_t g_debounce_int_count;
 __IO uint32_t g_pulse_int_count;
 __IO uint32_t g_pulse_int_1_count;
 __IO uint32_t g_stepper_int_count;
+__IO uint32_t g_stepper_int_count_1;
 
 static input_signal_t inputpin[] = {
 #if ESTOP_ENABLE
@@ -678,10 +679,16 @@ inline static __attribute__((always_inline)) void stepperSetDirOutputs (axes_sig
  #endif
 #endif
 }
-
+volatile uint32_t g_time;
+volatile uint32_t stepperPulseStart_cnt = 0;
+volatile uint32_t stepperPulseStart_cnt_1 = 0;
 // Sets stepper direction and pulse pins and starts a step pulse.
 static void stepperPulseStart (stepper_t *stepper)
 {
+	uint32_t time;
+	uint32_t ticks;
+	
+	stepperPulseStart_cnt++;
 #if SPINDLE_SYNC_ENABLE
     if(stepper->new_block && stepper->exec_segment->spindle_sync) {
         spindle_tracker.stepper_pulse_start_normal = hal.stepper.pulse_start;
@@ -692,10 +699,18 @@ static void stepperPulseStart (stepper_t *stepper)
 #endif
     if(stepper->dir_change)
         stepperSetDirOutputs(stepper->dir_outbits);
-
-    if(stepper->step_outbits.value) {
-        stepperSetStepOutputs(stepper->step_outbits);//STEPPER -> 1
-//		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL |= TMR_CTRL_CM(kQTMR_PriSrcRiseEdge);//开启定时器，上升沿触发计数
+    if(stepper->step_outbits.value) 
+	{
+		stepperPulseStart_cnt_1++;
+        stepperSetStepOutputs(stepper->step_outbits);//需要输出的轴脉冲信号拉高 STEPPER -> 1
+		
+//		time = COUNT_TO_USEC(g_time,24000000);
+//		ticks = USEC_TO_COUNT(time,QTMR_SOURCE_CLOCK/32)/2;
+//		if(ticks>65535)
+//		{
+//			ticks = 65535;
+//		}
+//		QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, ticks); 
 		QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);//开启定时器，上升沿触发计数 这里启动的定时器定时的时间为高电平时间
     }
 }
@@ -731,9 +746,10 @@ static void stepperEnable (axes_signals_t enable)
    #endif
   #endif
 #endif
-}
+}volatile uint32_t stepperCyclesPerTick_cnt = 0;
 uint32_t g_time_ms;
 uint32_t cycles_per_tick_count = 0;
+volatile uint32_t g_Tick_Time = 0;
 // Starts stepper driver ISR timer and forces a stepper driver interrupt callback
 static void stepperWakeUp (void)
 {
@@ -742,9 +758,12 @@ static void stepperWakeUp (void)
 	cycles_per_tick_count = 0;
 	g_debounce_int_count = 0;
 	g_stepper_int_count  = 0;
+	g_stepper_int_count_1 = 0;
 	g_pulse_int_count    = 0;
 	g_pulse_int_1_count  = 0;
-	PIT_SetTimerPeriod(PIT, PIT_CHANNEL_X, 5000);
+	g_Tick_Time = 0;
+	stepperCyclesPerTick_cnt = 0;
+	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, 5000);
 	PIT_ClearStatusFlags(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerFlag);
 	PIT_EnableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
 	PIT_StartTimer(STEPPER_TIMER, STEPPER_TIMER_CH);
@@ -752,12 +771,11 @@ static void stepperWakeUp (void)
 //PIT_TCTRL_TIE_MASK 中断控制位
 //PIT_TCTRL_TEN_MASK 使能定时器位
 //PIT_TFLG_TIF_MASK 中断标志位
-
 // Disables stepper driver interrupts
 static void stepperGoIdle (bool clear_signals)
 {
-	g_time_ms = uwTick-g_time_ms-169;
-	if(g_stepper_int_count)
+    g_time_ms = uwTick - g_time_ms - 169;
+    if(g_stepper_int_count)
 		g_stepper_int_count--;
 	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
 	PIT_StopTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
@@ -767,31 +785,43 @@ static void stepperGoIdle (bool clear_signals)
         stepperSetDirOutputs((axes_signals_t){0});
     }
 }
-
+// 设置步进驱动中断超时
 // Sets up stepper driver interrupt timeout, "Normal" version
+uint32_t Steppertime;
 static void stepperCyclesPerTick (uint32_t cycles_per_tick)
 {
 	uint32_t count;
-	uint32_t time;
+	
 	uint32_t freq;
+	uint32_t ticks;
+	stepperCyclesPerTick_cnt++;
+	ticks = cycles_per_tick < (0x100000) ? cycles_per_tick : 0x000FFFFFUL;
 	cycles_per_tick_count += cycles_per_tick;
 	PIT_StopTimer(STEPPER_TIMER,STEPPER_TIMER_CH);
-	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
-//	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, USEC_TO_COUNT(cycles_per_tick < (1UL << 20) ? (cycles_per_tick) : (0x000FFFFFUL), (PIT_SOURCE_CLOCK / 1)));
-	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, cycles_per_tick < (1UL << 20) ? cycles_per_tick : 0x000FFFFFUL);
-	freq = 1000000/cycles_per_tick;
-	time = COUNT_TO_USEC(cycles_per_tick,(PIT_SOURCE_CLOCK / 1));//运算时间
-	count = USEC_TO_COUNT(time,((QTMR_SOURCE_CLOCK / 1)));//转换为pulse的count
-	if(count>65535)
-	{
-		count = USEC_TO_COUNT(200,((QTMR_SOURCE_CLOCK / 1)));
-	}
-	else
-	{
-		count /= 2;
-	}
+	PIT_DisableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);//1UL << 20
+	PIT_SetTimerPeriod(STEPPER_TIMER, STEPPER_TIMER_CH, ticks);
+	g_time = ticks;
 	
-	QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, count); 
+// freq = 1000000/cycles_per_tick;
+// time = COUNT_TO_USEC(cycles_per_tick,(PIT_SOURCE_CLOCK / 1));//运算时间
+// count = USEC_TO_COUNT(time,((QTMR_SOURCE_CLOCK / 1)));//转换为pulse的count
+// if(count>65535)
+// {
+// 	count = USEC_TO_COUNT(200,((QTMR_SOURCE_CLOCK / 1)));
+// }
+// else
+// {
+// 	count /= 2;
+// }
+	
+	Steppertime = COUNT_TO_USEC(ticks,24000000);
+	
+//	ticks = USEC_TO_COUNT(1000,QTMR_SOURCE_CLOCK/32);
+//	if(ticks>65535)
+//	{
+//		ticks = 65535;
+//	}
+//	QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, ticks); 
 	
 	PIT_ClearStatusFlags(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerFlag);
 	PIT_EnableInterrupts(STEPPER_TIMER, STEPPER_TIMER_CH, kPIT_TimerInterruptEnable);
@@ -828,7 +858,6 @@ static void stepperPulseStartDelayed (stepper_t *stepper)
     {
         stepperSetStepOutputs(stepper->step_outbits);
 		QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);
-		
     }
 }
 
@@ -1077,10 +1106,8 @@ static void probeConfigure (bool is_probe_away, bool probing)
 probe_state_t probeGetState (void)
 {
     probe_state_t state = {0};
-
     state.connected = probe.connected;
     state.triggered = DIGITAL_IN(PROBE_PORT, PROBE_PIN) ^ probe.inverted;
-
     return state;
 }
 
@@ -1130,10 +1157,14 @@ static void spindleSetState (spindle_state_t state, float rpm)
 // Variable spindle control functions
 
 #ifdef SPINDLE_PWM_TIMER_N
+volatile uint32_t g_rpm = 0;
+volatile uint32_t g_pwm_value = 0;
 
 // Sets spindle speed
 static void spindle_set_speed(uint_fast16_t pwm_value)
 {
+	
+	g_pwm_value = pwm_value;
     if (pwm_value == spindle_pwm.off_value)
     {
         pwmEnabled = false;
@@ -1141,19 +1172,20 @@ static void spindle_set_speed(uint_fast16_t pwm_value)
             spindle_off();
         if (spindle_pwm.always_on)
         {
-            //             SPINDLE_PWM_TIMER_CCR = spindle_pwm.off_value;
-            // #if SPINDLE_PWM_TIMER_N == 1
-            //             SPINDLE_PWM_TIMER->BDTR |= TIM_BDTR_MOE;//刹车和死区寄存器
-            // #endif
-            //             SPINDLE_PWM_TIMER_CCR = pwm_value;
+			SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].COMP2 = spindle_pwm.off_value;
+			SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].CMPLD1 = spindle_pwm.period - spindle_pwm.off_value;
+			SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].CTRL |= TMR_CTRL_CM(0b001);
+			
+//			TMR2_COMP20 = spindle_pwm.off_value;
+//			TMR2_CMPLD10 = spindle_pwm.period - spindle_pwm.off_value;
+//			TMR2_CTRL0 |= TMR_CTRL_CM(0b001);
         }
         else
         {
-            // #if SPINDLE_PWM_TIMER_N == 1
-            //             SPINDLE_PWM_TIMER->BDTR &= ~TIM_BDTR_MOE; // Set PWM output low
-            // #else
-            //             SPINDLE_PWM_TIMER_CCR = 0;
-            // #endif
+//			QTMR_StopTimer(QTMR_BASEADDR, QTMR_PWM_CHANNEL_0);
+			SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].CTRL &= ~TMR_CTRL_CM_MASK;                             /* Stop the timer. */
+			SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].SCTRL &= ~TMR_SCTRL_VAL_MASK;                          /* Set forced OFLAG value to be low. */
+			SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].SCTRL |= TMR_SCTRL_FORCE_MASK;                         /* Force OFLAG output low. */
         }
     }
     else
@@ -1163,10 +1195,20 @@ static void spindle_set_speed(uint_fast16_t pwm_value)
             spindle_on();
             pwmEnabled = true;
         }
-//         SPINDLE_PWM_TIMER_CCR = pwm_value;
-// #if SPINDLE_PWM_TIMER_N == 1
-//         SPINDLE_PWM_TIMER->BDTR |= TIM_BDTR_MOE;
-// #endif
+		float duty = ((float)pwm_value/(float)spindle_pwm.period)*100.0;
+		SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].COMP2 = pwm_value;
+		SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].CMPLD1 = spindle_pwm.period - pwm_value;
+		uint16_t reg = SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].CTRL;
+		reg &= (uint16_t)(~(TMR_CTRL_CM_MASK));
+		reg |= TMR_CTRL_CM(0b001);
+		SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].CTRL = reg;
+		
+//		QTMR_SetupPwm(QTMR_BASEADDR, QTMR_PWM_CHANNEL_0, TMR1_CH0_PWM_FREQUENCY, duty, settings.spindle.invert.pwm, QTMR_SOURCE_CLOCK / 8);
+//		QTMR_StartTimer(QTMR_BASEADDR, QTMR_PWM_CHANNEL_0, kQTMR_PriSrcRiseEdge);
+		
+//		TMR2_COMP20 = pwm_value;
+//        TMR2_CMPLD10 = spindle_pwm.period - pwm_value;
+//        TMR2_CTRL0 |= TMR_CTRL_CM(0b001);
     }
 }
 
@@ -1188,7 +1230,7 @@ static void spindleSetStateVariable (spindle_state_t state, float rpm)
         else
             spindle_off();
     }
-
+	g_rpm = rpm;
     spindle_set_speed(state.on ? spindle_compute_pwm_value(&spindle_pwm, rpm, false) : spindle_pwm.off_value);
 
 #if SPINDLE_SYNC_ENABLE
@@ -1202,7 +1244,7 @@ static void spindleSetStateVariable (spindle_state_t state, float rpm)
 }
 
 #endif // SPINDLE_PWM_TIMER_N
-
+volatile uint8_t ccw = 0;
 // Returns spindle state in a spindle_state_t variable
 static spindle_state_t spindleGetState (void)
 {
@@ -1215,7 +1257,7 @@ static spindle_state_t spindleGetState (void)
     state.ccw = DIGITAL_IN(SPINDLE_DIRECTION_PORT, SPINDLE_DIRECTION_PIN);
 #endif
     state.value ^= settings.spindle.invert.mask;
-
+ccw = state.ccw;
 #if SPINDLE_SYNC_ENABLE
     float rpm = spindleGetData(SpindleData_RPM)->rpm;
     state.at_speed = settings.spindle.at_speed_tolerance <= 0.0f || (rpm >= spindle_data.rpm_low_limit && rpm <= spindle_data.rpm_high_limit);
@@ -1241,35 +1283,61 @@ static void spindlePulseOn (uint_fast16_t pulse_length)
  * @brief    配置主轴
  * @return   {*}
  */
+
+
 bool spindleConfig (void)
 {
-	/* mark */
+    if((hal.spindle.cap.variable = !settings.spindle.flags.pwm_disable && spindle_precompute_pwm_values(&spindle_pwm, QTMR_SOURCE_CLOCK / 2))) 
+	{
+		SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].COMP1 = spindle_pwm.period;
+		SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].CMPLD1 = spindle_pwm.period;
+        if(settings.spindle.invert.pwm)
+		{//翻转电平
+			SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].SCTRL |= TMR_SCTRL_OPS_MASK;
+		}
+
+        else
+		{
+			SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].SCTRL &= ~TMR_SCTRL_OPS_MASK;
+		}
+
+        hal.spindle.set_state = spindleSetStateVariable;
+    } 
+    else 
+    {
+        if(pwmEnabled)
+            hal.spindle.set_state((spindle_state_t){0}, 0.0f);
+        hal.spindle.set_state = spindleSetState;
+    }
+
+#if SPINDLE_SYNC_ENABLE
+    hal.spindle.cap.at_speed = hal.spindle.get_data == spindleGetData;
+#endif
+
+    spindle_update_caps(hal.spindle.cap.variable);
+
+    return true;
+}
+
+//bool spindleConfig (void)
+//{
+//	/* mark */
 //#ifdef SPINDLE_PWM_TIMER_N
 
-//    RCC_ClkInitTypeDef clock;
+
 //    uint32_t latency, prescaler = settings.spindle.pwm_freq > 4000.0f ? 1 : (settings.spindle.pwm_freq > 200.0f ? 12 : 25);
 
-//    HAL_RCC_GetClockConfig(&clock, &latency);
+
 
 //#if SPINDLE_PWM_TIMER_N == 1
 //    if((hal.spindle.cap.variable = !settings.spindle.flags.pwm_disable && spindle_precompute_pwm_values(&spindle_pwm, (HAL_RCC_GetPCLK2Freq() * (clock.APB2CLKDivider == 0 ? 1 : 2)) / prescaler))) {
 //#else
-//    if((hal.spindle.cap.variable = !settings.spindle.flags.pwm_disable && spindle_precompute_pwm_values(&spindle_pwm, (HAL_RCC_GetPCLK1Freq() * (clock.APB1CLKDivider == 0 ? 1 : 2)) / prescaler))) {
+//    if((hal.spindle.cap.variable = !settings.spindle.flags.pwm_disable && spindle_precompute_pwm_values(&spindle_pwm, QTMR_SOURCE_CLOCK / 2))) 
+//		{
 //#endif
 
 //        hal.spindle.set_state = spindleSetStateVariable;
 
-//        SPINDLE_PWM_TIMER->CR1 &= ~TIM_CR1_CEN;
-
-//        TIM_Base_InitTypeDef timerInitStructure = {
-//            .Prescaler = prescaler - 1,
-//            .CounterMode = TIM_COUNTERMODE_UP,
-//            .Period = spindle_pwm.period - 1,
-//            .ClockDivision = TIM_CLOCKDIVISION_DIV1,
-//            .RepetitionCounter = 0
-//        };
-
-//        TIM_Base_SetConfig(SPINDLE_PWM_TIMER, &timerInitStructure);
 
 ////            RCC_DCKCFGR->
 
@@ -1290,12 +1358,15 @@ bool spindleConfig (void)
 //        SPINDLE_PWM_TIMER->CCER |= SPINDLE_PWM_CCER_EN;
 //        SPINDLE_PWM_TIMER->CR1 |= TIM_CR1_CEN;
 
-//    } else {
+//    } 
+//	else 
+//	{
 //        if(pwmEnabled)
 //            hal.spindle.set_state((spindle_state_t){0}, 0.0f);
 //#endif // SPINDLE_PWM_TIMER_N
 //        hal.spindle.set_state = spindleSetState;
 //#ifdef SPINDLE_PWM_TIMER_N
+//			
 //    }
 //#endif
 
@@ -1305,13 +1376,12 @@ bool spindleConfig (void)
 
 //    spindle_update_caps(hal.spindle.cap.variable);
 
-    return true;
-}
+//    return true;
+//}
 
 #endif // PWM_SPINDLE
 
 #if SPINDLE_SYNC_ENABLE
-
 static spindle_data_t *spindleGetData (spindle_data_request_t request)
 {
     bool stopped;
@@ -1529,35 +1599,30 @@ void settings_changed(settings_t *settings)
 #endif
 		//清中断标志
 		QTMR_ClearStatusFlags(PULSE_TIMER,PULSE_TIMER_CH,kQTMR_Compare1Flag);
-        pulse_length = (uint32_t)(150.0f * (settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY));//us
+		//转换为定时器计数
+//		volatile uint32_t us_ticks = 0;
+//		volatile uint32_t ms_ticks = 0;
+
+//		ms_ticks = MSEC_TO_COUNT((settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY),150000000);
+//		us_ticks = USEC_TO_COUNT((settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY),150000000);
+		pulse_length = (uint16_t)((float)150.0 * (settings->steppers.pulse_microseconds - STEP_PULSE_LATENCY));
+		//tmr定时器为16位位
         if (hal.driver_cap.step_pulse_delay && settings->steppers.pulse_delay_microseconds > 0.0f)
         {
-			float delay = settings->steppers.pulse_delay_microseconds - STEP_PULSE_LATENCY;
-			if (delay <= STEP_PULSE_LATENCY)
+            float delay = settings->steppers.pulse_delay_microseconds - STEP_PULSE_LATENCY;
+            if (delay <= STEP_PULSE_LATENCY)
                 delay = STEP_PULSE_LATENCY + 0.2f;
-			pulse_delay = (uint32_t)(150.0f * delay);
+            pulse_delay = (uint16_t)((float)150.0 * delay);
             hal.stepper.pulse_start = stepperPulseStartDelayed;
         }
         else
-        {
-            pulse_delay = 0;
             hal.stepper.pulse_start = stepperPulseStart;
-        }
 		//USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1))
 		QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, pulse_length);
 		QTMR_DisableInterrupts(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_Compare2InterruptEnable);
 		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL &= ~ TMR_CTRL_OUTMODE(kQTMR_AssertWhenCountActive);
-		QTMR_StopTimer(PULSE_TIMER,PULSE_TIMER_CH);
-		
-//		TMR4_COMP10 = pulse_length;
-//		TMR4_CSCTRL0 &= ~TMR_CSCTRL_TCF2EN;
-//		TMR4_CTRL0 &= ~TMR_CTRL_OUTMODE(0b000);
-//		attachInterruptVector(IRQ_QTIMER4, stepper_pulse_isr);
+		// QTMR_StopTimer(PULSE_TIMER,PULSE_TIMER_CH);
 
-//		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].COMP1 = pulse_length;
-//		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CSCTRL &= ~TMR_CSCTRL_TCF2EN_MASK;
-//		PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].CTRL &= ~ TMR_CTRL_OUTMODE(kQTMR_AssertWhenCountActive);
-		
         /*************************
          *  Control pins config  *
          *************************/
@@ -1583,7 +1648,6 @@ void settings_changed(settings_t *settings)
 #if (DRIVER_IRQMASK | AUXINPUT_MASK) & 0xFC00
 //        HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);//IO中断
 #endif
-
 		NVIC_DisableIRQ(LIMIT_INPUT_IRQ);
 		NVIC_DisableIRQ(CONTROL_INPUT_IRQ);
         bool pullup;
@@ -1736,8 +1800,8 @@ void settings_changed(settings_t *settings)
 		GPIO_PortEnableInterrupts(LIMIT_PORT, LIMIT_MASK); 
 
 		/*设置中断优先级,*/
-		set_IRQn_Priority(CONTROL_INPUT_IRQ,Group4_PreemptPriority_6, Group4_SubPriority_0);
-		set_IRQn_Priority(LIMIT_INPUT_IRQ,Group4_PreemptPriority_6, Group4_SubPriority_0);
+		set_IRQn_Priority(CONTROL_INPUT_IRQ,Group4_PreemptPriority_6, Group4_SubPriority_1);
+		set_IRQn_Priority(LIMIT_INPUT_IRQ,Group4_PreemptPriority_6, Group4_SubPriority_1);
 
 		/* 开启GPIO端口中断 */
 		EnableIRQ(CONTROL_INPUT_IRQ);
@@ -1968,17 +2032,24 @@ static bool driver_setup (settings_t *settings)
 		DEBOUNCE_TIMER->CHANNEL[DEBOUNCE_TIMER_CH].CTRL |= (TMR_CTRL_LENGTH_MASK | TMR_CTRL_ONCE_MASK | TMR_CTRL_PCS(kQTMR_ClockDivide_128));
     }
 
-  // Spindle init
+// Spindle init
 
 #ifdef SPINDLE_PWM_TIMER_N
 
-//    SPINDLE_PWM_CLOCK_ENA();
-
     Pin = SPINDLE_PWM_PIN;
-    GPIO_Init.direction = GPIO_MODE_AF_PP;
-    GPIO_Init.outputLogic = GPIO_NOPULL;
-    GPIO_PinInit(SPINDLE_PWM_PORT,Pin, &GPIO_Init);
-
+	
+//	SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].ENBL = 0;
+//	SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].LOAD = 0;
+//	SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].CTRL = TMR_CTRL_PCS(0b1001) | TMR_CTRL_OUTMODE(0b100) | TMR_CTRL_LENGTH(0b1);
+//	SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].SCTRL = TMR_SCTRL_OEN(0b1) | TMR_SCTRL_FORCE_MASK;
+//	SPINDLE_PWM_TIMER->CHANNEL[SPINDLE_PWM_TIMER_CH].ENBL = 1;
+	TMRn_PWM_Init();
+//	TMR2_ENBL = 0;
+//	TMR2_LOAD0 = 0;
+//	TMR2_CTRL0 = TMR_CTRL_PCS(0b1001) | TMR_CTRL_OUTMODE(0b100) | TMR_CTRL_LENGTH;
+//	TMR2_SCTRL0 = TMR_SCTRL_OEN | TMR_SCTRL_FORCE;
+//	TMR2_ENBL = 1;
+	
     static const periph_pin_t pwm = {
         .function = Output_SpindlePWM,
         .group = PinGroup_SpindlePWM,
@@ -2234,11 +2305,12 @@ bool driver_init (void)
     uint32_t i;
     input_signal_t *input;
     static pin_group_pins_t aux_inputs = {0}, aux_outputs = {0};
-
 	/* 辅助输入IO */
-    for(i = 0 ; i < sizeof(inputpin) / sizeof(input_signal_t); i++) {
+    for(i = 0 ; i < sizeof(inputpin) / sizeof(input_signal_t); i++) 
+	{
         input = &inputpin[i];
-        if(input->group == PinGroup_AuxInput) {
+        if(input->group == PinGroup_AuxInput) 
+		{
             if(aux_inputs.pins.inputs == NULL)
                 aux_inputs.pins.inputs = input;
             input->id = (pin_function_t)(Input_Aux0 + aux_inputs.n_pins++);
@@ -2249,9 +2321,11 @@ bool driver_init (void)
     }
 	/* 辅助输出IO */
     output_signal_t *output;
-    for(i = 0 ; i < sizeof(outputpin) / sizeof(output_signal_t); i++) {
+    for(i = 0 ; i < sizeof(outputpin) / sizeof(output_signal_t); i++) 
+	{
         output = &outputpin[i];
-        if(output->group == PinGroup_AuxOutput) {
+        if(output->group == PinGroup_AuxOutput) 
+		{
             if(aux_outputs.pins.outputs == NULL)
                 aux_outputs.pins.outputs = output;
             output->id = (pin_function_t)(Output_Aux0 + aux_outputs.n_pins++);
@@ -2290,7 +2364,6 @@ bool driver_init (void)
 #endif
 
 #include "grbl/plugins_init.h"
-
     // No need to move version check before init.
     // Compiler will fail any signature mismatch for existing entries.
     return hal.version == 9;
@@ -2305,6 +2378,7 @@ bool driver_init (void)
  */
 void STEPPER_TIMER_IRQHandler (void)
 {
+	g_stepper_int_count_1++;
 	// check interrupt source
 	if(kPIT_TimerFlag == PIT_GetStatusFlags(PIT, kPIT_Chnl_0))
 	{
@@ -2333,6 +2407,7 @@ void STEPPER_TIMER_IRQHandler (void)
 // This interrupt is enabled when Grbl sets the motor port bits to execute
 // a step. This ISR resets the motor port after a short period (settings.pulse_microseconds)
 // completing one step cycle.
+
 /**
  * @brief    控制脉冲个数,定时时间为高电平时间
  * @return   {*}
@@ -2344,22 +2419,22 @@ void PULSE_TIMER_IRQHandler (void)
 	mask = QTMR_GetStatus(PULSE_TIMER, PULSE_TIMER_CH);
 	if(kQTMR_Compare1Flag & mask)
 	{
-		
 		/* 清除中断标志位*/
 		QTMR_ClearStatusFlags(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_Compare1Flag);	// clear UIF flag
 		if (PULSE_TIMER->CHANNEL[PULSE_TIMER_CH].COMP1 == pulse_delay)			// Delayed step pulse?
 		{
 			g_pulse_int_1_count++;
+			//PULSE -> 1
 			stepperSetStepOutputs(next_step_outbits);   // begin step pulse
 			/*设置自动重装载值*/
-			//USEC_TO_COUNT(pulse_length, (QTMR_SOURCE_CLOCK / 1))
 //			QTMR_StopTimer(PULSE_TIMER,PULSE_TIMER_CH);
 			QTMR_SetTimerPeriod(PULSE_TIMER, PULSE_TIMER_CH, pulse_length);
-			QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);
+			QTMR_StartTimer(PULSE_TIMER, PULSE_TIMER_CH, kQTMR_PriSrcRiseEdge);//开始延时部分
 		}
 		else
 		{
 			g_pulse_int_count++;//PULSE -> 0
+			//定时时间到，脉冲拉低
 			stepperSetStepOutputs((axes_signals_t){0}); // end step pulse
 		}
 	}
@@ -2399,7 +2474,6 @@ void DEBOUNCE_TIMER_IRQHandler(void)
             if (limit_signals_merge(state).value) // TODO: add check for limit switches having same state as when limit_isr were invoked?
                 hal.limits.interrupt_callback(state);
         }
-
         if (debounce.door)
         {
             debounce.door = Off;

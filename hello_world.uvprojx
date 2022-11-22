@@ -507,6 +507,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -753,6 +778,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1373,6 +1408,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -1683,7 +1803,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>0</interw>
-            <Optim>4</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -1707,9 +1827,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb</MiscControls>
-              <Define>XIP_EXTERNAL_FLASH=1, XIP_BOOT_HEADER_ENABLE=1, DEBUG, CPU_MIMXRT1052DVL6B, PRINTF_FLOAT_ENABLE=0, SCANF_FLOAT_ENABLE=0, PRINTF_ADVANCED_ENABLE=0, SCANF_ADVANCED_ENABLE=0, MCUXPRESSO_SDK, FSL_SDK_DRIVER_QUICK_ACCESS_ENABLE</Define>
+              <Define>XIP_EXTERNAL_FLASH=1, XIP_BOOT_HEADER_ENABLE=1, DEBUG, CPU_MIMXRT1052DVL6B, PRINTF_FLOAT_ENABLE=0, SCANF_FLOAT_ENABLE=0, PRINTF_ADVANCED_ENABLE=0, SCANF_ADVANCED_ENABLE=0, MCUXPRESSO_SDK, USB_STACK_BM,</Define>
               <Undefine></Undefine>
-              <IncludePath>board;CMSIS;component/lists;component/uart;device;drivers;utilities;xip;.\Grbl;source;.\Grbl\inc;.\Grbl\networking</IncludePath>
+              <IncludePath>board;CMSIS;component/lists;component/uart;device;drivers;utilities;xip;.\Grbl;source;.\Grbl\inc;.\Grbl\networking;.\middleware\usb\device;.\middleware\usb\include;.\middleware\usb\phy;.\component\osa</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1873,6 +1993,31 @@
               <FileName>fsl_adapter_uart.h</FileName>
               <FileType>5</FileType>
               <FilePath>component/uart/fsl_adapter_uart.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2123,6 +2268,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2743,6 +2898,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -3246,6 +3486,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -3492,6 +3757,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4112,6 +4387,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -4616,6 +4976,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -4862,6 +5247,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5482,6 +5877,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -5985,6 +6465,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -6231,6 +6736,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6851,6 +7366,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -7354,6 +7954,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -7600,6 +8225,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -8220,6 +8855,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -8723,6 +9443,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -8969,6 +9714,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -9589,6 +10344,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -10092,6 +10932,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -10338,6 +11203,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -10958,6 +11833,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -11461,6 +12421,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -11707,6 +12692,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -12327,6 +13322,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -12830,6 +13910,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -13076,6 +14181,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -13696,6 +14811,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -14199,6 +15399,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -14445,6 +15670,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -15065,6 +16300,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -15568,6 +16888,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>component/osa</GroupName>
+          <Files>
+            <File>
+              <FileName>fsl_os_abstraction_bm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_bm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>device</GroupName>
           <Files>
             <File>
@@ -15814,6 +17159,16 @@
               <FileName>ring_fifo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\ring_fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_usb_vom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usb_vom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -16434,6 +17789,91 @@
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+        </Group>
+        <Group>
+          <GroupName>usb/phy</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_phy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_phy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\phy\usb_phy.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usb/device</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_device_ehci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ehci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ehci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_cdc_acm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_cdc_acm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_class.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_class.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_ch9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_ch9.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_dci.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_dci.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_descriptor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_descriptor.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_device_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\usb\device\usb_device_config.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>

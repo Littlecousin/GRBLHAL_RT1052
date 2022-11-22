@@ -600,7 +600,8 @@ void st_reset (void)
     amass.level_3 = hal.f_step_timer / 2000;
 #endif
     //定时器一分钟多少个脉冲
-    cycles_per_min = (float)hal.f_step_timer * 60.0f;
+	//hal.f_step_timer这里是频率？
+    cycles_per_min = (float)hal.f_step_timer * 60.0f;//24000000*60
 }
 
 // Called by spindle_set_state() to inform about RPM changes.
@@ -684,7 +685,8 @@ void st_prep_buffer (void)
         // Determine if we need to load a new planner block or if the block needs to be recomputed.
         if (pl_block == NULL)
         {
-
+			//判断当前线段拆分时间片是否完成，如果没有完成，pl_block不为空，if里的语句不会被执行。
+			//如果pl_block为空，说明当前线段时间片拆分完成，执行if里的语句，开始把下一条线段的信息读出来进行时间片拆分
             // Query planner for a queued block
 
             pl_block = sys.step_control.execute_sys_motion ? plan_get_system_motion_block() : plan_get_current_block();
@@ -1160,7 +1162,7 @@ void st_prep_buffer (void)
 		// 每步需要的时间设置为定时器的定时时间间隔
         // Compute timer ticks per step for the prepped segment.
         uint32_t cycles = (uint32_t)ceilf(cycles_per_min * inv_rate); // (cycles/step)
-        //cycles越大速度越大
+		
 
         // Record end position of segment relative to block if spindle synchronized motion
         if ((prep_segment->spindle_sync = pl_block->condition.spindle.synchronized))

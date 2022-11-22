@@ -225,7 +225,6 @@ static enqueue_realtime_command_ptr serialSetRtHandler (enqueue_realtime_command
 
 ring_fifo_t *serial_fifo_handle;
 uint8_t ring_buffer[8192] = {0};
-uint8_t temp_buffer[64] = {0};
 static uint32_t rx_count = 0;
 //待测试的fifo类型
 #define TEST_FIFO_TYPE RF_TYPE_STREAM//RF_TYPE_STREAM RF_TYPE_FRAME
@@ -277,6 +276,16 @@ const io_stream_t *serialInit (uint32_t baud_rate)
 	
 	hal.periph_port.register_pin(&rx);
 	hal.periph_port.register_pin(&tx);
+	uint32_t status;
+	UART_ModeConfig();
+	status = ring_fifo_init(&serial_fifo_handle,ring_buffer,sizeof(ring_buffer),TEST_FIFO_TYPE);
+	if(status != RF_SUCCESS)
+    {
+        while(1)
+		{
+			
+		}
+    }
     return &stream;
 }
 
@@ -291,6 +300,7 @@ void USART_IRQHandler (void)
     {
 		//接收数据中断
         data = LPUART_ReadByte(USART);
+		ring_fifo_write(serial_fifo_handle,&data,1);
 		if (!enqueue_realtime_command((char)data))
         {                                                    // Check and strip realtime commands...
             uint16_t next_head = BUFNEXT(rxbuf.head, rxbuf); // Get and increment buffer pointer
@@ -308,21 +318,5 @@ void USART_IRQHandler (void)
 		RxOverrunFlag++;
 		LPUART_ClearStatusFlags(DEBUG_UARTx, kLPUART_RxOverrunFlag);   
 	}
-	
-//    if ((kLPUART_TxDataRegEmptyFlag)&LPUART_GetStatusFlags(USART))
-//    {
-//		//发送数据中断
-//        uint_fast16_t tail = txbuf.tail;            // Get buffer pointer
-//        USART->DATA = txbuf.data[tail];               // Send next character
-//        while (!(USART->STAT & LPUART_STAT_TDRE_MASK))
-//        {
-
-//        }
-//        txbuf.tail = tail = BUFNEXT(tail, txbuf);   // and increment pointer
-//        if(tail == txbuf.head)                      // If buffer empty then
-//        // disable UART TX interrupt
-//		LPUART_DisableInterrupts(USART, kLPUART_TxDataRegEmptyInterruptEnable);      
-//	}
 	SDK_ISR_EXIT_BARRIER;
-
 }
