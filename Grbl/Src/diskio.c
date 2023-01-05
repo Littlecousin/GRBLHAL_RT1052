@@ -384,8 +384,6 @@ DSTATUS disk_initialize (
     return Stat;
 }
 
-
-
 /*-----------------------------------------------------------------------*/
 /* Get Disk Status                                                       */
 /*-----------------------------------------------------------------------*/
@@ -397,8 +395,6 @@ DSTATUS disk_status (
     if (drv) return STA_NOINIT;        /* Supports only single drive */
     return Stat;
 }
-
-
 
 /*-----------------------------------------------------------------------*/
 /* Read Sector(s)                                                        */

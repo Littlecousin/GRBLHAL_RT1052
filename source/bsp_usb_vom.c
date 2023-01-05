@@ -55,6 +55,7 @@ void BOARD_DbgConsole_Init(void);
 usb_status_t USB_DeviceCdcVcomCallback(class_handle_t handle, uint32_t event, void *param);
 usb_status_t USB_DeviceCallback(usb_device_handle handle, uint32_t event, void *param);
 
+void usbBufferInput (uint8_t *data, uint32_t length);
 /*******************************************************************************
  * Variables
  ******************************************************************************/
@@ -231,7 +232,7 @@ usb_status_t USB_DeviceCdcVcomCallback(class_handle_t handle, uint32_t event, vo
 				{	
 					
 //					ring_fifo_write(usb_fifo_handle,s_currRecvBuf,s_recvSize);
-					#ifdef USB_SERIAL_CDC
+					#if USB_SERIAL_CDC
 					usbBufferInput(s_currRecvBuf,s_recvSize);
 					#endif
 				}

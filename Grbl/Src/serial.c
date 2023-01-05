@@ -118,7 +118,7 @@ static bool serialPutC (const char c)
     txbuf.head = next_head;                             // update head pointer and
 	
 //    LPUART_EnableInterrupts(USART, kLPUART_TxDataRegEmptyInterruptEnable);// enable TX interrupts
-
+	
 	uint_fast16_t tail = txbuf.tail;            // Get buffer pointer
 	LPUART_WriteByte( USART, txbuf.data[tail]);
 	txbuf.tail = tail = BUFNEXT(tail, txbuf);   // and increment pointer

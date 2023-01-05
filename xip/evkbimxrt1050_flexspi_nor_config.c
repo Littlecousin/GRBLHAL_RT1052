@@ -22,7 +22,6 @@ __attribute__((section(".boot_hdr.conf"), used))
 #pragma location = ".boot_hdr.conf"
 #endif
 
-
 const flexspi_nor_config_t
     hyperflash_config =
         {

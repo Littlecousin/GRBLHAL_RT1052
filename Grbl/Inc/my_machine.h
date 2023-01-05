@@ -46,9 +46,8 @@
 // Configuration
 // Uncomment to enable.
 
-
 #define USB_SERIAL_CDC       1 // Serial communication via native USB.
-
+#define GRBL_ETH     		  0
 //#define SAFETY_DOOR_ENABLE   1 // Enable safety door input.
 //#define BLUETOOTH_ENABLE     1 // Set to 1 for HC-05 module. Requires and claims one auxillary input pin.
 //#define VFD_ENABLE           1 // Set to 1 or 2 for Huanyang VFD spindle. More here https://github.com/grblHAL/Plugins_spindle

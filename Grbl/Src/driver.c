@@ -2232,9 +2232,12 @@ bool driver_init (void)
     hal.periph_port.set_pin_description = setPeriphPinDescription;
 
     serialRegisterStreams();
-
+	
+	
 #if USB_SERIAL_CDC
     stream_connect(usbInit());
+#elif GRBL_ETH
+	stream_connect(ethInit());
 #elif !defined(UART_INSTANCE)
     stream_connect(serialInit(BAUD_RATE));
 #endif

@@ -1,3 +1,14 @@
+struct Line line_temp;
+struct Line *current_line = 0;
+volatile int32_t counter_x, counter_y, counter_z;
+uint32_t iterations;
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+struct Line {
+	uint32_t steps_x, steps_y, steps_z;
+	int32_t maximum_steps;
+	uint8_t direction_bits;
+	uint32_t rate;
+};
 
 //Configures the prescaler and ceiling of timer 1 to produce the given rate as accurately as possible.
 //Returns the actual number of cycles per interrupt

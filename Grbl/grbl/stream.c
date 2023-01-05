@@ -303,12 +303,10 @@ const io_stream_t *stream_get_base (void)
 bool stream_connect (const io_stream_t *stream)
 {
     bool ok = hal.stream_select ? hal.stream_select(stream) : stream_select(stream, true);
-
     if(ok && stream->type == StreamType_Serial && hal.periph_port.set_pin_description) {
         hal.periph_port.set_pin_description(Input_RX, (pin_group_t)(PinGroup_UART + stream->instance), "Primary UART");
         hal.periph_port.set_pin_description(Output_TX, (pin_group_t)(PinGroup_UART + stream->instance), "Primary UART");
     }
-
     return ok;
 }
 
@@ -525,7 +523,6 @@ const io_stream_t *stream_null_init (uint32_t baud_rate)
         .set_baud_rate = null_set_baudrate,
         .set_enqueue_rt_handler = null_set_rt_handler
     };
-
     return &stream;
 }
 

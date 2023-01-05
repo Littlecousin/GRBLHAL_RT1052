@@ -50,7 +50,6 @@
 #include "wall_plotter.h"
 #endif
 
-
 typedef union {
     uint8_t ok;
     struct {
@@ -94,7 +93,7 @@ static void report_driver_error (sys_state_t state)
 
     report_message(msg, Message_Plain);
 }
-
+void eth_calling();
 /**
  * @brief    main entry point
  * @return   {*}
@@ -231,7 +230,6 @@ int grbl_enter (void)
     // will return to this loop to be cleanly re-initialized.
     while (looping)
     {
-
         // Reset report entry points
         report_init_fns();
 

@@ -238,11 +238,11 @@ const io_stream_t *usbInit (void)
         .suspend_read = usbSuspendInput,
         .set_enqueue_rt_handler = usbSetRtHandler
     };
-
+	
 	USB_VCOM_Init();
     txbuf.s = txbuf.data;
     txbuf.max_length = BLOCK_TX_BUFFER_SIZE;
-
+	
     return &stream;
 }
 
