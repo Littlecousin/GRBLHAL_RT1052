@@ -4,7 +4,7 @@
  * This file is based on \src\include\lwip\opt.h
  ******************************************************************************
  * Copyright (c) 2013-2016, Freescale Semiconductor, Inc.
- * Copyright 2016-2019 NXP
+ * Copyright 2016-2018 NXP
  * All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
@@ -12,8 +12,6 @@
 
 #ifndef __LWIPOPTS_H__
 #define __LWIPOPTS_H__
-
-#include "fsl_device_registers.h"
 
 #if USE_RTOS
 
@@ -57,22 +55,23 @@
  */
 #define LWIP_SOCKET  0
 
-/**
- * LWIP_ALLOW_MEM_FREE_FROM_OTHER_CONTEXT=1: we need to free PBUF_RAM pbufs
- * from ISR context on LPC.
- */
-#if defined(FSL_FEATURE_SOC_LPC_ENET_COUNT) && (FSL_FEATURE_SOC_LPC_ENET_COUNT > 0)
-#ifndef LWIP_ALLOW_MEM_FREE_FROM_OTHER_CONTEXT
-#define LWIP_ALLOW_MEM_FREE_FROM_OTHER_CONTEXT 1
-#endif
-#endif
-
 #endif
 
 /* ---------- Core locking ---------- */
 
+#define LWIP_TCPIP_CORE_LOCKING 1
+
+void sys_lock_tcpip_core(void);
+#define LOCK_TCPIP_CORE() sys_lock_tcpip_core()
+
+void sys_unlock_tcpip_core(void);
+#define UNLOCK_TCPIP_CORE() sys_unlock_tcpip_core()
+
 void sys_check_core_locking(void);
 #define LWIP_ASSERT_CORE_LOCKED() sys_check_core_locking()
+
+void sys_mark_tcpip_thread(void);
+#define LWIP_MARK_TCPIP_THREAD() sys_mark_tcpip_thread()
 
 /* ---------- Memory options ---------- */
 /**
@@ -175,14 +174,15 @@ void sys_check_core_locking(void);
 #define TCP_LISTEN_BACKLOG 1
 #endif
 
+/* ---------- Network Interfaces options ---------- */
+/* Support netif api (in netifapi.c). */
+#ifndef LWIP_NETIF_API
+#define LWIP_NETIF_API 1
+#endif
+
 /* ---------- ICMP options ---------- */
 #ifndef LWIP_ICMP
 #define LWIP_ICMP 1
-#endif
-
-/* ---------- RAW options ---------- */
-#if !defined LWIP_RAW
-#define LWIP_RAW 1
 #endif
 
 /* ---------- DHCP options ---------- */

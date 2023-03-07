@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "override.h": "c",
+        "nuts_bolts.h": "c",
+        "planner.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c"
+    }
+}

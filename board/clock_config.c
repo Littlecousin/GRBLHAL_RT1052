@@ -143,7 +143,7 @@ sources:
  ******************************************************************************/
 const clock_arm_pll_config_t armPllConfig_BOARD_BootClockRUN =
     {
-        .loopDivider = 100,                       /* PLL loop divider, Fout = Fin * 50 */
+        .loopDivider = 88,                       /* PLL loop divider, Fout = Fin * 50 */
         .src = 0,                                 /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
     };
 const clock_sys_pll_config_t sysPllConfig_BOARD_BootClockRUN =
@@ -493,3 +493,150 @@ void BOARD_BootClockRUN(void)
     /* Set SystemCoreClock variable. */
     SystemCoreClock = BOARD_BOOTCLOCKRUN_CORE_CLOCK;
 }
+
+//void BOARD_BootClockRUN(void)
+//{
+//    /* Init RTC OSC clock frequency. */
+//    CLOCK_SetRtcXtalFreq(32768U);
+//    /* Set XTAL 24MHz clock frequency. */
+//    CLOCK_SetXtalFreq(24000000U);
+//    /* Setting PeriphClk2Mux and PeriphMux to provide stable clock before PLLs are initialed */
+//    CLOCK_SetMux(kCLOCK_PeriphClk2Mux, 1); /* Set PERIPH_CLK2 MUX to OSC */
+//    CLOCK_SetMux(kCLOCK_PeriphMux, 1);     /* Set PERIPH_CLK MUX to PERIPH_CLK2 */
+//    /* Setting the VDD_SOC to 1.5V. It is necessary to config AHB to 600Mhz. */
+//    DCDC->REG3 = (DCDC->REG3 & (~DCDC_REG3_TRG_MASK)) | DCDC_REG3_TRG(0x12);
+//    /* Waiting for DCDC_STS_DC_OK bit is asserted */
+//    while (DCDC_REG0_STS_DC_OK_MASK != (DCDC_REG0_STS_DC_OK_MASK & DCDC->REG0))
+//    {
+//    }
+//    /* Init ARM PLL. */
+//    CLOCK_InitArmPll(&armPllConfig_BOARD_BootClockRUN);
+//    /* Init System PLL. */
+//#ifndef SKIP_SYSCLK_INIT
+//    CLOCK_InitSysPll(&sysPllConfig_BOARD_BootClockRUN);
+//#endif
+//    /* Init Usb1 PLL. */
+//#if !(defined(XIP_EXTERNAL_FLASH) && (XIP_EXTERNAL_FLASH == 1))
+//    CLOCK_InitUsb1Pll(&usb1PllConfig_BOARD_BootClockRUN);
+//#endif
+//    /* Enbale Audio PLL output. */
+//    CCM_ANALOG->PLL_AUDIO |= CCM_ANALOG_PLL_AUDIO_ENABLE_MASK;
+//    /* Enbale Video PLL output. */
+//    CCM_ANALOG->PLL_VIDEO |= CCM_ANALOG_PLL_VIDEO_ENABLE_MASK;
+//    /* Enable ENET PLL output. */
+//    CCM_ANALOG->PLL_ENET |= CCM_ANALOG_PLL_ENET_ENABLE_MASK;
+//    CCM_ANALOG->PLL_ENET |= CCM_ANALOG_PLL_ENET_ENET_25M_REF_EN_MASK;
+//    /* Set periph clock2 clock source. */
+//    CLOCK_SetMux(kCLOCK_PeriphClk2Mux, 0);
+//    /* Set PERIPH_CLK2_PODF. */
+//    CLOCK_SetDiv(kCLOCK_PeriphClk2Div, 0);
+//    /* Set periph clock source. */
+//    CLOCK_SetMux(kCLOCK_PeriphMux, 0);
+//    /* Set AHB_PODF. */
+//    CLOCK_SetDiv(kCLOCK_AhbDiv, 0);
+//    /* Set IPG_PODF. */
+//    CLOCK_SetDiv(kCLOCK_IpgDiv, 3);
+//    /* Set ARM_PODF. */
+//    CLOCK_SetDiv(kCLOCK_ArmDiv, 1);
+//    /* Set preperiph clock source. */
+//    CLOCK_SetMux(kCLOCK_PrePeriphMux, 3);
+//    /* Set PERCLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_PerclkDiv, 1);
+//    /* Set per clock source. */
+//    CLOCK_SetMux(kCLOCK_PerclkMux, 0);
+//    /* Set Usdhc1 clock source. */
+//    CLOCK_SetMux(kCLOCK_Usdhc1Mux, 0);
+//    /* Set USDHC1_PODF. */
+//    CLOCK_SetDiv(kCLOCK_Usdhc1Div, 1);
+//    /* Set Usdhc2 clock source. */
+//    CLOCK_SetMux(kCLOCK_Usdhc2Mux, 0);
+//    /* Set USDHC2_PODF. */
+//    CLOCK_SetDiv(kCLOCK_Usdhc2Div, 1);
+//#ifndef SKIP_SYSCLK_INIT
+//    /* Set Semc alt clock source. */
+//    CLOCK_SetMux(kCLOCK_SemcAltMux, 0);
+//    /* Set Semc clock source. */
+//    CLOCK_SetMux(kCLOCK_SemcMux, 1);
+//    /* Set SEMC_PODF. */
+//    CLOCK_SetDiv(kCLOCK_SemcDiv, 1);
+//#endif
+//#if !(defined(XIP_EXTERNAL_FLASH) && (XIP_EXTERNAL_FLASH == 1))
+//    /* Set Flexspi clock source. */
+//    CLOCK_SetMux(kCLOCK_FlexspiMux, 0);
+//    /* Set FLEXSPI_PODF. */
+//    CLOCK_SetDiv(kCLOCK_FlexspiDiv, 1);
+//#endif
+//    /* Set Csi clock source. */
+//    CLOCK_SetMux(kCLOCK_CsiMux, 0);
+//    /* Set CSI_PODF. */
+//    CLOCK_SetDiv(kCLOCK_CsiDiv, 1);
+//    /* Set Lpspi clock source. */
+//    CLOCK_SetMux(kCLOCK_LpspiMux, 2);
+//    /* Set LPSPI_PODF. */
+//    CLOCK_SetDiv(kCLOCK_LpspiDiv, 4);
+//    /* Set Trace clock source. */
+//    CLOCK_SetMux(kCLOCK_TraceMux, 2);
+//    /* Set TRACE_PODF. */
+//    CLOCK_SetDiv(kCLOCK_TraceDiv, 2);
+//    /* Set Sai1 clock source. */
+//    CLOCK_SetMux(kCLOCK_Sai1Mux, 0);
+//    /* Set SAI1_CLK_PRED. */
+//    CLOCK_SetDiv(kCLOCK_Sai1PreDiv, 3);
+//    /* Set SAI1_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_Sai1Div, 1);
+//    /* Set Sai2 clock source. */
+//    CLOCK_SetMux(kCLOCK_Sai2Mux, 0);
+//    /* Set SAI2_CLK_PRED. */
+//    CLOCK_SetDiv(kCLOCK_Sai2PreDiv, 3);
+//    /* Set SAI2_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_Sai2Div, 1);
+//    /* Set Sai3 clock source. */
+//    CLOCK_SetMux(kCLOCK_Sai3Mux, 0);
+//    /* Set SAI3_CLK_PRED. */
+//    CLOCK_SetDiv(kCLOCK_Sai3PreDiv, 3);
+//    /* Set SAI3_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_Sai3Div, 1);
+//    /* Set Lpi2c clock source. */
+//    CLOCK_SetMux(kCLOCK_Lpi2cMux, 0);
+//    /* Set LPI2C_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_Lpi2cDiv, 0);
+//    /* Set Can clock source. */
+//    CLOCK_SetMux(kCLOCK_CanMux, 2);
+//    /* Set CAN_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_CanDiv, 1);
+//    /* Set Uart clock source. */
+//    CLOCK_SetMux(kCLOCK_UartMux, 0);
+//    /* Set UART_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_UartDiv, 0);
+//    /* Set Lcdif pre clock source. */
+//    CLOCK_SetMux(kCLOCK_LcdifPreMux, 5);
+//    /* Set LCDIF_PRED. */
+//    CLOCK_SetDiv(kCLOCK_LcdifPreDiv, 1);
+//    /* Set LCDIF_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_LcdifDiv, 3);
+//    /* Set Spdif clock source. */
+//    CLOCK_SetMux(kCLOCK_SpdifMux, 3);
+//    /* Set SPDIF0_CLK_PRED. */
+//    CLOCK_SetDiv(kCLOCK_Spdif0PreDiv, 1);
+//    /* Set SPDIF0_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_Spdif0Div, 7);
+//    /* Set Flexio1 clock source. */
+//    CLOCK_SetMux(kCLOCK_Flexio1Mux, 3);
+//    /* Set FLEXIO1_CLK_PRED. */
+//    CLOCK_SetDiv(kCLOCK_Flexio1PreDiv, 1);
+//    /* Set FLEXIO1_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_Flexio1Div, 7);
+//    /* Set Flexio2 clock source. */
+//    CLOCK_SetMux(kCLOCK_Flexio2Mux, 3);
+//    /* Set FLEXIO2_CLK_PRED. */
+//    CLOCK_SetDiv(kCLOCK_Flexio2PreDiv, 1);
+//    /* Set FLEXIO2_CLK_PODF. */
+//    CLOCK_SetDiv(kCLOCK_Flexio2Div, 7);
+//    /* Set Pll3 sw clock source. */
+//    CLOCK_SetMux(kCLOCK_Pll3SwMux, 0);
+//    /* Set lvds1 clock source. */
+//    CCM_ANALOG->MISC1 =
+//        (CCM_ANALOG->MISC1 & (~CCM_ANALOG_MISC1_LVDS1_CLK_SEL_MASK)) | CCM_ANALOG_MISC1_LVDS1_CLK_SEL(0);
+//    /* Set SystemCoreClock variable. */
+//    SystemCoreClock = BOARD_BOOTCLOCKRUN_CORE_CLOCK;
+//}

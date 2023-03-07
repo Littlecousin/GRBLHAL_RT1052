@@ -1,255 +1,521 @@
 /*
-  i2c.c - I2C support for EEPROM, keypad and Trinamic plugins
+  i2c.c - driver code for IMXRT1062 processor (on Teensy 4.0 board)
 
-  Part of grblHAL driver for STM32F4xx
+  Part of grblHAL
 
-  Copyright (c) 2018-2021 Terje Io
+  Some parts of this code is Copyright (c) 2020-2021 Terje Io
 
-  Grbl is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+  Some parts are derived/pulled from WireIMXRT.cpp in the Teensyduino Core Library (no copyright header)
 
-  Grbl is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <main.h>
+#include "driver.h"
+
+#ifdef I2C_PORT
+
+#include <string.h>
 
 #include "i2c.h"
-#include "grbl/hal.h"
 
+#if EEPROM_ENABLE
+#include "eeprom/eeprom.h"
+#include "bsp_i2c_eeprom.h"
+#endif
+
+#define i2cIsBusy (!(i2c.state == I2CState_Idle || i2c.state == I2CState_Error) || (port->MSR & (LPI2C_MSR_BBF_MASK|LPI2C_MSR_MBF_MASK)))
+
+// Timeout if a device stretches SCL this long, in microseconds
+#define CLOCK_STRETCH_TIMEOUT 15000
+#define PINCONFIG (IOMUXC_PAD_ODE | IOMUXC_PAD_SRE | IOMUXC_PAD_DSE(4) | IOMUXC_PAD_SPEED(1) | IOMUXC_PAD_PKE | IOMUXC_PAD_PUE | IOMUXC_PAD_PUS(3))
+
+//typedef struct {
+//    volatile uint32_t *clock_gate_register;
+//    uint32_t clock_gate_mask;
+//    pin_info_t sda_pin;
+//    pin_info_t scl_pin;
+//    IMXRT_LPI2C_t *port;
+//    enum IRQ_NUMBER_t irq;
+//} i2c_hardware_t;
+
+#if I2C_PORT == 0
+
+#define SCL_PIN 19
+#define SDA_PIN 18
+
+//static const i2c_hardware_t i2c1_hardware = {
+//    .clock_gate_register = &CCM_CCGR2,
+//    .clock_gate_mask = CCM_CCGR2_LPI2C1(CCM_CCGR_ON),
+//    .port = &IMXRT_LPI2C1,
+//    .irq = IRQ_LPI2C1,
+//    .sda_pin = {
+//        .pin = SDA_PIN,
+//        .mux_val = 3 | 0x10,
+//        .select_reg = kIOMUXC_LPI2C1_SDA_SELECT_INPUT,
+//        .select_val = 1
+//    },
+//    .scl_pin = {
+//        .pin = SCL_PIN,
+//        .mux_val = 3 | 0x10,
+//        .select_reg = kIOMUXC_LPI2C1_SDA_SELECT_INPUT,
+//        .select_val = 1
+//    }
+//};
+#endif
+
+//static bool force_clock (const i2c_hardware_t *hardware)
+//{
+//    bool ret = false;
+//    uint32_t sda_pin = hardware->sda_pin.pin;
+//    uint32_t scl_pin = hardware->scl_pin.pin;
+//    uint32_t sda_mask = digitalPinToBitMask(sda_pin);
+//    uint32_t scl_mask = digitalPinToBitMask(scl_pin);
+//    // take control of pins with GPIO
+//    *portConfigRegister(sda_pin) = 5 | 0x10;
+//    *portSetRegister(sda_pin) = sda_mask;
+//    *portModeRegister(sda_pin) |= sda_mask;
+//    *portConfigRegister(scl_pin) = 5 | 0x10;
+//    *portSetRegister(scl_pin) = scl_mask;
+//    *portModeRegister(scl_pin) |= scl_mask;
+//    delayMicroseconds(10);
+//    for (int i=0; i < 9; i++) {
+//        if ((*portInputRegister(sda_pin) & sda_mask) && (*portInputRegister(scl_pin) & scl_mask)) {
+//            // success, both pins are high
+//            ret = true;
+//            break;
+//        }
+//        *portClearRegister(scl_pin) = scl_mask;
+//        delayMicroseconds(5);
+//        *portSetRegister(scl_pin) = scl_mask;
+//        delayMicroseconds(5);
+//    }
+//    // return control of pins to I2C
+//    *(portConfigRegister(sda_pin)) = hardware->sda_pin.mux_val;
+//    *(portConfigRegister(scl_pin)) = hardware->scl_pin.mux_val;
+
+//    return ret;
+//}
+
+//static void set_clock (IMXRT_LPI2C_t *port, uint32_t frequency)
+//{
+//    port->MCR = 0;
+
+//    if (frequency < 400000) {
+//        // 100 kHz
+//        port->MCCR0 = LPI2C_MCCR0_CLKHI(55) | LPI2C_MCCR0_CLKLO(59) | LPI2C_MCCR0_DATAVD(25) | LPI2C_MCCR0_SETHOLD(40);
+//        port->MCFGR1 = LPI2C_MCFGR1_PRESCALE(1);
+//        port->MCFGR2 = LPI2C_MCFGR2_FILTSDA(5) | LPI2C_MCFGR2_FILTSCL(5) | LPI2C_MCFGR2_BUSIDLE(3000); // idle timeout 250 us
+//        port->MCFGR3 = LPI2C_MCFGR3_PINLOW(CLOCK_STRETCH_TIMEOUT * 12 / 256 + 1);
+//    } else if (frequency < 1000000) {
+//        // 400 kHz
+//        port->MCCR0 = LPI2C_MCCR0_CLKHI(26) | LPI2C_MCCR0_CLKLO(28) | LPI2C_MCCR0_DATAVD(12) | LPI2C_MCCR0_SETHOLD(18);
+//        port->MCFGR1 = LPI2C_MCFGR1_PRESCALE(0);
+//        port->MCFGR2 = LPI2C_MCFGR2_FILTSDA(2) | LPI2C_MCFGR2_FILTSCL(2) | LPI2C_MCFGR2_BUSIDLE(3600); // idle timeout 150 us
+//        port->MCFGR3 = LPI2C_MCFGR3_PINLOW(CLOCK_STRETCH_TIMEOUT * 24 / 256 + 1);
+//    } else {
+//        // 1 MHz
+//        port->MCCR0 = LPI2C_MCCR0_CLKHI(9) | LPI2C_MCCR0_CLKLO(10) | LPI2C_MCCR0_DATAVD(4) | LPI2C_MCCR0_SETHOLD(7);
+//        port->MCFGR1 = LPI2C_MCFGR1_PRESCALE(0);
+//        port->MCFGR2 = LPI2C_MCFGR2_FILTSDA(1) | LPI2C_MCFGR2_FILTSCL(1) | LPI2C_MCFGR2_BUSIDLE(2400); // idle timeout 100 us
+//        port->MCFGR3 = LPI2C_MCFGR3_PINLOW(CLOCK_STRETCH_TIMEOUT * 24 / 256 + 1);
+//    }
+//    port->MCCR1 = port->MCCR0;
+//    port->MCFGR0 = 0;
+//    port->MFCR = LPI2C_MFCR_RXWATER(0) | LPI2C_MFCR_TXWATER(1);
+//    port->MCR = LPI2C_MCR_MEN;
+//}
+
+typedef enum {
+    I2CState_Idle = 0,
+    I2CState_Restart,
+    I2CState_SendAddr,
+    I2CState_SendNext,
+    I2CState_SendLast,
+    I2CState_AwaitCompletion,
+    I2CState_ReceiveNext,
+    I2CState_ReceiveNextToLast,
+    I2CState_ReceiveLast,
+    I2CState_Poll,
+    I2CState_Error
+} i2c_state_t;
+
+typedef struct {
+    volatile i2c_state_t state;
+    uint8_t addr;
+    volatile uint16_t count;
+    volatile uint16_t rcount;
+    volatile uint8_t acount;
+    uint8_t *data;
+    uint8_t regaddr[2];
 #if KEYPAD_ENABLE == 1
-#include "keypad/keypad.h"
+    keycode_callback_ptr keycode_callback;
 #endif
+    uint8_t buffer[8];
+} i2c_trans_t;
 
-#if I2C_ENABLE
+static i2c_trans_t i2c;
+static uint8_t tx_fifo_size;
+//static const i2c_hardware_t *hardware;
+//static IMXRT_LPI2C_t *port = NULL;
 
-#ifdef I2C1_ALT_PINMAP
-  #define I2C1_SCL_PIN 6
-  #define I2C1_SDA_PIN 7
-#else
-  #define I2C1_SCL_PIN 8
-  #define I2C1_SDA_PIN 9
-#endif
-
-#define I2Cport(p) I2CportI(p)
-#define I2CportI(p) I2C ## p
-
-#define I2CPORT I2Cport(I2C_PORT)
-
-static I2C_HandleTypeDef i2c_port = {
-    .Instance = I2CPORT,
-    .Init.ClockSpeed = 100000,
-    .Init.DutyCycle = I2C_DUTYCYCLE_2,
-    .Init.OwnAddress1 = 0,
-    .Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT,
-    .Init.DualAddressMode = I2C_DUALADDRESS_DISABLE,
-    .Init.OwnAddress2 = 0,
-    .Init.GeneralCallMode = I2C_GENERALCALL_DISABLE,
-    .Init.NoStretchMode = I2C_NOSTRETCH_DISABLE
-};
+static void I2C_interrupt_handler (void);
 
 void i2c_init (void)
 {
-#if I2C_PORT == 1
-    GPIO_InitTypeDef GPIO_InitStruct = {
-        .Pin = (1 << I2C1_SCL_PIN)|(1 << I2C1_SDA_PIN),
-        .Mode = GPIO_MODE_AF_OD,
-        .Pull = GPIO_PULLUP,
-        .Speed = GPIO_SPEED_FREQ_VERY_HIGH,
-        .Alternate = GPIO_AF4_I2C1
-    };
-    GPIO_PinInit(GPIOB, &GPIO_InitStruct);
+    static bool init_ok = false;
 
-    __HAL_RCC_I2C1_CLK_ENABLE();
+    if(!init_ok) {
 
-    HAL_I2C_Init(&i2c_port);
+        init_ok = true;
 
-    HAL_NVIC_EnableIRQ(I2C1_EV_IRQn);
-    HAL_NVIC_EnableIRQ(I2C1_ER_IRQn);
-
-    static const periph_pin_t scl = {
-        .function = Output_SCK,
-        .group = PinGroup_I2C,
-        .port = GPIOB,
-        .pin = I2C1_SCL_PIN,
-        .mode = { .mask = PINMODE_OD }
-    };
-
-    static const periph_pin_t sda = {
-        .function = Bidirectional_SDA,
-        .group = PinGroup_I2C,
-        .port = GPIOB,
-        .pin = I2C1_SDA_PIN,
-        .mode = { .mask = PINMODE_OD }
-    };
+#ifndef I2C_PORT
+#error "I2C port is undefined!"
 #endif
 
-#if I2C_PORT == 2
-    GPIO_InitTypeDef GPIO_InitStruct = {
-        .Pin = GPIO_PIN_10|GPIO_PIN_11,
-        .Mode = GPIO_MODE_AF_OD,
-        .Pull = GPIO_PULLUP,
-        .Speed = GPIO_SPEED_FREQ_VERY_HIGH,
-        .Alternate = GPIO_AF4_I2C2
-    };
-    GPIO_PinInit(GPIOB, &GPIO_InitStruct);
-
-    __HAL_RCC_I2C2_CLK_ENABLE();
-
-    HAL_I2C_Init(&i2c_port);
-
-    HAL_NVIC_EnableIRQ(I2C2_EV_IRQn);
-    HAL_NVIC_EnableIRQ(I2C2_ER_IRQn);
-
-    static const periph_pin_t scl = {
-        .function = Output_SCK,
-        .group = PinGroup_I2C,
-        .port = GPIOB,
-        .pin = 10,
-        .mode = { .mask = PINMODE_OD }
-    };
-
-    static const periph_pin_t sda = {
-        .function = Bidirectional_SDA,
-        .group = PinGroup_I2C,
-        .port = GPIOB,
-        .pin = 11,
-        .mode = { .mask = PINMODE_OD }
-    };
+#if I2C_PORT == 0
+//        hardware = &i2c1_hardware;
 #endif
 
-    hal.periph_port.register_pin(&scl);
-    hal.periph_port.register_pin(&sda);
+//        port = hardware->port;
+//        tx_fifo_size = 1 << (port->PARAM & 0b1111);
+
+//        CCM_CSCDR2 = (CCM_CSCDR2 & ~CCM_CSCDR2_LPI2C_CLK_PODF(63)) | CCM_CSCDR2_LPI2C_CLK_SEL;
+//        *hardware->clock_gate_register |= hardware->clock_gate_mask;
+//        port->MCR = LPI2C_MCR_RST;
+
+//        set_clock(port, 100000);
+
+//        // Setup SDA register
+//        *(portControlRegister(hardware->sda_pin.pin)) = PINCONFIG;
+//        *(portConfigRegister(hardware->sda_pin.pin)) = hardware->sda_pin.mux_val;
+//        *(hardware->sda_pin.select_reg) =  hardware->sda_pin.select_val;
+
+//        // setup SCL register
+//        *(portControlRegister(hardware->scl_pin.pin)) = PINCONFIG;
+//        *(portConfigRegister(hardware->scl_pin.pin)) = hardware->scl_pin.mux_val;
+//        *(hardware->scl_pin.select_reg) =  hardware->scl_pin.select_val;
+
+//        attachInterruptVector(hardware->irq, I2C_interrupt_handler);
+
+//        NVIC_SET_PRIORITY(hardware->irq, 1);
+//        NVIC_ENABLE_IRQ(hardware->irq);
+
+        static const periph_pin_t scl = {
+            .function = Output_SCK,
+            .group = PinGroup_I2C,
+            .pin = SCL_PIN,
+            .mode = { .mask = PINMODE_OD }
+        };
+
+        static const periph_pin_t sda = {
+            .function = Bidirectional_SDA,
+            .group = PinGroup_I2C,
+            .pin = SDA_PIN,
+            .mode = { .mask = PINMODE_OD }
+        };
+		I2C_EEPROM_Init();
+        hal.periph_port.register_pin(&scl);
+        hal.periph_port.register_pin(&sda);
+    }
 }
 
-#if I2C_PORT == 1
-void I2C1_EV_IRQHandler(void)
-{
-  HAL_I2C_EV_IRQHandler(&i2c_port);
-}
+// wait until ready for transfer, try peripheral reset if bus hangs
+//inline static bool wait_ready (void)
+//{
+//    while(i2cIsBusy) {
+//        if(port->MSR & LPI2C_MSR_PLTF) {
+//            if(force_clock(hardware)) {
+//                port->MCR = LPI2C_MCR_RST;
+//                set_clock(port, 100000);
+//            } else
+//                return false;
+//        }
+//    }
 
-void I2C1_ER_IRQHandler(void)
-{
-  HAL_I2C_ER_IRQHandler(&i2c_port);
-}
-#else
-void I2C2_EV_IRQHandler(void)
-{
-  HAL_I2C_EV_IRQHandler(&i2c_port);
-}
+//    return true;
+//}
 
-void I2C2_ER_IRQHandler(void)
-{
-  HAL_I2C_ER_IRQHandler(&i2c_port);
-}
-#endif
+// get bytes (max 8 if local buffer, else max 255), waits for result
+//uint8_t *I2C_Receive (uint32_t i2cAddr, uint8_t *buf, uint16_t bytes, bool block)
+//{
+//    i2c.data  = buf ? buf : i2c.buffer;
+//    i2c.count = bytes;
+//    i2c.rcount = 0;
+//    i2c.state = bytes == 1 ? I2CState_ReceiveLast : (bytes == 2 ? I2CState_ReceiveNextToLast : I2CState_ReceiveNext);
+
+//    port->MSR = 0;
+//    port->MTDR = LPI2C_MTDR_CMD_START | (i2cAddr << 1) | 1;
+//    port->MTDR = LPI2C_MTDR_CMD_RECEIVE | ((uint32_t)i2c.count - 1);
+//    port->MIER = LPI2C_MIER_NDIE|LPI2C_MIER_RDIE;
+
+//    if(block)
+//        while(i2cIsBusy);
+
+//    return i2c.buffer;
+//}
+
+//bool I2C_Send (uint32_t i2cAddr, uint8_t *buf, uint16_t bytes, bool block)
+//{
+//    i2c.count = bytes;
+//    i2c.data  = buf ? buf : i2c.buffer;
+
+//    port->MSR = 0;
+//    port->MTDR = LPI2C_MTDR_CMD_START | (i2cAddr << 1);
+
+//    while(i2c.count && (port->MFSR & 0b111) < tx_fifo_size) {
+//        port->MTDR = LPI2C_MTDR_CMD_TRANSMIT | (uint32_t)(*i2c.data++);
+//        i2c.count--;
+//    }
+
+//    port->MIER = LPI2C_MIER_NDIE|LPI2C_MIER_TDIE;
+
+//    i2c.state = i2c.count == 0 ? I2CState_AwaitCompletion : (i2c.count == 1 ? I2CState_SendLast : I2CState_SendNext);
+
+//    if(block) {
+//        while(i2cIsBusy) {
+//            if(bytes == 0) {
+//                hal.delay_ms(2, 0);
+//                if(port->MSR & LPI2C_MSR_PLTF) {
+//                    wait_ready();
+//                    i2c.state = I2CState_Error;
+//                }
+//            }
+//        }
+//    }
+
+//    return !block || i2c.state != I2CState_Error;
+//}
+
+//uint8_t *I2C_ReadRegister (uint32_t i2cAddr, uint8_t *buf, uint8_t abytes, uint16_t bytes, bool block)
+//{
+//    while(i2cIsBusy);
+
+//    i2c.addr   = i2cAddr;
+//    i2c.count  = bytes;
+//    i2c.rcount = 0;
+//    i2c.acount = abytes;
+//    i2c.data   = buf ? buf : i2c.buffer;
+//    i2c.state  = I2CState_SendAddr;
+
+//    port->MSR = 0;
+//    port->MTDR = LPI2C_MTDR_CMD_START | (i2cAddr << 1);
+//    port->MIER = LPI2C_MIER_NDIE|LPI2C_MIER_TDIE;
+
+//    if(block)
+//        while(i2cIsBusy);
+
+//    return i2c.buffer;
+//}
 
 #if EEPROM_ENABLE
 
-nvs_transfer_result_t i2c_nvs_transfer (nvs_transfer_t *i2c, bool read)
+/*
+typedef struct {
+    uint8_t address;
+    uint8_t word_addr_bytes;
+    uint16_t word_addr;
+    volatile uint_fast16_t count;
+    bool add_checksum;
+    uint8_t checksum;
+    uint8_t *data;
+} nvs_transfer_t;
+*/
+
+nvs_transfer_result_t i2c_nvs_transfer (nvs_transfer_t *transfer, bool read)
 {
-    while (HAL_I2C_GetState(&i2c_port) != HAL_I2C_STATE_READY);
+//    if(read)
+//        ret = I2C_EEPROM_Buffer_Read(transfer->address << 1, i2c->word_addr, i2c->word_addr_bytes == 2 ? I2C_MEMADD_SIZE_16BIT : I2C_MEMADD_SIZE_8BIT, i2c->data, i2c->count, 100);
+//    else {
+//        ret = I2C_EEPROM_Buffer_Write(transfer->address << 1, i2c->word_addr, i2c->word_addr_bytes == 2 ? I2C_MEMADD_SIZE_16BIT : I2C_MEMADD_SIZE_8BIT, i2c->data, i2c->count, 100);
+    if(read) 
+	{
+		I2C_EEPROM_Buffer_Read(transfer->address<<1,transfer->word_addr,transfer->data,transfer->count); 
 
-//    while (HAL_I2C_IsDeviceReady(&i2c_port, (uint16_t)(0xA0), 3, 100) != HAL_OK);
-    HAL_StatusTypeDef ret;
-
-    if(read)
-        ret = HAL_I2C_Mem_Read(&i2c_port, i2c->address << 1, i2c->word_addr, i2c->word_addr_bytes == 2 ? I2C_MEMADD_SIZE_16BIT : I2C_MEMADD_SIZE_8BIT, i2c->data, i2c->count, 100);
-    else {
-        ret = HAL_I2C_Mem_Write(&i2c_port, i2c->address << 1, i2c->word_addr, i2c->word_addr_bytes == 2 ? I2C_MEMADD_SIZE_16BIT : I2C_MEMADD_SIZE_8BIT, i2c->data, i2c->count, 100);
+    } 
+	else 
+	{
+		I2C_EEPROM_Buffer_Write(transfer->address<<1,transfer->word_addr,transfer->data,transfer->count);
 #if !EEPROM_IS_FRAM
-        hal.delay_ms(5, NULL);
+        hal.delay_ms(7, NULL);
 #endif
     }
-    i2c->data += i2c->count;
-
-    return ret == HAL_OK ? NVS_TransferResult_OK : NVS_TransferResult_Failed;
+    return NVS_TransferResult_OK;
 }
 
-#endif // EEPROM_ENABLE
+#endif
 
 #if KEYPAD_ENABLE == 1
 
-static uint8_t keycode = 0;
-static keycode_callback_ptr keypad_callback = NULL;
-
 void I2C_GetKeycode (uint32_t i2cAddr, keycode_callback_ptr callback)
 {
-    keycode = 0;
-    keypad_callback = callback;
-
-    HAL_I2C_Master_Receive_IT(&i2c_port, KEYPAD_I2CADDR << 1, &keycode, 1);
-}
-
-void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c)
-{
-    if(keypad_callback && keycode != 0) {
-        keypad_callback(keycode);
-        keypad_callback = NULL;
+    if(wait_ready()) {
+        i2c.keycode_callback = callback;
+        I2C_Receive(i2cAddr, NULL, 1, false);
     }
 }
 
-#endif // KEYPAD_ENABLE == 1
+#endif
 
 #if TRINAMIC_ENABLE && TRINAMIC_I2C
 
-static uint16_t axis = 0xFF;
-static const uint8_t tmc_addr = I2C_ADR_I2CBRIDGE << 1;
-
-TMC_spi_status_t tmc_spi_read (trinamic_motor_t driver, TMC_spi_datagram_t *reg)
+static TMC2130_status_t I2C_TMC_ReadRegister (TMC2130_t *driver, TMC2130_datagram_t *reg)
 {
-    uint8_t buffer[5] = {0};
-    TMC_spi_status_t status = 0;
+    uint8_t *res, i2creg;
+    TMC2130_status_t status = {0};
 
-    if(driver.axis != axis) {
-        buffer[0] = driver.axis | 0x80;
-        HAL_I2C_Mem_Write(&i2c_port, tmc_addr, axis, I2C_MEMADD_SIZE_8BIT, buffer, 1, 100);
+    if((i2creg = TMCI2C_GetMapAddress((uint8_t)(driver ? (uint32_t)driver->cs_pin : 0), reg->addr).value) == 0xFF)
+        return status; // unsupported register
 
-        axis = driver.axis;
-    }
+    while(i2cIsBusy);
 
-    HAL_I2C_Mem_Read(&i2c_port, tmc_addr, (uint16_t)reg->addr.idx, I2C_MEMADD_SIZE_8BIT, buffer, 5, 100);
+    i2c.buffer[0] = i2creg;
+    i2c.buffer[1] = 0;
+    i2c.buffer[2] = 0;
+    i2c.buffer[3] = 0;
+    i2c.buffer[4] = 0;
 
-    status = buffer[0];
-    reg->payload.value = buffer[4];
-    reg->payload.value |= buffer[3] << 8;
-    reg->payload.value |= buffer[2] << 16;
-    reg->payload.value |= buffer[1] << 24;
+    res = I2C_ReadRegister(I2C_ADR_I2CBRIDGE, NULL, 5, true);
+
+    status.value = (uint8_t)*res++;
+    reg->payload.value = ((uint8_t)*res++ << 24);
+    reg->payload.value |= ((uint8_t)*res++ << 16);
+    reg->payload.value |= ((uint8_t)*res++ << 8);
+    reg->payload.value |= (uint8_t)*res++;
 
     return status;
 }
 
-TMC_spi_status_t tmc_spi_write (trinamic_motor_t driver, TMC_spi_datagram_t *reg)
+static TMC2130_status_t I2C_TMC_WriteRegister (TMC2130_t *driver, TMC2130_datagram_t *reg)
 {
-    uint8_t buffer[4];
-    TMC_spi_status_t status = 0;
+    TMC2130_status_t status = {0};
 
-    if(driver.axis != axis) {
-        buffer[0] = driver.axis | 0x80;
-        HAL_I2C_Mem_Write(&i2c_port, tmc_addr, axis, I2C_MEMADD_SIZE_8BIT, buffer, 1, 100);
-
-        axis = driver.axis;
-    }
-
-    buffer[0] = (reg->payload.value >> 24) & 0xFF;
-    buffer[1] = (reg->payload.value >> 16) & 0xFF;
-    buffer[2] = (reg->payload.value >> 8) & 0xFF;
-    buffer[3] = reg->payload.value & 0xFF;
+    while(i2cIsBusy);
 
     reg->addr.write = 1;
-    HAL_I2C_Mem_Write(&i2c_port, tmc_addr, (uint16_t)reg->addr.idx, I2C_MEMADD_SIZE_8BIT, buffer, 4, 100);
+    i2c.buffer[0] = TMCI2C_GetMapAddress((uint8_t)(driver ? (uint32_t)driver->cs_pin : 0), reg->addr).value;
     reg->addr.write = 0;
+
+    if(i2c.buffer[0] == 0xFF)
+        return status; // unsupported register
+
+    i2c.buffer[1] = (reg->payload.value >> 24) & 0xFF;
+    i2c.buffer[2] = (reg->payload.value >> 16) & 0xFF;
+    i2c.buffer[3] = (reg->payload.value >> 8) & 0xFF;
+    i2c.buffer[4] = reg->payload.value & 0xFF;
+
+    I2C_Send(I2C_ADR_I2CBRIDGE, NULL, 5, true);
 
     return status;
 }
 
-#endif // TRINAMIC_ENABLE && TRINAMIC_I2C
+void I2C_DriverInit (TMC_io_driver_t *driver)
+{
+    i2c_init();
+    driver->WriteRegister = I2C_TMC_WriteRegister;
+    driver->ReadRegister = I2C_TMC_ReadRegister;
+}
 
-#endif // I2C_ENABLE
+#endif
+
+//static void I2C_interrupt_handler (void)
+//{
+//    uint32_t ifg = port->MSR & 0xFFFF;
+
+//    port->MSR &= ~ifg;
+
+//if((ifg & port->MIER) == 0) return;
+
+////if(port->MSR & LPI2C_MSR_MBF) return;
+///*
+//hal.stream.write("I:");
+//hal.stream.write(uitoa(ifg));
+//hal.stream.write(" ");
+//hal.stream.write(uitoa(i2c.state));
+//hal.stream.write(ASCII_EOL);
+//*/
+//    if(ifg & LPI2C_MSR_ALF) {
+//        port->MTDR = LPI2C_MTDR_CMD_STOP;
+//        i2c.state = I2CState_Error;
+//    }
+
+//    if(ifg & LPI2C_MSR_NDF)
+//        i2c.state = I2CState_Error;
+
+//    switch(i2c.state) {
+
+//        case I2CState_Idle:
+//        case I2CState_Error:
+//            port->MIER = 0;
+//            port->MCR |= (LPI2C_MCR_RTF|LPI2C_MCR_RRF);
+//            break;
+
+//        case I2CState_SendNext:
+//            port->MTDR = LPI2C_MTDR_CMD_TRANSMIT | (uint32_t)(*i2c.data++);
+//            if(--i2c.count == 1)
+//                i2c.state = I2CState_SendLast;
+//            break;
+
+//        case I2CState_SendLast:
+//            port->MTDR = LPI2C_MTDR_CMD_TRANSMIT | (uint32_t)(*i2c.data++);
+//            i2c.state = I2CState_AwaitCompletion;
+//            break;
+
+//        case I2CState_AwaitCompletion:
+//            port->MIER &= ~LPI2C_MIER_TDIE;
+//            port->MTDR = LPI2C_MTDR_CMD_STOP;
+//            i2c.count = 0;
+//            i2c.state = I2CState_Idle;
+//            break;
+
+//        case I2CState_SendAddr:
+//            port->MTDR = LPI2C_MTDR_CMD_TRANSMIT | (uint32_t)(i2c.regaddr[--i2c.acount]);
+//            if(i2c.acount == 0)
+//                i2c.state = I2CState_Restart;  
+//            break;
+
+//        case I2CState_Restart:
+//            if(port->MIER & LPI2C_MIER_TDIE) {
+//                port->MIER &= ~LPI2C_MIER_TDIE;
+//                port->MIER |= LPI2C_MIER_EPIE;
+//                port->MTDR = LPI2C_MTDR_CMD_START | (i2c.addr << 1) | 1;
+//            } else if(port->MIER & LPI2C_MIER_EPIE) {
+//                port->MIER &= ~LPI2C_MIER_EPIE;
+//                port->MIER |= LPI2C_MIER_RDIE;
+//                port->MTDR = LPI2C_MTDR_CMD_RECEIVE | ((uint32_t)i2c.count - 1);
+//                i2c.state = i2c.count == 1 ? I2CState_ReceiveLast : (i2c.count == 2 ? I2CState_ReceiveNextToLast : I2CState_ReceiveNext);
+//            }
+//            break;
+
+//        case I2CState_ReceiveNext: // superfluous, to be removed...
+//            *i2c.data++ = port->MRDR & 0xFF;
+//            if(--i2c.count == 1) {
+//                i2c.state = I2CState_ReceiveLast;
+//            }
+//            ++i2c.rcount;
+//            break;
+
+//        case I2CState_ReceiveNextToLast:
+//            *i2c.data++ = port->MRDR & 0xFF;
+////            port->MTDR = LPI2C_MTDR_CMD_STOP;
+//            i2c.count--;
+//            i2c.state = I2CState_ReceiveLast;
+//            break;
+
+//        case I2CState_ReceiveLast:
+//            *i2c.data = port->MRDR & 0xFF;
+//            i2c.count = 0;
+//            i2c.state = I2CState_Idle;
+//            port->MTDR = LPI2C_MTDR_CMD_STOP;
+//          #if KEYPAD_ENABLE == 1
+//            if(i2c.keycode_callback) {
+//                i2c.keycode_callback(*i2c.data);
+//                i2c.keycode_callback = NULL;
+//            }
+//          #endif
+//            break;
+
+//        default:
+//            break;
+//    }
+//}
+
+#endif

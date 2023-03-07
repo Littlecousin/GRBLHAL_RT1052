@@ -92,6 +92,12 @@ void mc_sync_backlash_position (void)
 // segments, must pass through this routine before being passed to the planner. The seperation of
 // mc_line and plan_buffer_line is done primarily to place non-planner-type functions from being
 // in the planner and to let backlash compensation or canned cycle integration simple and direct.
+/**
+ * @brief    线段处理
+ * @param    {float} *target-线段移动到的最终位置，单位是mm，也就是说当前线段移动的长度是target值减去之前的所有线段的移动长度；
+ * @param    {plan_line_data_t} *pl_data-加工平面信息
+ * @return   {*}
+ */
 bool mc_line (float *target, plan_line_data_t *pl_data)
 {
 
@@ -128,7 +134,7 @@ bool mc_line (float *target, plan_line_data_t *pl_data)
 #endif
 
 #ifdef ENABLE_BACKLASH_COMPENSATION
-
+        // 反向间隙补偿
         if(backlash_enabled.mask) {
 
             bool backlash_comp = false;
@@ -224,163 +230,198 @@ bool mc_line (float *target, plan_line_data_t *pl_data)
 // The arc is approximated by generating a huge number of tiny, linear segments. The chordal tolerance
 // of each segment is configured in settings.arc_tolerance, which is defined to be the maximum normal
 // distance from segment to the circle when the end points both lie on the circle.
-void mc_arc (float *target, plan_line_data_t *pl_data, float *position, float *offset, float radius, plane_t plane, int32_t turns)
+/**
+ * @brief    GRBL中把圆弧拆分成多条逼近的直线段，然后对直线段进行插补，这种方法也就是俗称的把复杂曲线拆分成多条逼近的直线的插补方法。
+ * @param    {float} *target-圆弧终点坐标
+ * @param    {plan_line_data_t} *pl_data
+ * @param    {float} *position-圆弧起始点位置坐标，这里设为(x0,y0,z0)
+ * @param    {float} *offset-圆心相对于起始点的偏移向量，这里设为(rx,ry,yz)，那么圆心坐标为(x0+rx,y0+ry,z0+rz)
+ * @param    {float} radius-圆弧半径长度
+ * @param    {plane_t} plane-圆弧平面
+ * @param    {int32_t} turns-旋转方向和
+ * @return   {*}
+ */
+void mc_arc(float *target, plan_line_data_t *pl_data, float *position, float *offset, float radius, plane_t plane, int32_t turns)
 {
+    // 圆弧所在平面的圆心坐标
     float center_axis0 = position[plane.axis_0] + offset[plane.axis_0];
     float center_axis1 = position[plane.axis_1] + offset[plane.axis_1];
-    float r_axis0 = -offset[plane.axis_0];  // Radius vector from center to current location
+    // 圆心指向圆弧起始点的向量坐标
+    float r_axis0 = -offset[plane.axis_0]; // Radius vector from center to current location
     float r_axis1 = -offset[plane.axis_1];
+    // 圆心指向圆弧终点的向量坐标
     float rt_axis0 = target[plane.axis_0] - center_axis0;
     float rt_axis1 = target[plane.axis_1] - center_axis1;
-    // CCW angle between position and target from circle center. Only one atan2() trig computation required.
+	// angular_travel是圆心角度数（弧度制）90°-> pi/2
+    // 计算圆心到圆弧起始点向量b(r_axis0 ,r_axis1)和圆心到圆弧终点向量c(rt_axis0 ,rt_axis1)的夹角的正切值，注意夹角a的方向是起始点向量b逆时针转向终点向量c的角，
+    // 这个在后面判断角度值符号时会用到。根据向量夹角余弦公式，推出向量夹角正切公式，套入向量b和向量c的坐标，即可得出tana。下面公式中的atan2是反正切函数，a=atan2(y,x)，即角度a=y/x的正切值
+    //  CCW angle between position and target from circle center. Only one atan2() trig computation required.
     float angular_travel = atan2f(r_axis0 * rt_axis1 - r_axis1 * rt_axis0, r_axis0 * rt_axis0 + r_axis1 * rt_axis1);
 
-    if (turns > 0) { // Correct atan2 output per direction
+    if (turns > 0)
+    { // Correct atan2 output per direction
         if (angular_travel >= -ARC_ANGULAR_TRAVEL_EPSILON)
+        {//如果圆弧顺时针移动，角度应该是负值，如果计算出的角度为正值，需要在计算出的角度基础上减去2*pi
             angular_travel -= 2.0f * M_PI;
-    } else if (angular_travel <= ARC_ANGULAR_TRAVEL_EPSILON)
-        angular_travel += 2.0f * M_PI;
-
-    if(labs(turns) > 1) {
-
-        uint32_t n_turns = labs(turns) - 1;
-        float arc_travel = 2.0f * M_PI * n_turns + angular_travel;
-        coord_data_t arc_target;
+        }
+    }
+    else if (angular_travel <= ARC_ANGULAR_TRAVEL_EPSILON)
+    {//如果圆弧逆时针移动，角度应该是正值，如果计算出的角度为负值，需要在计算出的角度基础上加上2*pi
+      angular_travel += 2.0f * M_PI;
+    }
+    if (labs(turns) > 1)
+    {
+      uint32_t n_turns = labs(turns) - 1;
+      float arc_travel = 2.0f * M_PI * n_turns + angular_travel;
+      coord_data_t arc_target;
 #if N_AXIS > 3
-        uint_fast8_t idx = N_AXIS;
-        float linear_per_turn[N_AXIS];
-        do {
-            idx--;
-            if(!(idx == plane.axis_0 || idx == plane.axis_1))
-                linear_per_turn[idx] = (target[idx] - position[idx]) / arc_travel * 2.0f * M_PI;;
-        } while(idx);
+      uint_fast8_t idx = N_AXIS;
+      float linear_per_turn[N_AXIS];
+      do
+      {
+        idx--;
+        if (!(idx == plane.axis_0 || idx == plane.axis_1))
+            linear_per_turn[idx] = (target[idx] - position[idx]) / arc_travel * 2.0f * M_PI;
+        ;
+      } while (idx);
 #else
         float linear_per_turn = (target[plane.axis_linear] - position[plane.axis_linear]) / arc_travel * 2.0f * M_PI;
 #endif
 
-        memcpy(&arc_target, target, sizeof(coord_data_t));
+      memcpy(&arc_target, target, sizeof(coord_data_t));
 
-        arc_target.values[plane.axis_0] = position[plane.axis_0];
-        arc_target.values[plane.axis_1] = position[plane.axis_1];
-        arc_target.values[plane.axis_linear] = position[plane.axis_linear];
+      arc_target.values[plane.axis_0] = position[plane.axis_0];
+      arc_target.values[plane.axis_1] = position[plane.axis_1];
+      arc_target.values[plane.axis_linear] = position[plane.axis_linear];
 
-        while(n_turns--) {
+      while (n_turns--)
+      {
 #if N_AXIS > 3
-            idx = N_AXIS;
-            do {
-                idx--;
-                if(!(idx == plane.axis_0 || idx == plane.axis_1))
-                    arc_target.values[idx] += linear_per_turn[idx];
-            } while(idx);
+        idx = N_AXIS;
+        do
+        {
+            idx--;
+            if (!(idx == plane.axis_0 || idx == plane.axis_1))
+                arc_target.values[idx] += linear_per_turn[idx];
+        } while (idx);
 #else
-            arc_target.values[plane.axis_linear] += linear_per_turn;
+		arc_target.values[plane.axis_linear] += linear_per_turn;
 #endif
-            mc_arc(arc_target.values, pl_data, position, offset, radius, plane, turns > 0 ? 1 : -1);
-            memcpy(position, arc_target.values, sizeof(coord_data_t));
-        }
+        mc_arc(arc_target.values, pl_data, position, offset, radius, plane, turns > 0 ? 1 : -1);
+        memcpy(position, arc_target.values, sizeof(coord_data_t));
+      }
     }
 
     // NOTE: Segment end points are on the arc, which can lead to the arc diameter being smaller by up to
     // (2x) settings.arc_tolerance. For 99% of users, this is just fine. If a different arc segment fit
     // is desired, i.e. least-squares, midpoint on arc, just change the mm_per_arc_segment calculation.
     // For the intended uses of Grbl, this value shouldn't exceed 2000 for the strictest of cases.
+    // segments-小线段个数
     uint16_t segments = (uint16_t)floorf(fabsf(0.5f * angular_travel * radius) / sqrtf(settings.arc_tolerance * (2.0f * radius - settings.arc_tolerance)));
 
-    if (segments) {
-
-        // Multiply inverse feed_rate to compensate for the fact that this movement is approximated
-        // by a number of discrete segments. The inverse feed_rate should be correct for the sum of
-        // all segments.
-        if (pl_data->condition.inverse_time) {
-            pl_data->feed_rate *= segments;
-            pl_data->condition.inverse_time = Off; // Force as feed absolute mode over arc segments.
-        }
-
-        float theta_per_segment = angular_travel / segments;
+    if (segments)
+    {
+      // Multiply inverse feed_rate to compensate for the fact that this movement is approximated
+      // by a number of discrete segments. The inverse feed_rate should be correct for the sum of
+      // all segments.
+      if (pl_data->condition.inverse_time)
+      {
+        pl_data->feed_rate *= segments;
+        pl_data->condition.inverse_time = Off; // Force as feed absolute mode over arc segments.
+      }
+	  //每个小线段对应的圆心角度数
+      float theta_per_segment = angular_travel / segments;
 #if N_AXIS > 3
-        uint_fast8_t idx = N_AXIS;
-        float linear_per_segment[N_AXIS];
-        do {
-            idx--;
-            if(!(idx == plane.axis_0 || idx == plane.axis_1))
-                linear_per_segment[idx] = (target[idx] - position[idx]) / segments;
-        } while(idx);
+      uint_fast8_t idx = N_AXIS;
+      float linear_per_segment[N_AXIS];
+      do
+      {
+        idx--;
+        if (!(idx == plane.axis_0 || idx == plane.axis_1))
+            linear_per_segment[idx] = (target[idx] - position[idx]) / segments;
+      } while (idx);
 #else
         float linear_per_segment = (target[plane.axis_linear] - position[plane.axis_linear]) / segments;
 #endif
+      /* Vector rotation by transformation matrix: r is the original vector, r_T is the rotated vector,
+         and phi is the angle of rotation. Solution approach by Jens Geisler.
+             r_T = [cos(phi) -sin(phi);
+                    sin(phi)  cos(phi] * r ;
 
-    /* Vector rotation by transformation matrix: r is the original vector, r_T is the rotated vector,
-       and phi is the angle of rotation. Solution approach by Jens Geisler.
-           r_T = [cos(phi) -sin(phi);
-                  sin(phi)  cos(phi] * r ;
+         For arc generation, the center of the circle is the axis of rotation and the radius vector is
+         defined from the circle center to the initial position. Each line segment is formed by successive
+         vector rotations. Single precision values can accumulate error greater than tool precision in rare
+         cases. So, exact arc path correction is implemented. This approach avoids the problem of too many very
+         expensive trig operations [sin(),cos(),tan()] which can take 100-200 usec each to compute.
 
-       For arc generation, the center of the circle is the axis of rotation and the radius vector is
-       defined from the circle center to the initial position. Each line segment is formed by successive
-       vector rotations. Single precision values can accumulate error greater than tool precision in rare
-       cases. So, exact arc path correction is implemented. This approach avoids the problem of too many very
-       expensive trig operations [sin(),cos(),tan()] which can take 100-200 usec each to compute.
+         Small angle approximation may be used to reduce computation overhead further. A third-order approximation
+         (second order sin() has too much error) holds for most, if not, all CNC applications. Note that this
+         approximation will begin to accumulate a numerical drift error when theta_per_segment is greater than
+         ~0.25 rad(14 deg) AND the approximation is successively used without correction several dozen times. This
+         scenario is extremely unlikely, since segment lengths and theta_per_segment are automatically generated
+         and scaled by the arc tolerance setting. Only a very large arc tolerance setting, unrealistic for CNC
+         applications, would cause this numerical drift error. However, it is best to set N_ARC_CORRECTION from a
+         low of ~4 to a high of ~20 or so to avoid trig operations while keeping arc generation accurate.
 
-       Small angle approximation may be used to reduce computation overhead further. A third-order approximation
-       (second order sin() has too much error) holds for most, if not, all CNC applications. Note that this
-       approximation will begin to accumulate a numerical drift error when theta_per_segment is greater than
-       ~0.25 rad(14 deg) AND the approximation is successively used without correction several dozen times. This
-       scenario is extremely unlikely, since segment lengths and theta_per_segment are automatically generated
-       and scaled by the arc tolerance setting. Only a very large arc tolerance setting, unrealistic for CNC
-       applications, would cause this numerical drift error. However, it is best to set N_ARC_CORRECTION from a
-       low of ~4 to a high of ~20 or so to avoid trig operations while keeping arc generation accurate.
+         This approximation also allows mc_arc to immediately insert a line segment into the planner
+         without the initial overhead of computing cos() or sin(). By the time the arc needs to be applied
+         a correction, the planner should have caught up to the lag caused by the initial mc_arc overhead.
+         This is important when there are successive arc motions.
+      */
 
-       This approximation also allows mc_arc to immediately insert a line segment into the planner
-       without the initial overhead of computing cos() or sin(). By the time the arc needs to be applied
-       a correction, the planner should have caught up to the lag caused by the initial mc_arc overhead.
-       This is important when there are successive arc motions.
-    */
+      // Computes: cos_T = 1 - theta_per_segment^2/2, sin_T = theta_per_segment - theta_per_segment^3/6) in ~52usec
+      float cos_T = 2.0f - theta_per_segment * theta_per_segment;
+      float sin_T = theta_per_segment * 0.16666667f * (cos_T + 4.0f);
+      cos_T *= 0.5f;
 
-        // Computes: cos_T = 1 - theta_per_segment^2/2, sin_T = theta_per_segment - theta_per_segment^3/6) in ~52usec
-        float cos_T = 2.0f - theta_per_segment * theta_per_segment;
-        float sin_T = theta_per_segment * 0.16666667f * (cos_T + 4.0f);
-        cos_T *= 0.5f;
+      float sin_Ti;
+      float cos_Ti;
+      float r_axisi;
+      uint_fast16_t i, count = 0;
 
-        float sin_Ti;
-        float cos_Ti;
-        float r_axisi;
-        uint_fast16_t i, count = 0;
+      for (i = 1; i < segments; i++)
+      { // Increment (segments-1).
 
-        for (i = 1; i < segments; i++) { // Increment (segments-1).
-
-            if (count < N_ARC_CORRECTION) {
-                // Apply vector rotation matrix. ~40 usec
-                r_axisi = r_axis0 * sin_T + r_axis1 * cos_T;
-                r_axis0 = r_axis0 * cos_T - r_axis1 * sin_T;
-                r_axis1 = r_axisi;
-                count++;
-            } else {
-                // Arc correction to radius vector. Computed only every N_ARC_CORRECTION increments.
-                // Compute exact location by applying transformation matrix from initial radius vector(=-offset).
-                cos_Ti = cosf(i * theta_per_segment);
-                sin_Ti = sinf(i * theta_per_segment);
-                r_axis0 = -offset[plane.axis_0] * cos_Ti + offset[plane.axis_1] * sin_Ti;
-                r_axis1 = -offset[plane.axis_0] * sin_Ti - offset[plane.axis_1] * cos_Ti;
-                count = 0;
-            }
-
-            // Update arc_target location
-            position[plane.axis_0] = center_axis0 + r_axis0;
-            position[plane.axis_1] = center_axis1 + r_axis1;
+        if (count < N_ARC_CORRECTION)
+        {
+            // Apply vector rotation matrix. ~40 usec
+            r_axisi = r_axis0 * sin_T + r_axis1 * cos_T;
+            r_axis0 = r_axis0 * cos_T - r_axis1 * sin_T;
+            r_axis1 = r_axisi;
+            count++;
+        }
+        else
+        {
+            // Arc correction to radius vector. Computed only every N_ARC_CORRECTION increments.
+            // Compute exact location by applying transformation matrix from initial radius vector(=-offset).
+            cos_Ti = cosf(i * theta_per_segment);
+            sin_Ti = sinf(i * theta_per_segment);
+            r_axis0 = -offset[plane.axis_0] * cos_Ti + offset[plane.axis_1] * sin_Ti;
+            r_axis1 = -offset[plane.axis_0] * sin_Ti - offset[plane.axis_1] * cos_Ti;
+            count = 0;
+        }
+        // 计算出下一条线段的起始坐标，也就是当前线段的终点坐标，前面已知当前线段的起始坐标，这样就可以把线段的坐标传递给直线插补函数mc_line进行线段插补了
+        // 设圆点为O(center_axis0,center_axis1),当前小线段终点为A(X1,Y1),r_axis0为向量OA的X坐标值,r_axis1为向量OA的Y坐标值
+        // 则X1 = r_axis0 + center_axis0,Y1 = r_axis1 + center_axis1
+        // Update arc_target location
+        position[plane.axis_0] = center_axis0 + r_axis0;//X1
+        position[plane.axis_1] = center_axis1 + r_axis1;//Y1
 #if N_AXIS > 3
-            idx = N_AXIS;
-            do {
-                idx--;
-                if(!(idx == plane.axis_0 || idx == plane.axis_1))
-                    position[idx] += linear_per_segment[idx];
-            } while(idx);
+        idx = N_AXIS;
+        do
+        {
+            idx--;
+            if (!(idx == plane.axis_0 || idx == plane.axis_1))
+                position[idx] += linear_per_segment[idx];
+        } while (idx);
 #else
             position[plane.axis_linear] += linear_per_segment;
 #endif
 
-            // Bail mid-circle on system abort. Runtime command check already performed by mc_line.
-            if(!mc_line(position, pl_data))
-                return;
-        }
+        // Bail mid-circle on system abort. Runtime command check already performed by mc_line.
+        if (!mc_line(position, pl_data))
+            return;
+      }
     }
 
     // Ensure last segment arrives at target location.

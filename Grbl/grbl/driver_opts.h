@@ -125,10 +125,10 @@
 #endif
 
 #ifndef EEPROM_ENABLE
-#define EEPROM_ENABLE       0
+#define EEPROM_ENABLE       2
 #endif
 #ifndef EEPROM_IS_FRAM
-#define EEPROM_IS_FRAM      0
+#define EEPROM_IS_FRAM      1
 #endif
 
 #ifndef I2C_ENABLE
@@ -293,10 +293,10 @@
 #endif
 
 #ifndef ETHERNET_ENABLE
-#define ETHERNET_ENABLE     0
+#define ETHERNET_ENABLE     1
 #endif
 #ifndef TELNET_ENABLE
-#define TELNET_ENABLE       0
+#define TELNET_ENABLE       1
 #endif
 #ifndef HTTP_ENABLE
 #define HTTP_ENABLE         0
@@ -316,13 +316,13 @@
 #define NETWORK_HOSTNAME        "grblHAL"
 #endif
 #ifndef NETWORK_IPMODE
-#define NETWORK_IPMODE          1 // 0 = static, 1 = DHCP, 2 = AutoIP
+#define NETWORK_IPMODE          0 // 0 = static, 1 = DHCP, 2 = AutoIP
 #endif
 #ifndef NETWORK_IP
-#define NETWORK_IP              "192.168.5.1"
+#define NETWORK_IP              "192.168.3.156"
 #endif
 #ifndef NETWORK_GATEWAY
-#define NETWORK_GATEWAY         "192.168.5.1"
+#define NETWORK_GATEWAY         "192.168.3.1"
 #endif
 #ifndef NETWORK_MASK
 #define NETWORK_MASK            "255.255.255.0"
@@ -331,7 +331,7 @@
 #define NETWORK_FTP_PORT        21
 #endif
 #ifndef NETWORK_TELNET_PORT
-#define NETWORK_TELNET_PORT     23
+#define NETWORK_TELNET_PORT     30501
 #endif
 #ifndef NETWORK_HTTP_PORT
 #define NETWORK_HTTP_PORT       80

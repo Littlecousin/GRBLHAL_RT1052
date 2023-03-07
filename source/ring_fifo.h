@@ -90,7 +90,7 @@ bool ring_fifo_is_empty(ring_fifo_t *_ring);
 * @retval   fifo大小
 */
 uint32_t ring_fifo_get_size(ring_fifo_t *_ring);
-
+uint32_t ring_fifo_get_available_size(ring_fifo_t *_ring);
 #ifdef __cplusplus
 }
 #endif

@@ -207,3 +207,10 @@ uint32_t ring_fifo_get_size(ring_fifo_t *_ring)
 {
     return _ring->size;
 }
+#define BUFNEXT(ptr, buffer) ((ptr + 1) & (sizeof(buffer.data) - 1))
+#define BUFCOUNT(head, tail, size) ((head >= tail) ? (head - tail) : (size - tail + head))
+uint32_t ring_fifo_get_available_size(ring_fifo_t *_ring)
+{
+//    return _ring->size;
+	return BUFCOUNT(_ring->head,_ring->tail,_ring->size);
+}

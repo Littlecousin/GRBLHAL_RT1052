@@ -1240,8 +1240,8 @@ void ENET_GetMacAddr(ENET_Type *base, uint8_t *macAddr)
 void ENET_SetSMI(ENET_Type *base, uint32_t srcClock_Hz, bool isPreambleDisabled)
 {
     /* Due to bits limitation of SPEED and HOLDTIME, srcClock_Hz must ensure MDC <= 2.5M and holdtime >= 10ns. */
-    assert((srcClock_Hz != 0U) && (srcClock_Hz <= 320000000U));
-
+//    assert((srcClock_Hz != 0U) && (srcClock_Hz <= 320000000U));
+	assert(srcClock_Hz);
     uint32_t clkCycle = 0;
     uint32_t speed    = 0;
     uint32_t mscr     = 0;

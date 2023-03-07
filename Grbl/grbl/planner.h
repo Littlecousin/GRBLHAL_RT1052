@@ -53,7 +53,8 @@ typedef struct plan_block {
     // Fields used by the bresenham algorithm for tracing the line
     // NOTE: Used by stepper algorithm to execute the block correctly. Do not alter these values.
     uint32_t steps[N_AXIS];         // Step count along each axis
-    uint32_t step_event_count;      // The maximum step axis count and number of steps required to complete this block.
+    uint32_t step_event_count;      // 轴里移动距离最远的轴移动的步长距离
+                                    // The maximum step axis count and number of steps required to complete this block.
     axes_signals_t direction_bits;  // The direction bit set for this block (refers to *_DIRECTION_PIN in config.h)
 
     // Block condition data to ensure correct execution depending on states and overrides.
@@ -63,11 +64,15 @@ typedef struct plan_block {
 
     // Fields used by the motion planner to manage acceleration. Some of these values may be updated
     // by the stepper module during execution of special motion cases for replanning purposes.
-    float entry_speed_sqr;      // The current planned entry speed at block junction in (mm/min)^2 初速度平方
-    float max_entry_speed_sqr;  // Maximum allowable entry speed based on the minimum of junction limit and
+    float entry_speed_sqr;      // 规划线段的初速度
+                                // The current planned entry speed at block junction in (mm/min)^2 初速度平方
+    float max_entry_speed_sqr;  // 规划线段的最大初速度，根据最大转角速度和相邻块额定速度决定的最大入口速度
+                                // Maximum allowable entry speed based on the minimum of junction limit and
                                 // neighboring nominal speeds with overrides in (mm/min)^2
-    float acceleration;         // Axis-limit adjusted line acceleration in (mm/min^2). Does not change. 加速度
-    float millimeters;          // The remaining distance for this block to be executed in (mm).
+    float acceleration;         // 规划线段的加速度，由单位向量和加速度参数决定
+                                // Axis-limit adjusted line acceleration in (mm/min^2). Does not change. 加速度
+    float millimeters;          // 规划线段的运动距离
+                                // The remaining distance for this block to be executed in (mm).
                                 // NOTE: This value may be altered by stepper algorithm during execution.
 
     // Stored rate limiting data used by planner when changes occur.
@@ -103,8 +108,8 @@ typedef struct {
   int32_t position[N_AXIS];         // The planner position of the tool in absolute steps. Kept separate
                                     // from g-code position for movements requiring multiple line motions,
                                     // i.e. arcs, canned cycles, and backlash compensation.
-  float previous_unit_vec[N_AXIS];  // Unit vector of previous path line segment
-  float previous_nominal_speed;     // Nominal speed of previous path line segment
+  float previous_unit_vec[N_AXIS];  // Unit vector of previous path line segment-上一路径线段的单位向量
+  float previous_nominal_speed;     // Nominal speed of previous path line segment-上一路径线段的额定速度
 } planner_t;
 
 // Initialize and reset the motion plan subsystem

@@ -17,18 +17,30 @@ Library Manager: ArmAr.exe V6.16
 Hex Converter:   FromElf.exe V6.16
 CPU DLL:         SARMCM3.DLL V5.36.0.0
 Dialog DLL:      DCM.DLL V1.17.3.0
-Target DLL:      CMSIS_AGDI.dll V1.33.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.40.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-G:\KEIL5_PROJ\RT1050\EVKB\GrblHAL-MIMXRT1052\hello_world.uvprojx
-Project File Date:  08/12/2022
+G:\KEIL_PROJ\RT1050\R1052_EVK_MINI\GrblHAL-MIMXRT1052\hello_world.uvprojx
+Project File Date:  02/15/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'D:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'hello_world flexspi_nor_sdram_debug'
 Note: source file '.\Grbl\Src\ioports.c' - object file renamed from 'flexspi_nor_sdram_debug\ioports.o' to 'flexspi_nor_sdram_debug\ioports_1.o'.
-"flexspi_nor_sdram_debug\hello_world.out" - 0 Error(s), 0 Warning(s).
+source/main.c(32): warning: implicit declaration of function 'time_isr' is invalid in C99 [-Wimplicit-function-declaration]
+        time_isr();
+        ^
+source/main.c(65): warning: implicit declaration of function 'tcpecho_main' is invalid in C99 [-Wimplicit-function-declaration]
+        tcpecho_main();
+        ^
+2 warnings generated.
+compiling main.c...
+linking...
+MIMXRT1052/arm/MIMXRT1052xxxxx_flexspi_nor_sdram.scf(62): warning: L6329W: Pattern *(NonCacheable.init) only matches removed unused sections.
+Program Size: Code=94004 RO-data=14240 RW-data=128 ZI-data=2205012  
+Finished: 0 information, 1 warning and 0 error messages.
+"flexspi_nor_sdram_debug\hello_world.out" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -41,7 +53,7 @@ Package Vendor: NXP
   D:\Keil_v5\Packs\NXP\MIMXRT1052_DFP\12.2.0
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

@@ -48,7 +48,7 @@ typedef struct st_block {
     uint32_t step_event_count;
     axes_signals_t direction_bits;
     gc_override_flags_t overrides;    //!< Block bitfield variable for overrides
-    float steps_per_mm;
+    float steps_per_mm;                // 一毫米的步数
     float millimeters;
     float programmed_rate;
     char *message;                     //!< Message to be displayed when block is executed
@@ -104,8 +104,8 @@ typedef struct stepper {
 //    uint_fast16_t spindle_pwm;
     uint_fast16_t step_count;       //!< Steps remaining in line segment motion.
     uint32_t step_event_count;      //!< Number of step pulse events to be output by this segment.
-    st_block_t *exec_block;         //!< Pointer to the block data for the segment being executed.
-    segment_t *exec_segment;        //!< Pointer to the segment beeing executed.
+    st_block_t *exec_block;         //!< Pointer to the block data for the segment being executed.当前stepper执行的速度规划完成的块
+    segment_t *exec_segment;        //!< Pointer to the segment beeing executed.当前stepper执行的按照时间片分割的片段
 } stepper_t;
 
 // Initialize and setup the stepper motor subsystem

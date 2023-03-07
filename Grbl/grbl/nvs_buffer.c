@@ -36,7 +36,7 @@
 #include "gcode.h"
 #include "nvs.h"
 
-static uint8_t *nvsbuffer = NULL;
+uint8_t *nvsbuffer = NULL;
 static nvs_io_t physical_nvs;
 static bool dirty;
 
@@ -53,7 +53,6 @@ typedef struct {
 #define NVS_GROUP_PARAMETERS 2
 #define NVS_GROUP_STARTUP 3
 #define NVS_GROUP_BUILD 4
-
 
 #define PARAMETER_ADDR(n) (NVS_ADDR_PARAMETERS + n * (sizeof(coord_data_t) + NVS_CRC_BYTES))
 #define STARTLINE_ADDR(n) (NVS_ADDR_STARTUP_BLOCK + n * (sizeof(stored_line_t) + NVS_CRC_BYTES))
@@ -125,7 +124,6 @@ static nvs_transfer_result_t memcpy_to_ram (uint32_t destination, uint8_t *sourc
 {
     if(hal.nvs.driver_area.address && destination > hal.nvs.driver_area.address + hal.nvs.driver_area.size)
         return physical_nvs.memcpy_to_nvs(destination, source, size, with_checksum);
-
     uint32_t dest = destination;
     uint8_t checksum = with_checksum ? calc_checksum(source, size) : 0;
 
@@ -180,7 +178,6 @@ static nvs_transfer_result_t memcpy_to_ram (uint32_t destination, uint8_t *sourc
             }
         }
     }
-
     return NVS_TransferResult_OK;
 }
 

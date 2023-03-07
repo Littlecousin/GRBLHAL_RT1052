@@ -510,16 +510,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -528,6 +518,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -563,6 +563,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -724,6 +734,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -835,11 +875,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -848,6 +883,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1425,6 +1505,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -1465,14 +1550,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -1818,14 +1915,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1839,16 +2096,16 @@
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>MIMXRT1052DVL6B</Device>
+          <Device>MIMXRT1052CVL5B</Device>
           <Vendor>NXP</Vendor>
           <PackID>NXP.MIMXRT1052_DFP.12.2.0</PackID>
           <PackURL>http://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
-          <Cpu>CPUTYPE("Cortex-M7") FPU3(DFPU)</Cpu>
+          <Cpu>IRAM(0x20000000,0x020000) IRAM2(0x00000000,0x020000) IROM(0x00200000,0x018000) XRAM(0x20200000,0x040000) CPUTYPE("Cortex-M7") FPU3(DFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll></FlashDriverDll>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC8000 -FN1 -FF0MIMXRT105x_HYPER_256KB_SEC -FS060000000 -FL04000000 -FP0($$Device:MIMXRT1052CVL5B$arm\MIMXRT105x_HYPER_256KB_SEC.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:MIMXRT1052DVL6B$Device\Include\fsl_device_registers.h</RegisterFile>
+          <RegisterFile>$$Device:MIMXRT1052CVL5B$fsl_device_registers.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -1858,7 +2115,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:MIMXRT1052DVL6B$SVD\MIMXRT1052.svd</SFDFile>
+          <SFDFile>$$Device:MIMXRT1052CVL5B$MIMXRT1052.xml</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -1963,7 +2220,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -2004,16 +2261,16 @@
             <mOS>0</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
-            <hadIROM>0</hadIROM>
-            <hadIRAM>0</hadIRAM>
-            <hadXRAM>0</hadXRAM>
+            <hadIROM>1</hadIROM>
+            <hadIRAM>1</hadIRAM>
+            <hadXRAM>1</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>3</RvdsVP>
             <RvdsMve>0</RvdsMve>
             <RvdsCdeCp>0</RvdsCdeCp>
-            <hadIRAM2>0</hadIRAM2>
+            <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
-            <StupSel>1</StupSel>
+            <StupSel>8</StupSel>
             <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
@@ -2027,15 +2284,15 @@
             <NoZi3>0</NoZi3>
             <NoZi4>0</NoZi4>
             <NoZi5>0</NoZi5>
-            <Ro1Chk>1</Ro1Chk>
+            <Ro1Chk>0</Ro1Chk>
             <Ro2Chk>0</Ro2Chk>
             <Ro3Chk>0</Ro3Chk>
-            <Ir1Chk>0</Ir1Chk>
+            <Ir1Chk>1</Ir1Chk>
             <Ir2Chk>0</Ir2Chk>
             <Ra1Chk>0</Ra1Chk>
             <Ra2Chk>0</Ra2Chk>
             <Ra3Chk>0</Ra3Chk>
-            <Im1Chk>0</Im1Chk>
+            <Im1Chk>1</Im1Chk>
             <Im2Chk>1</Im2Chk>
             <OnChipMemories>
               <Ocm1>
@@ -2070,13 +2327,13 @@
               </Ocm6>
               <IRAM>
                 <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
+                <StartAddress>0x20000000</StartAddress>
                 <Size>0x20000</Size>
               </IRAM>
               <IROM>
                 <Type>1</Type>
-                <StartAddress>0x60000000</StartAddress>
-                <Size>0x4000000</Size>
+                <StartAddress>0x200000</StartAddress>
+                <Size>0x18000</Size>
               </IROM>
               <XRAM>
                 <Type>1</Type>
@@ -2085,8 +2342,8 @@
               </XRAM>
               <OCR_RVCT1>
                 <Type>1</Type>
-                <StartAddress>0x60000000</StartAddress>
-                <Size>0x4000000</Size>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
               </OCR_RVCT1>
               <OCR_RVCT2>
                 <Type>1</Type>
@@ -2100,8 +2357,8 @@
               </OCR_RVCT3>
               <OCR_RVCT4>
                 <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <StartAddress>0x200000</StartAddress>
+                <Size>0x18000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -2115,8 +2372,8 @@
               </OCR_RVCT6>
               <OCR_RVCT7>
                 <Type>0</Type>
-                <StartAddress>0x80000000</StartAddress>
-                <Size>0x2000000</Size>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
               </OCR_RVCT7>
               <OCR_RVCT8>
                 <Type>0</Type>
@@ -2125,12 +2382,12 @@
               </OCR_RVCT8>
               <OCR_RVCT9>
                 <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
+                <StartAddress>0x20000000</StartAddress>
                 <Size>0x20000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
-                <StartAddress>0x20000000</StartAddress>
+                <StartAddress>0x0</StartAddress>
                 <Size>0x20000</Size>
               </OCR_RVCT10>
             </OnChipMemories>
@@ -2162,9 +2419,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb</MiscControls>
-              <Define>XIP_EXTERNAL_FLASH=1, XIP_BOOT_HEADER_ENABLE=1, DEBUG, CPU_MIMXRT1052DVL6B, PRINTF_FLOAT_ENABLE=0, SCANF_FLOAT_ENABLE=0, PRINTF_ADVANCED_ENABLE=0, SCANF_ADVANCED_ENABLE=0, MCUXPRESSO_SDK, USB_STACK_BM, FSL_FEATURE_PHYKSZ8081_USE_RMII50M_MODE, LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS=1,</Define>
+              <Define>XIP_EXTERNAL_FLASH=1, XIP_BOOT_HEADER_ENABLE=1, DEBUG, CPU_MIMXRT1052CVL5B, PRINTF_FLOAT_ENABLE=0, SCANF_FLOAT_ENABLE=0, PRINTF_ADVANCED_ENABLE=0, SCANF_ADVANCED_ENABLE=0, USB_STACK_FREERTOS, SDK_OS_FREE_RTOS, LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS=1, USE_RTOS=1,</Define>
               <Undefine></Undefine>
-              <IncludePath>board;CMSIS;component/lists;component/uart;component\osa;device;drivers;utilities;xip;.\Grbl;source;.\Grbl\inc;.\Grbl\networking;.\middleware\usb\device;.\middleware\usb\include;.\middleware\usb\phy;.\middleware\lwip\port;.\middleware\lwip\src\include;.\middleware\lwip\src\include\lwip;.\component\phy;.\component\phy;./component/phy/mdio/enet;./component/phy/device/phyksz8081;.\middleware\lwip\contrib\apps\tcpecho_raw</IncludePath>
+              <IncludePath>board;CMSIS;component/lists;component/uart;component\osa;device;drivers;utilities;xip;.\Grbl;source;.\Grbl\inc;.\Grbl\networking;.\middleware\usb\device;.\middleware\usb\include;.\middleware\usb\phy;.\middleware\lwip\port;.\middleware\lwip\src\include;.\middleware\lwip\src\include\lwip;.\component\phy;.\component\phy;./component/phy/mdio/enet;./component/phy/device/phylan8720a;.\middleware\lwip\contrib\apps\tcpecho_raw;.\middleware\freertos\freertos_kernel\include;.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F;.\middleware\lwip\contrib\apps\tcpecho</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2335,16 +2592,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -2353,6 +2600,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2363,6 +2620,57 @@
               <FileName>fsl_phyksz8081.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\component\phy\device\phyksz8081\fsl_phyksz8081.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>0</AlwaysBuild>
+                  <GenerateAssemblyFile>1</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>fsl_phyksz8081.h</FileName>
@@ -2388,6 +2696,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2549,6 +2867,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2660,62 +3008,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>0</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <uGnu>2</uGnu>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>2</vShortEn>
-                    <vShortWch>2</vShortWch>
-                    <v6Lto>2</v6Lto>
-                    <v6WtE>2</v6WtE>
-                    <v6Rtti>2</v6Rtti>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -2724,6 +3016,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3301,6 +3638,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -3341,14 +3683,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -3694,14 +4048,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4210,16 +4724,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -4228,6 +4732,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4263,6 +4777,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4424,6 +4948,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4535,11 +5089,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -4548,6 +5097,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5125,6 +5719,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -5165,14 +5764,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -5518,14 +6129,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5862,9 +6633,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-fno-common -fdata-sections -ffreestanding -fno-builtin -mthumb</MiscControls>
-              <Define>XIP_EXTERNAL_FLASH=1, XIP_BOOT_HEADER_ENABLE=1, XIP_BOOT_HEADER_DCD_ENABLE=1, SKIP_SYSCLK_INIT, DATA_SECTION_IS_CACHEABLE=1, DEBUG, CPU_MIMXRT1052DVL6B, PRINTF_FLOAT_ENABLE=0, SCANF_FLOAT_ENABLE=0, PRINTF_ADVANCED_ENABLE=0, SCANF_ADVANCED_ENABLE=0, MCUXPRESSO_SDK</Define>
+              <Define>XIP_EXTERNAL_FLASH=1, XIP_BOOT_HEADER_ENABLE=1, XIP_BOOT_HEADER_DCD_ENABLE=1, SKIP_SYSCLK_INIT, DATA_SECTION_IS_CACHEABLE=1, DEBUG, CPU_MIMXRT1052DVL6B, PRINTF_FLOAT_ENABLE=0, SCANF_FLOAT_ENABLE=0, PRINTF_ADVANCED_ENABLE=0, SCANF_ADVANCED_ENABLE=0, MCUXPRESSO_SDK, FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL=1</Define>
               <Undefine></Undefine>
-              <IncludePath>board;CMSIS;component/lists;component/uart;device;drivers;utilities;xip;.\Grbl;source;.\Grbl\inc</IncludePath>
+              <IncludePath>board;CMSIS;component/lists;component/uart;component\osa;device;drivers;utilities;xip;.\Grbl;source;.\Grbl\inc;.\Grbl\networking;.\middleware\usb\device;.\middleware\usb\include;.\middleware\usb\phy;.\middleware\lwip\port;.\middleware\lwip\src\include;.\middleware\lwip\src\include\lwip;.\component\phy;.\component\phy;./component/phy/mdio/enet;./component/phy/device/phylan8720a;.\middleware\lwip\contrib\apps\tcpecho_raw</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -6035,16 +6806,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -6053,6 +6814,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6063,6 +6834,57 @@
               <FileName>fsl_phyksz8081.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\component\phy\device\phyksz8081\fsl_phyksz8081.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>0</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>fsl_phyksz8081.h</FileName>
@@ -6088,6 +6910,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6249,6 +7081,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6360,11 +7222,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -6373,6 +7230,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6950,6 +7852,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -6990,14 +7897,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -7343,14 +8262,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -7859,16 +8938,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -7877,6 +8946,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -7912,6 +8991,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -8073,6 +9162,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -8184,11 +9303,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -8197,6 +9311,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -8774,6 +9933,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -8814,14 +9978,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -9167,14 +10343,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -9683,16 +11019,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -9701,6 +11027,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -9736,6 +11072,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -9897,6 +11243,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -10008,11 +11384,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -10021,6 +11392,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -10598,6 +12014,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -10638,14 +12059,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -10991,14 +12424,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -11507,16 +13100,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -11525,6 +13108,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -11560,6 +13153,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -11721,6 +13324,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -11832,11 +13465,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -11845,6 +13473,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -12422,6 +14095,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -12462,14 +14140,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -12815,14 +14505,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -13331,16 +15181,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -13349,6 +15189,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -13384,6 +15234,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -13545,6 +15405,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -13656,11 +15546,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -13669,6 +15554,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -14246,6 +16176,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -14286,14 +16221,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -14639,14 +16586,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -15155,16 +17262,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -15173,6 +17270,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -15208,6 +17315,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -15369,6 +17486,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -15480,11 +17627,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -15493,6 +17635,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -16070,6 +18257,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -16110,14 +18302,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -16463,14 +18667,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -16979,16 +19343,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -16997,6 +19351,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -17032,6 +19396,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -17193,6 +19567,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -17304,11 +19708,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -17317,6 +19716,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -17894,6 +20338,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -17934,14 +20383,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -18287,14 +20748,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -18803,16 +21424,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -18821,6 +21432,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -18856,6 +21477,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -19017,6 +21648,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -19128,11 +21789,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -19141,6 +21797,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -19718,6 +22419,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -19758,14 +22464,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -20111,14 +22829,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -20627,16 +23505,6 @@
           <GroupName>component/osa</GroupName>
           <Files>
             <File>
-              <FileName>fsl_os_abstraction_bm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_os_abstraction_bm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\component\osa\fsl_os_abstraction_bm.h</FilePath>
-            </File>
-            <File>
               <FileName>fsl_os_abstraction_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction_config.h</FilePath>
@@ -20645,6 +23513,16 @@
               <FileName>fsl_os_abstraction.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\osa\fsl_os_abstraction.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_os_abstraction_free_rtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\osa\fsl_os_abstraction_free_rtos.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -20680,6 +23558,16 @@
               <FileName>fsl_phy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\component\phy\fsl_phy.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_phylan8720a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\component\phy\device\phylan8720a\fsl_phylan8720a.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -20841,6 +23729,36 @@
               <FileType>5</FileType>
               <FilePath>.\drivers\fsl_enet.h</FilePath>
             </File>
+            <File>
+              <FileName>fsl_lpi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_lpi2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_lpi2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_xbara.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_xbara.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_xbara.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\fsl_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsl_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\fsl_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -20952,11 +23870,6 @@
               <FilePath>.\source\bsp_usb_vom.h</FilePath>
             </File>
             <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\test.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\bsp_flash.c</FilePath>
@@ -20965,6 +23878,51 @@
               <FileName>bsp_flash.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\bsp_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\eeprom_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_i2c_eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_i2c_eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\core_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.c</FilePath>
+            </File>
+            <File>
+              <FileName>RGBLED_DIALOG_BACKEND.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\RGBLED_DIALOG_BACKEND.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -21542,6 +24500,11 @@
               <FilePath>.\Grbl\Src\usb_serial.c</FilePath>
             </File>
             <File>
+              <FileName>enet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\Src\enet.c</FilePath>
+            </File>
+            <File>
               <FileName>driver.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Grbl\Inc\driver.h</FilePath>
@@ -21582,14 +24545,26 @@
               <FilePath>.\Grbl\Inc\usb_serial.h</FilePath>
             </File>
             <File>
-              <FileName>grbl_eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Grbl\Src\grbl_eth.c</FilePath>
+              <FileName>enet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\Src\enet.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>grbl/plugin</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom_24AAxxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom_24AAxxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Grbl\eeprom\eeprom.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>usb/phy</GroupName>
@@ -21935,14 +24910,174 @@
               <FilePath>.\source\lwip_tcpecho_test.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.c</FileName>
+              <FileName>tcpecho.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.c</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.c</FilePath>
             </File>
             <File>
-              <FileName>tcpecho_raw.h</FileName>
+              <FileName>tcpecho.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\middleware\lwip\contrib\apps\tcpecho_raw\tcpecho_raw.h</FilePath>
+              <FilePath>.\middleware\lwip\contrib\apps\tcpecho\tcpecho.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/src</GroupName>
+          <Files>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\stream_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>atomic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\atomic.h</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\croutine.h</FilePath>
+            </File>
+            <File>
+              <FileName>deprecated_definitions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\deprecated_definitions.h</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\event_groups.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\FreeRTOS.h</FilePath>
+            </File>
+            <File>
+              <FileName>freertos_tasks_c_additions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\freertos_tasks_c_additions.h</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\list.h</FilePath>
+            </File>
+            <File>
+              <FileName>message_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\message_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_prototypes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_prototypes.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_wrappers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\mpu_wrappers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portable.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\portable.h</FilePath>
+            </File>
+            <File>
+              <FileName>projdefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\projdefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>semphr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\semphr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stack_macros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stack_macros.h</FilePath>
+            </File>
+            <File>
+              <FileName>StackMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\StackMacros.h</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\stream_buffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\task.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\include\timers.h</FilePath>
+            </File>
+            <File>
+              <FileName>portmacro.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\middleware\freertos\freertos_kernel\portable\GCC\ARM_CM4F\portmacro.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\FreeRTOSConfig.h</FilePath>
             </File>
           </Files>
         </Group>

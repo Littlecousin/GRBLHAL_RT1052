@@ -28,8 +28,8 @@
 
 #include "driver.h"
 
-const io_stream_t *usbInit (void);
-const io_stream_t *ethInit (void);
+const io_stream_t *usb_serialInit (void);
+const io_stream_t *eth_serialInit (void);
 
 void usbBufferInput (uint8_t *data, uint32_t length);
 

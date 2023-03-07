@@ -36,12 +36,12 @@
 //! \cond
 
 #ifndef ACCELERATION_TICKS_PER_SECOND
-#define ACCELERATION_TICKS_PER_SECOND 100
+#define ACCELERATION_TICKS_PER_SECOND 100*1
 #endif
 
 // Some useful constants.
-#define DT_SEGMENT (1.0/(ACCELERATION_TICKS_PER_SECOND*60.0)) // min/segment 一个分段是多长时间（分钟）
-#define REQ_MM_INCREMENT_SCALAR 1.25 //如果小于1.25倍的脉冲当量，不发出脉冲
+#define DT_SEGMENT (1.0/(ACCELERATION_TICKS_PER_SECOND*60.0)) // min/segment 一个分段是多长时间（分钟）计算出来是10ms
+#define REQ_MM_INCREMENT_SCALAR 1.25f //如果小于1.25倍的脉冲当量，不发出脉冲
 
 //该枚举类型的意义为:开始计算的状态
 typedef enum {
@@ -114,24 +114,26 @@ static st_block_t st_hold_block;   // Copy of stepper block data for block put o
 typedef struct {
     prep_flags_t recalculate;
 
-    float dt_remainder;         //剩余时间
-    uint32_t steps_remaining;   //剩余步数
-    float steps_per_mm;         //一毫米多少步数
-    float req_mm_increment;
+    float dt_remainder;         // 剩余时间
+    uint32_t steps_remaining;   // 剩余步数
+    float steps_per_mm;         // 一毫米多少步数(steps/mm)
+    float req_mm_increment;     // (1.25*mm/(x*steps))//一步的最小移动距离
 
     st_block_t *last_st_block;
     uint32_t last_steps_remaining;
     float last_steps_per_mm;
     float last_dt_remainder;
 
-    ramp_type_t ramp_type;  // Current segment ramp state
-    float mm_complete;      // End of velocity profile from end of current planner block in (mm).
+    ramp_type_t ramp_type;  // 当前段运动速度状态
+                            // Current segment ramp state
+    float mm_complete;      // 速度剖面端距当前规划块端(毫米)。
+                            // End of velocity profile from end of current planner block in (mm).
                             // NOTE: This value must coincide with a step(no mantissa) when converted.
     float current_speed;    // Current speed at the end of the segment buffer (mm/min)
     float maximum_speed;    // Maximum speed of executing block. Not always nominal speed. (mm/min)
     float exit_speed;       // Exit speed of executing block (mm/min)
-    float accelerate_until; // Acceleration ramp end measured from end of block (mm) 匀速+减速距离:从尾端开始直到加速阶段的距离
-    float decelerate_after; // Deceleration ramp start measured from end of block (mm) 减速距离:从尾端开始直到减速的距离
+    float accelerate_until; // Acceleration ramp end measured from end of block (mm) 匀速+减速距离:从尾端开始直到加速阶段结束的距离
+    float decelerate_after; // Deceleration ramp start measured from end of block (mm) 减速距离:从尾端开始直到减速阶段开始的距离
     float target_position;  //
     float target_feed;      //
     float inv_feedrate;     // Used by PWM laser mode to speed up segment calculations.
@@ -199,7 +201,6 @@ void st_deenergize (void)
         sys.steppers_deenergize = false;
     }
 }
-
 
 // Stepper state initialization. Cycle should only start if the st.cycle_start flag is
 // enabled. Startup init and limits call this function but shouldn't start the cycle.
@@ -285,55 +286,59 @@ ISR_CODE void ISR_FUNC(st_go_idle)(void)
 
 //! \cond
 
+/**
+ * @brief    stepper定时器中断回调函数
+ * @return   {*}
+ */
 ISR_CODE void ISR_FUNC(stepper_driver_interrupt_handler)(void)
 {
 #ifdef ENABLE_BACKLASH_COMPENSATION
     static bool backlash_motion;
 #endif
-
     // Start a step pulse when there is a block to execute.
-    if(st.exec_block) {
-
-        hal.stepper.pulse_start(&st);
-
+    if (st.exec_block)
+    {
+        hal.stepper.pulse_start(&st);//是否切换方向和是否产生脉冲
         st.new_block = st.dir_change = false;
-
         if (st.step_count == 0) // Segment is complete. Discard current segment.
             st.exec_segment = NULL;
     }
 
     // If there is no step segment, attempt to pop one from the stepper buffer
-    if (st.exec_segment == NULL) {
+    if (st.exec_segment == NULL)
+    {
         // Anything in the buffer? If so, load and initialize next step segment.
-        if (segment_buffer_tail != segment_buffer_head) {
-
+        if (segment_buffer_tail != segment_buffer_head)
+        {
             // Initialize new step segment and load number of steps to execute
-            st.exec_segment = (segment_t *)segment_buffer_tail;
+            st.exec_segment = (segment_t *)segment_buffer_tail;// 规划好的片段
 
             // Initialize step segment timing per step and load number of steps to execute.
-            hal.stepper.cycles_per_tick(st.exec_segment->cycles_per_tick);
+            hal.stepper.cycles_per_tick(st.exec_segment->cycles_per_tick);// 设定步进周期定时器时间，这里的定时时间是片段中移动距离最长的轴的步进时间
             st.step_count = st.exec_segment->n_step; // NOTE: Can sometimes be zero when moving slow.
 
             // If the new segment starts a new planner block, initialize stepper variables and counters.
-            if (st.exec_block != st.exec_segment->exec_block) {
-
-                if((st.dir_change = st.exec_block == NULL || st.dir_outbits.value != st.exec_segment->exec_block->direction_bits.value))
+            if (st.exec_block != st.exec_segment->exec_block)
+            {// 新的block
+                if ((st.dir_change = st.exec_block == NULL || st.dir_outbits.value != st.exec_segment->exec_block->direction_bits.value))
+                {
                     st.dir_outbits = st.exec_segment->exec_block->direction_bits;
+                }
                 st.exec_block = st.exec_segment->exec_block;
                 st.step_event_count = st.exec_block->step_event_count;
                 st.new_block = true;
 #ifdef ENABLE_BACKLASH_COMPENSATION
                 backlash_motion = st.exec_block->backlash_motion;
 #endif
-
-                if(st.exec_block->overrides.sync)
+                if (st.exec_block->overrides.sync)
                     sys.override.control = st.exec_block->overrides;
 
                 // Execute output commands to be syncronized with motion
-                while(st.exec_block->output_commands) {
+                while (st.exec_block->output_commands)
+                {
                     output_command_t *cmd = st.exec_block->output_commands;
                     cmd->is_executed = true;
-                    if(cmd->is_digital)
+                    if (cmd->is_digital)
                         hal.port.digital_out(cmd->port, cmd->value != 0.0f);
                     else
                         hal.port.analog_out(cmd->port, cmd->value);
@@ -341,77 +346,78 @@ ISR_CODE void ISR_FUNC(stepper_driver_interrupt_handler)(void)
                 }
 
                 // Enqueue any message to be printed (by foreground process)
-                if(st.exec_block->message) {
-                    if(message == NULL) {
+                if (st.exec_block->message)
+                {
+                    if (message == NULL)
+                    {
                         message = st.exec_block->message;
                         protocol_enqueue_rt_command(output_message);
-                    } else
-                        free(st.exec_block->message); //
+                    }
+                    else
+                        free(st.exec_block->message); 
                     st.exec_block->message = NULL;
                 }
 
                 // Initialize Bresenham line and distance counters
                 st.counter_x = st.counter_y = st.counter_z
-                #ifdef A_AXIS
-                  = st.counter_a
-                #endif
-                #ifdef B_AXIS
-                  = st.counter_b
-                #endif
-                #ifdef C_AXIS
-                  = st.counter_c
-                #endif
-                #ifdef U_AXIS
-                  = st.counter_u
-                #endif
-                #ifdef V_AXIS
-                  = st.counter_v
-                #endif
-                  = st.step_event_count >> 1;
+#ifdef A_AXIS
+                    = st.counter_a
+#endif
+#ifdef B_AXIS
+                    = st.counter_b
+#endif
+#ifdef C_AXIS
+                    = st.counter_c
+#endif
+#ifdef U_AXIS
+                    = st.counter_u
+#endif
+#ifdef V_AXIS
+                    = st.counter_v
+#endif
+                    = st.step_event_count >> 1;
 
-              #ifndef ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING
+#ifndef ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING
                 memcpy(st.steps, st.exec_block->steps, sizeof(st.steps));
-              #endif
+#endif
             }
 
-          #ifdef ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING
+#ifdef ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING
             // With AMASS enabled, adjust Bresenham axis increment counters according to AMASS level.
             st.amass_level = st.exec_segment->amass_level;
             st.steps[X_AXIS] = st.exec_block->steps[X_AXIS] >> st.amass_level;
             st.steps[Y_AXIS] = st.exec_block->steps[Y_AXIS] >> st.amass_level;
             st.steps[Z_AXIS] = st.exec_block->steps[Z_AXIS] >> st.amass_level;
-           #ifdef A_AXIS
+#ifdef A_AXIS
             st.steps[A_AXIS] = st.exec_block->steps[A_AXIS] >> st.amass_level;
-           #endif
-           #ifdef B_AXIS
+#endif
+#ifdef B_AXIS
             st.steps[B_AXIS] = st.exec_block->steps[B_AXIS] >> st.amass_level;
-           #endif
-           #ifdef C_AXIS
+#endif
+#ifdef C_AXIS
             st.steps[C_AXIS] = st.exec_block->steps[C_AXIS] >> st.amass_level;
-           #endif
-           #ifdef U_AXIS
+#endif
+#ifdef U_AXIS
             st.steps[U_AXIS] = st.exec_block->steps[U_AXIS] >> st.amass_level;
-           #endif
-           #ifdef V_AXIS
+#endif
+#ifdef V_AXIS
             st.steps[V_AXIS] = st.exec_block->steps[V_AXIS] >> st.amass_level;
-           #endif
-         #endif
-
-            if(st.exec_segment->update_pwm)
+#endif
+#endif
+            if (st.exec_segment->update_pwm)
                 hal.spindle.update_pwm(st.exec_segment->spindle_pwm);
-            else if(st.exec_segment->update_rpm)
+            else if (st.exec_segment->update_rpm)
                 hal.spindle.update_rpm(st.exec_segment->spindle_rpm);
-        } else {
+        }
+        else
+        {
             // Segment buffer empty. Shutdown.
             st_go_idle();
 
             // Ensure pwm is set properly upon completion of rate-controlled motion.
-            if (st.exec_block->dynamic_rpm && sys.mode == Mode_Laser) {
-              #ifndef GRBL_ESP32
+            if (st.exec_block->dynamic_rpm && sys.mode == Mode_Laser)
+            {
                 hal.spindle.set_state((spindle_state_t){0}, 0.0f);
-              #else
-                hal.spindle.esp32_off();
-              #endif
             }
 
             st.exec_block = NULL;
@@ -424,7 +430,8 @@ ISR_CODE void ISR_FUNC(stepper_driver_interrupt_handler)(void)
     // Check probing state.
     // Monitors probe pin state and records the system position when detected.
     // NOTE: This function must be extremely efficient as to not bog down the stepper ISR.
-    if (sys.probing_state == Probing_Active && hal.probe.get_state().triggered) {
+    if (sys.probing_state == Probing_Active && hal.probe.get_state().triggered)
+    {
 
         sys.probing_state = Probing_Off;
         memcpy(sys.probe_position, sys.position, sizeof(sys.position));
@@ -432,9 +439,10 @@ ISR_CODE void ISR_FUNC(stepper_driver_interrupt_handler)(void)
 
 #ifdef MINIMIZE_PROBE_OVERSHOOT
         // "Flush" segment buffer if full in order to start deceleration early.
-        if((probe_asserted = segment_buffer_head->next == segment_buffer_tail)) {
+        if ((probe_asserted = segment_buffer_head->next == segment_buffer_tail))
+        {
             segment_buffer_head = segment_buffer_tail->next;
-            if(st.step_count < 3 || st.step_count < (st.exec_segment->n_step >> 3))
+            if (st.step_count < 3 || st.step_count < (st.exec_segment->n_step >> 3))
                 segment_buffer_head = segment_buffer_head->next;
             segment_next_head = segment_next_head->next;
         }
@@ -442,98 +450,107 @@ ISR_CODE void ISR_FUNC(stepper_driver_interrupt_handler)(void)
     }
 
     register axes_signals_t step_outbits = (axes_signals_t){0};
-
+	uint32_t steps[N_AXIS];
+	
     // Execute step displacement profile by Bresenham line algorithm
-
+	
     st.counter_x += st.steps[X_AXIS];
-    if (st.counter_x > st.step_event_count) {
-        step_outbits.x = On;
+    if (st.counter_x > st.step_event_count)
+    {
+        step_outbits.x = On;//输出脉冲
         st.counter_x -= st.step_event_count;
 #ifdef ENABLE_BACKLASH_COMPENSATION
-        if(!backlash_motion)
+        if (!backlash_motion)
 #endif
             sys.position[X_AXIS] = sys.position[X_AXIS] + (st.dir_outbits.x ? -1 : 1);
     }
 
     st.counter_y += st.steps[Y_AXIS];
-    if (st.counter_y > st.step_event_count) {
+    if (st.counter_y > st.step_event_count)
+    {
         step_outbits.y = On;
         st.counter_y -= st.step_event_count;
 #ifdef ENABLE_BACKLASH_COMPENSATION
-        if(!backlash_motion)
+        if (!backlash_motion)
 #endif
             sys.position[Y_AXIS] = sys.position[Y_AXIS] + (st.dir_outbits.y ? -1 : 1);
     }
 
     st.counter_z += st.steps[Z_AXIS];
-    if (st.counter_z > st.step_event_count) {
+    if (st.counter_z > st.step_event_count)
+    {
         step_outbits.z = On;
         st.counter_z -= st.step_event_count;
 #ifdef ENABLE_BACKLASH_COMPENSATION
-        if(!backlash_motion)
+        if (!backlash_motion)
 #endif
             sys.position[Z_AXIS] = sys.position[Z_AXIS] + (st.dir_outbits.z ? -1 : 1);
     }
 
-  #ifdef A_AXIS
-      st.counter_a += st.steps[A_AXIS];
-      if (st.counter_a > st.step_event_count) {
-          step_outbits.a = On;
-          st.counter_a -= st.step_event_count;
+#ifdef A_AXIS
+    st.counter_a += st.steps[A_AXIS];
+    if (st.counter_a > st.step_event_count)
+    {
+        step_outbits.a = On;
+        st.counter_a -= st.step_event_count;
 #ifdef ENABLE_BACKLASH_COMPENSATION
-        if(!backlash_motion)
+        if (!backlash_motion)
 #endif
-              sys.position[A_AXIS] = sys.position[A_AXIS] + (st.dir_outbits.a ? -1 : 1);
-      }
-  #endif
+            sys.position[A_AXIS] = sys.position[A_AXIS] + (st.dir_outbits.a ? -1 : 1);
+    }
+#endif
 
-  #ifdef B_AXIS
-      st.counter_b += st.steps[B_AXIS];
-      if (st.counter_b > st.step_event_count) {
-          step_outbits.b = On;
-          st.counter_b -= st.step_event_count;
+#ifdef B_AXIS
+    st.counter_b += st.steps[B_AXIS];
+    if (st.counter_b > st.step_event_count)
+    {
+        step_outbits.b = On;
+        st.counter_b -= st.step_event_count;
 #ifdef ENABLE_BACKLASH_COMPENSATION
-        if(!backlash_motion)
+        if (!backlash_motion)
 #endif
-              sys.position[B_AXIS] = sys.position[B_AXIS] + (st.dir_outbits.b ? -1 : 1);
-      }
-  #endif
+            sys.position[B_AXIS] = sys.position[B_AXIS] + (st.dir_outbits.b ? -1 : 1);
+    }
+#endif
 
-  #ifdef C_AXIS
-      st.counter_c += st.steps[C_AXIS];
-      if (st.counter_c > st.step_event_count) {
-          step_outbits.c = On;
-          st.counter_c -= st.step_event_count;
+#ifdef C_AXIS
+    st.counter_c += st.steps[C_AXIS];
+    if (st.counter_c > st.step_event_count)
+    {
+        step_outbits.c = On;
+        st.counter_c -= st.step_event_count;
 #ifdef ENABLE_BACKLASH_COMPENSATION
-        if(!backlash_motion)
+        if (!backlash_motion)
 #endif
-              sys.position[C_AXIS] = sys.position[C_AXIS] + (st.dir_outbits.c ? -1 : 1);
-      }
-  #endif
+            sys.position[C_AXIS] = sys.position[C_AXIS] + (st.dir_outbits.c ? -1 : 1);
+    }
+#endif
 
-  #ifdef U_AXIS
+#ifdef U_AXIS
     st.counter_u += st.steps[U_AXIS];
-    if (st.counter_u > st.step_event_count) {
+    if (st.counter_u > st.step_event_count)
+    {
         step_outbits.u = On;
         st.counter_u -= st.step_event_count;
 #ifdef ENABLE_BACKLASH_COMPENSATION
-      if(!backlash_motion)
+        if (!backlash_motion)
 #endif
             sys.position[U_AXIS] = sys.position[U_AXIS] + (st.dir_outbits.u ? -1 : 1);
     }
-  #endif
+#endif
 
-  #ifdef V_AXIS
+#ifdef V_AXIS
     st.counter_v += st.steps[V_AXIS];
-    if (st.counter_v > st.step_event_count) {
+    if (st.counter_v > st.step_event_count)
+    {
         step_outbits.v = On;
         st.counter_v -= st.step_event_count;
 #ifdef ENABLE_BACKLASH_COMPENSATION
-      if(!backlash_motion)
+        if (!backlash_motion)
 #endif
             sys.position[V_AXIS] = sys.position[V_AXIS] + (st.dir_outbits.v ? -1 : 1);
     }
-  #endif
+#endif
 
     st.step_outbits.value = step_outbits.value;
 
@@ -541,7 +558,8 @@ ISR_CODE void ISR_FUNC(stepper_driver_interrupt_handler)(void)
     if (state_get() == STATE_HOMING)
         st.step_outbits.value &= sys.homing_axis_lock.mask;
 
-    if (st.step_count == 0 || --st.step_count == 0) {
+    if (st.step_count == 0 || --st.step_count == 0)
+    {
         // Segment is complete. Advance segment tail pointer.
         segment_buffer_tail = segment_buffer_tail->next;
     }
@@ -672,6 +690,10 @@ void st_parking_restore_buffer (void)
    Currently, the segment buffer conservatively holds roughly up to 40-50 msec of steps.
    NOTE: Computation units are in steps, millimeters, and minutes.
 */
+/**
+ * @brief    按照时间片拆分线段
+ * @return   {*}
+ */
 void st_prep_buffer (void)
 {
     // Block step prep buffer, while in a suspend state and there is no suspend motion to execute.
@@ -683,12 +705,11 @@ void st_prep_buffer (void)
     { // Check if we need to fill the buffer.
 
         // Determine if we need to load a new planner block or if the block needs to be recomputed.
+        // 判断当前线段拆分时间片是否完成，如果没有完成，pl_block不为空，if里的语句不会被执行。
         if (pl_block == NULL)
         {
-			//判断当前线段拆分时间片是否完成，如果没有完成，pl_block不为空，if里的语句不会被执行。
-			//如果pl_block为空，说明当前线段时间片拆分完成，执行if里的语句，开始把下一条线段的信息读出来进行时间片拆分
+            // 如果pl_block为空，说明当前线段时间片拆分完成，执行if里的语句，开始把下一条线段的信息读出来进行时间片拆分
             // Query planner for a queued block
-
             pl_block = sys.step_control.execute_sys_motion ? plan_get_system_motion_block() : plan_get_current_block();
 
             if (pl_block == NULL)
@@ -709,7 +730,6 @@ void st_prep_buffer (void)
             }
             else
             {
-
                 // Prepare and copy Bresenham algorithm segment data from the new planner block, so that
                 // when the segment buffer completes the planner block, it may be discarded when the
                 // segment buffer finishes the prepped block, but the stepper ISR is still executing it.
@@ -780,13 +800,14 @@ void st_prep_buffer (void)
             prep.mm_complete = 0.0f; // Default velocity profile complete at 0.0mm from end of block.
             float inv_2_accel = 0.5f / pl_block->acceleration;//加速度倒数二分之一 1/(2a)
 
-            if (sys.step_control.execute_hold)
+            if (sys.step_control.execute_hold)//暂停或停止，减速停止
             { // [Forced Deceleration to Zero Velocity]
                 // Compute velocity profile parameters for a feed hold in-progress. This profile overrides
                 // the planner block profile, enforcing a deceleration to zero speed.
                 prep.ramp_type = Ramp_Decel;
                 // Compute decelerate distance relative to end of block.
                 // decel_dist为假设末速度为0的减速距离
+                // (inv_2_accel * pl_block->entry_speed_sqr)初速度减速到0的位移
                 float decel_dist = pl_block->millimeters - inv_2_accel * pl_block->entry_speed_sqr;
                 if (decel_dist < 0.0f)
                 {// 减速距离大于总距离，说明当前初速度和加速度下不能停下需要进行到下一个块
@@ -813,7 +834,7 @@ void st_prep_buffer (void)
                 else
                 {
                     exit_speed_sqr = plan_get_exec_block_exit_speed_sqr();
-                    prep.exit_speed = sqrtf(exit_speed_sqr);
+                    prep.exit_speed = sqrtf(exit_speed_sqr);//当前块的末速度
                 }
 
                 float nominal_speed = plan_compute_profile_nominal_speed(pl_block);
@@ -829,7 +850,7 @@ void st_prep_buffer (void)
                     // x1 = s-(v0_sqr-vn_sqr) / (2a)
                     prep.accelerate_until = pl_block->millimeters - inv_2_accel * (pl_block->entry_speed_sqr - nominal_speed_sqr);// 计算得到匀速+减速距离
                     if (prep.accelerate_until <= 0.0f)
-                    {   // 该段全是减速
+                    {   // 该段全是减速没有匀速
                         // Deceleration-only.
                         prep.ramp_type = Ramp_Decel;
                         // prep.decelerate_after = pl_block->millimeters;
@@ -844,7 +865,7 @@ void st_prep_buffer (void)
                         // Also, look into near-zero speed handling issues with this.
                     }
                     else
-                    {   
+                    {   // 该段有减速和匀速
                         // 计算线段最大限制速度减速到末速度需要的减速距离
                         // Decelerate to cruise or cruise-decelerate types. Guaranteed to intersect updated plan.
                         prep.decelerate_after = inv_2_accel * (nominal_speed_sqr - exit_speed_sqr); // Should always be >= 0.0 due to planner reinit.
@@ -859,7 +880,7 @@ void st_prep_buffer (void)
                     }
                 }
                 else if (intersect_distance > 0.0f)
-                {
+                {   // 加速减速阶段有交点
                     if (intersect_distance < pl_block->millimeters)
                     {   // 最大减速距离小于总距离
                         // Either trapezoid or triangle types
@@ -873,9 +894,9 @@ void st_prep_buffer (void)
                             {
 								//如果初速度等于最大限制速度，那么线段为匀速或者匀速->减速
 				                /*
-                                    ------
-                                          \
-                                           \
+                                --------
+                                        \
+                                         \
 				                */
                                 // Cruise-deceleration or cruise-only type.
                                 prep.ramp_type = Ramp_Cruise;
@@ -890,14 +911,14 @@ void st_prep_buffer (void)
                                       ------
                                      /      \
                                     /        \
-                                */
+								*/
                                 // inv_2_accel * (nominal_speed_sqr - pl_block->entry_speed_sqr)为加速段距离
                                 prep.accelerate_until -= inv_2_accel * (nominal_speed_sqr - pl_block->entry_speed_sqr);//总距离-加速距离=匀速+减速距离
                             }
                         }
                         else
                         {   // Triangle type
-			                // 减速距离大于交点距离，说明线段设置的最大限制速度大于交点处的最大速度，那么线段只有三角形状的加速和减速过程，没有匀速过程
+			                // 减速距离大于或等于交点距离，说明线段设置的最大限制速度大于交点处的最大速度，那么线段只有三角形状的加速和减速过程，没有匀速过程
                             // prep.ramp_type = Ramp_Accel;
 			                /*
 			                       / \
@@ -905,11 +926,12 @@ void st_prep_buffer (void)
 			                     /     \
 			                */
                             prep.accelerate_until = prep.decelerate_after = intersect_distance;// 减速距离
-                            prep.maximum_speed = sqrtf(2.0f * pl_block->acceleration * intersect_distance + exit_speed_sqr);
+                            prep.maximum_speed = sqrtf(2.0f * pl_block->acceleration * intersect_distance + exit_speed_sqr);// 速度交点处的速度
                         }
                     }
                     else
-                    { // 交点到末尾的距离大于线段总长度，说明只有线段只有减速过程
+                    { 
+                        // 交点到末尾的距离大于或等于线段总长度，说明只有线段只有减速过程
                         // Deceleration-only type
 				              /*
 				                 \
@@ -968,14 +990,15 @@ void st_prep_buffer (void)
           the end of planner block (typical) or mid-block at the end of a forced deceleration,
           such as from a feed hold.
         */
-        //DT_SEGMENT
+        // DT_SEGMENT
         float dt_max = DT_SEGMENT;                               // Maximum segment time(min/seg)
         float dt = 0.0f;                                         // Initialize segment time
         float time_var = dt_max;                                 // Time worker variable
         float mm_var;                                            // mm - Distance worker variable
-        float speed_var;                                         // Speed worker variable
-        float mm_remaining = pl_block->millimeters;              // New segment distance from end of block.
-        float minimum_mm = mm_remaining - prep.req_mm_increment; // Guarantee at least one step.
+        float speed_var;                                         // 加减速时间内的速度变量，只有数值没有方向
+                                                                 // Speed worker variable
+        float mm_remaining = pl_block->millimeters;              // New segment distance from end of block.规划块剩余的距离
+        float minimum_mm = mm_remaining - prep.req_mm_increment; // Guarantee at least one step.一个时间片至少走一步
 
         if (minimum_mm < 0.0f)
             minimum_mm = 0.0f;
@@ -984,23 +1007,31 @@ void st_prep_buffer (void)
         // 但是这时候加速完成了，而加速过程所用的时间dt小于 DT_SEGMENT ，那么时间片剩余的时间DT_SEGMENT-dt，必须用来计算线段在剩余时间里匀速或减速移动的距离s2，那么在DT_SEGMENT时间片内移动的总距离是s1+s2。
         // 另外，要注意由于脉冲频率太低，导致在时间片DT_SEGMENT内移动的距离可能为零，为了防止这种情况发生，倍数放大DT_SEGMENT的值，直到至少移动的距离大于一步为止。
         // 根据时间分割速度
+		// 通过这个do-while循环算出当前时间片的移动距离
         do
         {
             switch (prep.ramp_type)
             {
                 case Ramp_DecelOverride:
-                    speed_var = pl_block->acceleration * time_var;//减速阶段平均速度？
+                    speed_var = pl_block->acceleration * time_var;//时间片内运行速度
                     if ((prep.current_speed - prep.maximum_speed) <= speed_var)
-                    {   // 减速->匀速阶段
+                    {   // 匀减速->匀速阶段
                         // Cruise or cruise-deceleration types only for deceleration override.
-                        mm_remaining = prep.accelerate_until;// 得到减速距离
-                        time_var = 2.0f * (pl_block->millimeters - mm_remaining) / (prep.current_speed + prep.maximum_speed);//得到减速时间
+                        mm_remaining = prep.accelerate_until;
+                        // (pl_block->millimeters - mm_remaining)为减速段走过的距离
+						// 计算剩余距离的时间，用于判断该时间是否为一个时间片
+                        time_var = 2.0f * (pl_block->millimeters - mm_remaining) / (prep.current_speed + prep.maximum_speed);
+                        // mm_remaining -= prep.accelerate_until;
+                        // time_var = 2.0f * (mm_remaining) / (prep.current_speed + prep.maximum_speed);
                         prep.ramp_type = Ramp_Cruise;
                         prep.current_speed = prep.maximum_speed;
                     }
                     else
-                    {   // 减速阶段没有走完
+                    {   // 减速阶段没有走完，匀减速过程
+                        // (prep.current_speed - 0.5f * speed_var)为
                         // Mid-deceleration override ramp.
+                        // time_var * (prep.current_speed - 0.5f * speed_var)当前时间片移动的距离
+                        // s = v0t + (at*t)/2
                         mm_remaining -= time_var * (prep.current_speed - 0.5f * speed_var);
                         prep.current_speed -= speed_var;
                     }
@@ -1009,11 +1040,13 @@ void st_prep_buffer (void)
                 case Ramp_Accel:
                     // NOTE: Acceleration ramp only computes during first do-while loop.
                     speed_var = pl_block->acceleration * time_var;
-                    mm_remaining -= time_var * (prep.current_speed + 0.5f * speed_var);
+                    mm_remaining -= time_var * (prep.current_speed + 0.5f * speed_var);// 加速
                     if (mm_remaining < prep.accelerate_until)
                     { // End of acceleration ramp.
                         // Acceleration-cruise, acceleration-deceleration ramp junction, or end of block.
                         mm_remaining = prep.accelerate_until; // NOTE: 0.0 at EOB
+                        // (pl_block->millimeters - mm_remaining)为加速段走过的距离
+						// 计算剩余距离的时间，用于判断该时间是否为一个时间片
                         time_var = 2.0f * (pl_block->millimeters - mm_remaining) / (prep.current_speed + prep.maximum_speed);
                         prep.ramp_type = mm_remaining == prep.decelerate_after ? Ramp_Decel : Ramp_Cruise;
                         prep.current_speed = prep.maximum_speed;
@@ -1028,13 +1061,14 @@ void st_prep_buffer (void)
                     //   prevent this, simply enforce a minimum speed threshold in the planner.
                     mm_var = mm_remaining - prep.maximum_speed * time_var;
                     if (mm_var < prep.decelerate_after)
-                    {   
-                        // End of cruise.
-                        // Cruise-deceleration junction or end of block.
-                        time_var = (mm_remaining - prep.decelerate_after) / prep.maximum_speed;
-                        mm_remaining = prep.decelerate_after; // NOTE: 0.0 at EOB
-                        prep.ramp_type = Ramp_Decel;
-                    }
+                    {
+						// End of cruise.
+						// Cruise-deceleration junction or end of block.
+						// 计算剩余距离的时间，用于判断该时间是否为一个时间片
+						time_var = (mm_remaining - prep.decelerate_after) / prep.maximum_speed;
+						mm_remaining = prep.decelerate_after; // NOTE: 0.0 at EOB
+						prep.ramp_type = Ramp_Decel;
+					}
                     else // Cruising only.
                         mm_remaining = mm_var;
                     break;
@@ -1044,10 +1078,10 @@ void st_prep_buffer (void)
                     speed_var = pl_block->acceleration * time_var; // Used as delta speed (mm/min)
                     if (prep.current_speed > speed_var)
                     { // Check if at or below zero speed.
-                        // Compute distance from end of segment to end of block.
-                        mm_var = mm_remaining - time_var * (prep.current_speed - 0.5f * speed_var); // (mm)
-                        if (mm_var > prep.mm_complete)
-                        { // Typical case. In deceleration ramp.
+						// Compute distance from end of segment to end of block.
+						mm_var = mm_remaining - time_var * (prep.current_speed - 0.5f * speed_var); // (mm)
+						if (mm_var > prep.mm_complete)
+						{ // Typical case. In deceleration ramp.
                             mm_remaining = mm_var;
                             prep.current_speed -= speed_var;
                             break; // Segment complete. Exit switch-case statement. Continue do-while loop.
@@ -1062,7 +1096,10 @@ void st_prep_buffer (void)
             dt += time_var; // Add computed ramp time to total segment time.
 
             if (dt < dt_max)
+            {   // 一个时间片里有多个运动状态
+                // time_var计算的值为时间片剩余的时间
                 time_var = dt_max - dt; // **Incomplete** At ramp junction.
+            }
             else
             {
                 if (mm_remaining > minimum_mm)
@@ -1130,11 +1167,13 @@ void st_prep_buffer (void)
            Fortunately, this scenario is highly unlikely and unrealistic in CNC machines
            supported by Grbl (i.e. exceeding 10 meters axis travel at 200 step/mm).
         */
+//		float remaining_mm = pl_block->millimeters - mm_remaining;
+//		float remaining_steps = remaining_mm * prep.steps_per_mm;
         float step_dist_remaining = prep.steps_per_mm * mm_remaining;                     // Convert mm_remaining to steps 剩余距离的步数
-        uint32_t n_steps_remaining = (uint32_t)ceilf(step_dist_remaining);                // Round-up current steps remaining
+        uint32_t n_steps_remaining = (uint32_t)ceilf(step_dist_remaining);                // Round-up current steps remaining 剩余距离的步数向上取整
         // 计算出时间片内移动的步数
         prep_segment->n_step = (uint_fast16_t)(prep.steps_remaining - n_steps_remaining); // Compute number of steps to execute.
-
+		
         // Bail if we are at the end of a feed hold and don't have a step to execute.
         if (prep_segment->n_step == 0 && sys.step_control.execute_hold)
         {
@@ -1145,7 +1184,7 @@ void st_prep_buffer (void)
                 prep.recalculate.hold_partial_block = On;
             return; // Segment not generated, but current step data still retained.
         }
-
+		
         // Compute segment step rate. Since steps are integers and mm distances traveled are not,
         // the end of every segment can have a partial step of varying magnitudes that are not
         // executed, because the stepper ISR requires whole steps due to the AMASS algorithm. To
@@ -1156,14 +1195,13 @@ void st_prep_buffer (void)
         // outputs the exact acceleration and velocity profiles as computed by the planner.
         dt += prep.dt_remainder;// Apply previous segment partial step execute time
 		// 计算出每步需要的时间
-        //
+//		float rate_test = ((float)prep.steps_remaining - n_steps_remaining) / dt;// 步进速度(step/min)
         float rate = ((float)prep.steps_remaining - step_dist_remaining) / dt;// 步进速度(step/min)
         float inv_rate = dt / ((float)prep.steps_remaining - step_dist_remaining); // Compute adjusted step rate inverse 步进速度倒数(min/step)
-		// 每步需要的时间设置为定时器的定时时间间隔
-        // Compute timer ticks per step for the prepped segment.
-        uint32_t cycles = (uint32_t)ceilf(cycles_per_min * inv_rate); // (cycles/step)
 		
-
+        // Compute timer ticks per step for the prepped segment.
+        uint32_t cycles = (uint32_t)ceilf(cycles_per_min * inv_rate); // (cycles/min)*(min/step)=(cycles/step)步数转换为定时器周期
+		
         // Record end position of segment relative to block if spindle synchronized motion
         if ((prep_segment->spindle_sync = pl_block->condition.spindle.synchronized))
         {
@@ -1171,7 +1209,7 @@ void st_prep_buffer (void)
             prep_segment->cruising = prep.ramp_type == Ramp_Cruise;
             prep_segment->target_position = prep.target_position; // st_prep_block->millimeters - pl_block->millimeters;
         }
-
+		
 #ifdef ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING
         // Compute step timing and multi-axis smoothing level.
         // NOTE: AMASS overdrives the timer with each level, so only one prescalar is required.
@@ -1185,23 +1223,22 @@ void st_prep_buffer (void)
             prep_segment->n_step <<= prep_segment->amass_level;
         }
 #endif
-
+		
         prep_segment->cycles_per_tick = cycles;
         prep_segment->current_rate = prep.current_speed;
         
         // Segment complete! Increment segment pointers, so stepper ISR can immediately execute it.
         segment_buffer_head = segment_next_head;
         segment_next_head = segment_next_head->next;
-
+		
         // Update the appropriate planner and segment data.
-        pl_block->millimeters = mm_remaining;
-        prep.steps_remaining = n_steps_remaining;
-        prep.dt_remainder = ((float)n_steps_remaining - step_dist_remaining) * inv_rate;
-
+        pl_block->millimeters = mm_remaining;// 更新剩余的距离
+        prep.steps_remaining = n_steps_remaining;// 更新剩余的步数
+        prep.dt_remainder = ((float)n_steps_remaining - step_dist_remaining) * inv_rate;//计算取整步数的时间
+		
         // Check for exit conditions and flag to load next planner block.
         if (mm_remaining <= prep.mm_complete)
         {
-
             // End of planner block or forced-termination. No more distance to be executed.
             if (mm_remaining > 0.0f)
             { // At end of forced-termination.

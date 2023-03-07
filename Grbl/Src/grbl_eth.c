@@ -189,7 +189,7 @@ static enqueue_realtime_command_ptr streamSetRtHandler (enqueue_realtime_command
 bool tcpecho_check();
 // NOTE: USB interrupt priority should be set lower than stepper/step timer to avoid jitter
 // It is set in HAL_PCD_MspInit() in usbd_conf.c
-const io_stream_t *ethInit (void)
+const io_stream_t *eth_serialInit (void)
 {
 //    static const io_stream_t stream = {
 //        .type = StreamType_Serial,

@@ -241,29 +241,6 @@ void delay_sec (float seconds, delaymode_t mode)
     }
 }
 
-
-float convert_delta_vector_to_unit_vector (float *vector)
-{
-    uint_fast8_t idx = N_AXIS;
-    float magnitude = 0.0f, inv_magnitude;
-
-    do {
-        if (vector[--idx] != 0.0f)
-            magnitude += vector[idx] * vector[idx];
-    } while(idx);
-
-    idx = N_AXIS;
-    magnitude = sqrtf(magnitude);
-    inv_magnitude = 1.0f / magnitude;
-
-    do {
-        vector[--idx] *= inv_magnitude;
-    } while(idx);
-
-    return magnitude;
-}
-
-
 // calculate checksum byte for data
 uint8_t calc_checksum (uint8_t *data, uint32_t size) {
 

@@ -141,18 +141,18 @@ extern __IO uint32_t g_stepper_int_count;
 
 //150Mhz，1分频，一次中断时间为counts/150000000（秒）
 #define PULSE_TIMER_N               1
-#define PULSE_TIMER_CH_N			0
+#define PULSE_TIMER_CH_N			      0
 #define PULSE_TIMER                 timer(PULSE_TIMER_N)
-#define PULSE_TIMER_CH				timerCH(PULSE_TIMER_CH_N)
+#define PULSE_TIMER_CH				      timerCH(PULSE_TIMER_CH_N)
 #define PULSE_TIMER_IRQn            timerINT(PULSE_TIMER_N)
 #define PULSE_TIMER_IRQHandler      timerHANDLER(PULSE_TIMER_N)
 #define PULSE_TIMER_CLOCK_ENA       timerCLKENA(PULSE_TIMER_N)
 
 //150Mhz，128分频，一次中断时间为counts*128/150000000（秒）
 #define DEBOUNCE_TIMER_N            2
-#define DEBOUNCE_TIMER_CH_N			0
+#define DEBOUNCE_TIMER_CH_N			    0
 #define DEBOUNCE_TIMER              timer(DEBOUNCE_TIMER_N)
-#define DEBOUNCE_TIMER_CH			timerCH(DEBOUNCE_TIMER_CH_N)
+#define DEBOUNCE_TIMER_CH			      timerCH(DEBOUNCE_TIMER_CH_N)
 #define DEBOUNCE_TIMER_IRQn         timerINT(DEBOUNCE_TIMER_N)
 #define DEBOUNCE_TIMER_IRQHandler   timerHANDLER(DEBOUNCE_TIMER_N)
 #define DEBOUNCE_TIMER_CLOCK_ENA    timerCLKENA(DEBOUNCE_TIMER_N)
@@ -162,7 +162,7 @@ extern __IO uint32_t g_stepper_int_count;
 
 #ifdef SPINDLE_PWM_PORT_BASE
 #define SPINDLE_PWM_TIMER_N     3
-#define SPINDLE_PWM_TIMER_CH    0
+#define SPINDLE_PWM_TIMER_CH    3
 #define SPINDLE_PWM_TIMER_INV   0
 #define SPINDLE_PWM_TIMER_AF    1
 
@@ -319,7 +319,7 @@ extern __IO uint32_t g_stepper_int_count;
 #endif
 
 #if I2C_ENABLE && !defined(I2C_PORT)
-#define I2C_PORT 2 // GPIOB, SCL_PIN = 10, SDA_PIN = 11
+#define I2C_PORT 0
 #endif
 
 #if SPI_ENABLE && !defined(SPI_PORT)

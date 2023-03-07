@@ -37,7 +37,7 @@ typedef union {
                 reserved4     :1,
                 encoder_error :1,
                 at_speed      :1, //!< Spindle is at speed.
-                synchronized  :1;
+                synchronized  :1; // 主轴同步
     };
 } spindle_state_t;
 

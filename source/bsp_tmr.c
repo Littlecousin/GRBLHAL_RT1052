@@ -59,16 +59,16 @@ void TMRn_PWM_Init()
 	gpt_config.outputLogic =  1;                //默认高电平
 	gpt_config.interruptMode = kGPIO_NoIntmode; //不使用中断
 	/*初始化QTMR定时器CH0 外部引脚*/
-	IOMUXC_SetPinMux(QTMR_CH0_IOMUXC, 0U);
-	IOMUXC_SetPinConfig(QTMR_CH0_IOMUXC, TMR_PWM_OUTPUT_PAD_CONFIG_DATA);
-	GPIO_PinInit(QTMR_CH0_GPIO, QTMR_CH0_GPIO_PIN, &gpt_config);
+	IOMUXC_SetPinMux(QTMR_CH3_IOMUXC, 0U);
+	IOMUXC_SetPinConfig(QTMR_CH3_IOMUXC, TMR_PWM_OUTPUT_PAD_CONFIG_DATA);
+	GPIO_PinInit(QTMR_CH3_GPIO, QTMR_CH3_GPIO_PIN, &gpt_config);
 	
 	/*初始化TMR 定时器*/
 	QTMR_GetDefaultConfig(&qtmrConfig);
 	qtmrConfig.primarySource = kQTMR_ClockDivide_2;
-	QTMR_Init(QTMR_BASEADDR, QTMR_PWM_CHANNEL_0,  &qtmrConfig);
+	QTMR_Init(QTMR_BASEADDR, QTMR_PWM_CHANNEL,  &qtmrConfig);
 	/* 创建CH0的PWM输出，并且指定PWM的频率与占空比*/
-	QTMR_SetupPwm(QTMR_BASEADDR, QTMR_PWM_CHANNEL_0, TMR1_CH0_PWM_FREQUENCY, TMR1_CH0_PWM_DUTYCYCLE, false, QTMR_SOURCE_CLOCK / 8);
+	QTMR_SetupPwm(QTMR_BASEADDR, QTMR_PWM_CHANNEL, TMR1_CH3_PWM_FREQUENCY, TMR1_CH3_PWM_DUTYCYCLE, false, QTMR_SOURCE_CLOCK / 8);
 //	QTMR_StartTimer(QTMR_BASEADDR, QTMR_PWM_CHANNEL_0, kQTMR_PriSrcRiseEdge);
 }
 

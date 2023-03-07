@@ -491,8 +491,18 @@ void xPortPendSVHandler( void )
 }
 /*-----------------------------------------------------------*/
 volatile uint32_t g_RunTime = 0;
+volatile uint32_t uwTick;
+
+uint32_t millis()
+{
+	return uwTick;
+}
+
+void Driver_IncTick (void);
 void xPortSysTickHandler( void )
 {
+	uwTick++;
+	Driver_IncTick();
 	g_RunTime++;
     /* The SysTick runs at the lowest interrupt priority, so when this interrupt
      * executes all interrupts must be unmasked.  There is therefore no need to

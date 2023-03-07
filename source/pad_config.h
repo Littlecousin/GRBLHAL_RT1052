@@ -1,20 +1,3 @@
-/**
-  ******************************************************************
-  * @file    pad_config.h
-  * @author  fire
-  * @version V1.0
-  * @date    2018-xx-xx
-  * @brief   IOMUXC  PAD属性配置使用的功能宏定义
-  ******************************************************************
-  * @attention
-  *
-  * 实验平台:野火  i.MXRT1052开发板 
-  * 论坛    :http://www.firebbs.cn
-  * 淘宝    :https://fire-stm32.taobao.com
-  *
-  ******************************************************************
-  */
-  
 #ifndef __PAD_CONFIG_H
 #define __PAD_CONFIG_H
 

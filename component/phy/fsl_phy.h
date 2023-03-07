@@ -18,11 +18,6 @@
 #define PHY_ID1_REG                 0x02U /*!< The PHY ID one register. */
 #define PHY_ID2_REG                 0x03U /*!< The PHY ID two register. */
 #define PHY_AUTONEG_ADVERTISE_REG   0x04U /*!< The PHY auto-negotiate advertise register. */
-#define PHY_AUTONEG_LINKPARTNER_REG 0x05U /*!< The PHY auto negotiation link partner ability register. */
-#define PHY_AUTONEG_EXPANSION_REG   0x06U /*!< The PHY auto negotiation expansion register. */
-#define PHY_1000BASET_CONTROL_REG   0x09U /*!< The PHY 1000BASE-T control register. */
-#define PHY_MMD_ACCESS_CONTROL_REG  0x0DU /*!< The PHY MMD access control register. */
-#define PHY_MMD_ACCESS_DATA_REG     0x0EU /*!< The PHY MMD access data register. */
 
 /*! @brief Defines the mask flag in basic control register(Address 0x00). */
 #define PHY_BCTL_SPEED1_MASK          0x0040U /*!< The PHY speed bit mask(MSB).*/

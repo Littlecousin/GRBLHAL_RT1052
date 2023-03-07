@@ -37,14 +37,14 @@
       上拉/下拉选择: 100K上拉
       滞回器配置: 关闭 */  
 
-#define QTMR_CH0_GPIO		GPIO1
-#define QTMR_CH0_GPIO_PIN	(16U)
-#define QTMR_CH0_IOMUXC		IOMUXC_GPIO_AD_B1_00_QTIMER3_TIMER0
+#define QTMR_CH3_GPIO		GPIO1
+#define QTMR_CH3_GPIO_PIN	(19U)
+#define QTMR_CH3_IOMUXC		IOMUXC_GPIO_AD_B1_03_QTIMER3_TIMER3
 #define QTMR_BASEADDR		TMR3
-#define QTMR_PWM_CHANNEL_0	kQTMR_Channel_0
+#define QTMR_PWM_CHANNEL	kQTMR_Channel_3
 /*定义输出pwm频率和占空比*/
-#define TMR1_CH0_PWM_FREQUENCY 50000  //5000 表示频率为5000Hz,
-#define TMR1_CH0_PWM_DUTYCYCLE 50      //5  代表占空比为5%
+#define TMR1_CH3_PWM_FREQUENCY 50000  //5000 表示频率为5000Hz,
+#define TMR1_CH3_PWM_DUTYCYCLE 50      //5  代表占空比为5%
 
 /*
 *定义定时时间（单位：ms）

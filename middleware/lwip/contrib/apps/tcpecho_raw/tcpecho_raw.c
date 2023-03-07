@@ -216,7 +216,7 @@ bool tcpecho_check()
 {
 	return tcpecho_status;
 }
-uint8_t test_buffer[512];
+
 static err_t tcpecho_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
 	if (p != NULL) 
@@ -228,8 +228,8 @@ static err_t tcpecho_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t
 		#if GRBL_ETH
 		ethBufferInput(p->payload,p->tot_len);
 		#endif
-//		tcp_write(tpcb, p->payload, p->tot_len, 1);
-		memcpy(test_buffer,p->payload,p->tot_len);
+		tcp_write(tpcb, p->payload, p->tot_len, 1);
+//		memcpy(test_buffer,p->payload,p->tot_len);
 		memset(p->payload, 0 , p->tot_len);
 		pbuf_free(p);
 
@@ -276,9 +276,9 @@ tcpecho_raw_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 		es->state = ES_RECEIVED;
 		/* store reference to incoming pbuf (chain) */
 		es->p = p;
-		memcpy(test_buffer,p->payload,p->tot_len);
+//		memcpy(test_buffer,p->payload,p->tot_len);
 		ethBufferInput(p->payload,p->tot_len);
-//		tcpecho_raw_send(tpcb, es);
+		tcpecho_raw_send(tpcb, es);
 		ret_err = ERR_OK;
 	}
 	else if (es->state == ES_RECEIVED)
@@ -287,9 +287,9 @@ tcpecho_raw_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 		if (es->p == NULL)
 		{
 			es->p = p;
-			memcpy(test_buffer,p->payload,p->tot_len);
+//			memcpy(test_buffer,p->payload,p->tot_len);
 			ethBufferInput(p->payload,p->tot_len);
-//			tcpecho_raw_send(tpcb, es);
+			tcpecho_raw_send(tpcb, es);
 		}
 		else
 		{
@@ -339,9 +339,9 @@ tcpecho_raw_accept(void *arg, struct tcp_pcb *newpcb, err_t err)
 		/* pass newly allocated es to our callbacks */
 		tcp_arg(newpcb, es);
 		tcp_recv(newpcb, tcpecho_recv);
-//		tcp_err(newpcb, tcpecho_raw_error);
-//		tcp_poll(newpcb, tcpecho_raw_poll, 0);
-//		tcp_sent(newpcb, tcpecho_raw_sent);
+		tcp_err(newpcb, tcpecho_raw_error);
+		tcp_poll(newpcb, tcpecho_raw_poll, 0);
+		tcp_sent(newpcb, tcpecho_raw_sent);
 		ret_err = ERR_OK;
 		tcpecho_status = es->state;
 	}

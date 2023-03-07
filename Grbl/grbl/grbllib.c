@@ -93,7 +93,7 @@ static void report_driver_error (sys_state_t state)
 
     report_message(msg, Message_Plain);
 }
-void eth_calling();
+
 /**
  * @brief    main entry point
  * @return   {*}

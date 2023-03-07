@@ -162,8 +162,7 @@ void USB_DeviceTaskFn(void *deviceHandle)
 
 ring_fifo_t *usb_fifo_handle;
 uint8_t usb_ring_buffer[8192] = {0};
-uint8_t usb_temp_buffer[64] = {0};
-static uint32_t usb_rx_count = 0;
+
 //待测试的fifo类型
 #define TEST_FIFO_TYPE RF_TYPE_STREAM//RF_TYPE_STREAM RF_TYPE_FRAME
 
@@ -225,23 +224,15 @@ usb_status_t USB_DeviceCdcVcomCallback(class_handle_t handle, uint32_t event, vo
         break;
         case kUSB_DeviceCdcEventRecvResponse://接收到数据
         {
-            if ((1 == s_cdcVcom.attach) && (1 == s_cdcVcom.startTransactions))
+			if ((1U == s_cdcVcom.attach) && (1U == s_cdcVcom.startTransactions))
             {
-                s_recvSize = epCbParam->length;//接收到数据长度
-				if(s_recvSize)
-				{	
-					
-//					ring_fifo_write(usb_fifo_handle,s_currRecvBuf,s_recvSize);
-					#if USB_SERIAL_CDC
-					usbBufferInput(s_currRecvBuf,s_recvSize);
-					#endif
-				}
-                if (!s_recvSize)
-                {	
-					//如果接收到数据长度为0也需要启动下一次的接收
+                s_recvSize = epCbParam->length;
+                error      = kStatus_USB_Success;
+                if (0U == s_recvSize)
+                {
                     /* Schedule buffer for next receive event */
-					error = USB_DeviceCdcAcmRecv(handle, USB_CDC_VCOM_BULK_OUT_ENDPOINT, s_currRecvBuf, 
-					g_UsbDeviceCdcVcomDicEndpoints[1].maxPacketSize);
+                    error = USB_DeviceCdcAcmRecv(handle, USB_CDC_VCOM_BULK_OUT_ENDPOINT, s_currRecvBuf,
+                                                 g_UsbDeviceCdcVcomDicEndpoints[1].maxPacketSize);
                 }
             }
         }
@@ -583,7 +574,7 @@ void APPInit(void)
     SDK_DelayAtLeastUs(5000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
     USB_DeviceRun(s_cdcVcom.deviceHandle);
 }
-__IO uint32_t total_size = 0;
+
 /*!
  * @brief Application task function.
  *
@@ -591,7 +582,28 @@ __IO uint32_t total_size = 0;
  *
  * @return None.
  */
-void APPTask(void)
+
+//            if ((1 == s_cdcVcom.attach) && (1 == s_cdcVcom.startTransactions))
+//            {
+//                s_recvSize = epCbParam->length;//接收到数据长度
+//				if(s_recvSize)
+//				{	
+//					ring_fifo_write(usb_fifo_handle,s_currRecvBuf,s_recvSize);
+//					#if USB_SERIAL_CDC
+////					usbBufferInput(s_currRecvBuf,s_recvSize);
+//					#endif
+//				}
+//				error = USB_DeviceCdcAcmSend(s_cdcVcom.cdcAcmHandle, USB_CDC_VCOM_BULK_IN_ENDPOINT, s_currSendBuf, 0);
+//                if (!s_recvSize)
+//                {	
+//					//如果接收到数据长度为0也需要启动下一次的接收
+//                    /* Schedule buffer for next receive event */
+//					error = USB_DeviceCdcAcmRecv(handle, USB_CDC_VCOM_BULK_OUT_ENDPOINT, s_currRecvBuf, 
+//					g_UsbDeviceCdcVcomDicEndpoints[1].maxPacketSize);
+//                }
+//            }
+
+void USB_VCOM_Task(void)
 {
     usb_status_t error = kStatus_USB_Error;
     if ((1 == s_cdcVcom.attach) && (1 == s_cdcVcom.startTransactions))
@@ -600,21 +612,14 @@ void APPTask(void)
         /* endpoint callback length is USB_CANCELLED_TRANSFER_LENGTH (0xFFFFFFFFU) when transfer is canceled */
         if ((0 != s_recvSize) && (USB_CANCELLED_TRANSFER_LENGTH != s_recvSize))
         {
-            int32_t i;
-
             /* Copy Buffer to Send Buff */
-            for (i = 0; i < s_recvSize; i++)
-            {
-                s_currSendBuf[s_sendSize++] = s_currRecvBuf[i];
-            }
+			memcpy(s_currSendBuf, s_currRecvBuf, s_recvSize);
+			s_sendSize = s_recvSize;
+			ring_fifo_write(usb_fifo_handle,s_currRecvBuf,s_recvSize);
             s_recvSize = 0;
         }
-
         if (s_sendSize)
         {
-			total_size += s_sendSize;
-			PRINTF("%d\r\n",total_size);
-            uint32_t size = s_sendSize;
             s_sendSize    = 0;
             error = USB_DeviceCdcAcmSend(s_cdcVcom.cdcAcmHandle, USB_CDC_VCOM_BULK_IN_ENDPOINT, s_currSendBuf, 0);
 			memset(s_currSendBuf,0,sizeof(s_currSendBuf));
@@ -626,23 +631,38 @@ void APPTask(void)
     }
 }
 
+uint32_t USB_VCOM_Read(uint8_t *pBuf,uint16_t len)
+{
+	uint32_t ret = RF_SUCCESS;
+	uint16_t retLen = 0;
+	ret = ring_fifo_read(usb_fifo_handle,pBuf,len,&retLen);
+	if(ret == RF_SUCCESS)
+		return retLen;
+	else
+		return 0;
+}
+
+uint32_t USB_VCOM_Write(uint8_t *pBuf,uint16_t len)
+{
+	uint32_t ret = RF_SUCCESS;
+	ret = ring_fifo_write(usb_fifo_handle,pBuf,len);
+	return ret;
+}
+uint32_t USB_VCOM_Available()
+{
+	return ring_fifo_get_available_size(usb_fifo_handle);
+}
+
 void USB_VCOM_Init(void)
 {
     APPInit();
-//	uint32_t status;
-//	status = ring_fifo_init(&usb_fifo_handle,usb_ring_buffer,sizeof(usb_ring_buffer),TEST_FIFO_TYPE);
-//	if(status != RF_SUCCESS)
-//    {
-//        while(1)
-//		{
-//			
-//		}
-//    }
-//    while (1)
-//    {
-//        APPTask();
-//#if USB_DEVICE_CONFIG_USE_TASK
-//        USB_DeviceTaskFn(s_cdcVcom.deviceHandle);
-//#endif
-//    }
+	uint32_t status;
+	status = ring_fifo_init(&usb_fifo_handle,usb_ring_buffer,sizeof(usb_ring_buffer),TEST_FIFO_TYPE);
+	if(status != RF_SUCCESS)
+    {
+        while(1)
+		{
+			
+		}
+    }
 }

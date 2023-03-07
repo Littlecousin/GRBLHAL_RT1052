@@ -48,11 +48,11 @@ Helper functions for saving away and restoring a stream input buffer. _Not refer
 #define ASCII_EOL  "\r\n"
 
 #ifndef RX_BUFFER_SIZE
-#define RX_BUFFER_SIZE 1024 // must be a power of 2
+#define RX_BUFFER_SIZE 2048 // must be a power of 2
 #endif
 
 #ifndef TX_BUFFER_SIZE
-#define TX_BUFFER_SIZE 512  // must be a power of 2
+#define TX_BUFFER_SIZE 1024  // must be a power of 2
 #endif
 
 #ifndef BLOCK_TX_BUFFER_SIZE

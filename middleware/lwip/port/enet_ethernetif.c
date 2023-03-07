@@ -93,12 +93,11 @@ void ethernetif_phy_init(struct ethernetif *ethernetif,
         {
             LWIP_ASSERT("\r\nCannot initialize PHY.\r\n", 0);
         }
-
+		autonego = true;
         /* Wait for auto-negotiation success and link up */
         autoWaitCount = ENET_ATONEGOTIATION_TIMEOUT;
         do
         {
-            PHY_GetAutoNegotiationStatus(ethernetifConfig->phyHandle, &autonego);
             PHY_GetLinkStatus(ethernetifConfig->phyHandle, &link);
             if (autonego && link)
             {

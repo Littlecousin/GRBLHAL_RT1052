@@ -1638,7 +1638,7 @@
  * changes its up/down status (i.e., due to DHCP IP acquisition)
  */
 #if !defined LWIP_NETIF_STATUS_CALLBACK || defined __DOXYGEN__
-#define LWIP_NETIF_STATUS_CALLBACK      0
+#define LWIP_NETIF_STATUS_CALLBACK      1
 #endif
 
 /**
@@ -1655,7 +1655,7 @@
  * whenever the link changes (i.e., link down)
  */
 #if !defined LWIP_NETIF_LINK_CALLBACK || defined __DOXYGEN__
-#define LWIP_NETIF_LINK_CALLBACK        0
+#define LWIP_NETIF_LINK_CALLBACK        1
 #endif
 
 /**
